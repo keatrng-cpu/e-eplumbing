@@ -1,1 +1,19 @@
-SEE_FILE
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E&E — Estad & Ellingson Plumbing</title>
+<meta name="description" content="Estad & Ellingson Plumbing (E&E) — 24/7 plumbers serving Greater Grand Forks, Eastern North Dakota, and Western Minnesota.">
+</head><body>
+<p style="font-family:system-ui;padding:2rem;text-align:center">Loading E&amp;E Plumbing…</p>
+<script>
+(async function(){
+  const parts = await Promise.all([0,1,2,3].map(i => fetch('site-part-'+i+'.html.txt').then(r => r.text())));
+  const html = parts.join('');
+  document.open();
+  document.write(html);
+  document.close();
+})().catch(function(e){
+  document.body.innerHTML = '<p style="font-family:system-ui;padding:2rem">Please call <a href="tel:+12187792553">(218) 779-2553</a>.</p>';
+  console.error(e);
+});
+</script>
+</body></html>
