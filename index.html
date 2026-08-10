@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E&E — Estad & Ellingson Plumbing</title>
-<meta name="description" content="Estad & Ellingson Plumbing (E&E) — 24/7 plumbers serving Greater Grand Forks, Eastern North Dakota, and Western Minnesota.">
-</head><body>
-<p style="font-family:system-ui;padding:2rem;text-align:center">Loading E&amp;E Plumbing…</p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E&E — Estad & Ellingson Plumbing | Greater Grand Forks, Fargo & the Red River Valley</title>
+<meta name="description" content="Estad & Ellingson Plumbing (E&E) — 24/7 plumbers serving Greater Grand Forks, Eastern North Dakota, and Western Minnesota. Emergency repairs, drain cleaning, water heaters, sump pumps, frozen pipes. Licensed & insured in ND and MN.">
+</head>
+<body>
+<p id="boot" style="font-family:system-ui,sans-serif;padding:2rem;text-align:center;color:#5A665E">Loading E&amp;E Plumbing…</p>
 <script>
 (async function(){
-  const parts = await Promise.all([0,1,2,3].map(i => fetch('site-part-'+i+'.html.txt').then(r => r.text())));
-  const html = parts.join('');
-  document.open();
-  document.write(html);
-  document.close();
-})().catch(function(e){
-  document.body.innerHTML = '<p style="font-family:system-ui;padding:2rem">Please call <a href="tel:+12187792553">(218) 779-2553</a>.</p>';
-  console.error(e);
-});
+  var PHONE = '(218) 779-2553';
+  try {
+    var sources = [
+      'https://cdn.jsdelivr.net/gh/keatrng-cpu/e-eplumbing@ec56d5ff19b35b635cd264dbbf0a0afc8370a14b/index.html',
+      'https://raw.githubusercontent.com/keatrng-cpu/e-eplumbing/ec56d5ff19b35b635cd264dbbf0a0afc8370a14b/index.html'
+    ];
+    var html = null, err = null;
+    for (var i = 0; i < sources.length; i++) {
+      try {
+        var res = await fetch(sources[i], {cache: 'no-store'});
+        if (res.ok) { html = await res.text(); break; }
+      } catch (e) { err = e; }
+    }
+    if (!html) throw err || new Error('Could not load site content');
+
+    if (html.indexOf('ee-chat.css') === -1) {
+      html = html.replace('</head>', '<link rel="stylesheet" href="ee-chat.css">\n</head>');
+    }
+    var widget = "<button type=\"button\" class=\"ee-chat-btn\" id=\"eeChatBtn\" aria-label=\"Open chat help\" aria-expanded=\"false\" aria-controls=\"eeChatPanel\"><svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M21 12a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.4-.7L3 21l1.3-5.1A8.5 8.5 0 1 1 21 12Z\" stroke=\"#fff\" stroke-width=\"2\" stroke-linejoin=\"round\"/><path d=\"M8.5 11.5h7M8.5 14.5h4.5\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n<div class=\"ee-chat-panel\" id=\"eeChatPanel\" role=\"dialog\" aria-label=\"E and E help chat\" aria-hidden=\"true\">\n  <div class=\"ee-chat-head\">\n    <div class=\"av\" aria-hidden=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M21 12a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.4-.7L3 21l1.3-5.1A8.5 8.5 0 1 1 21 12Z\" stroke=\"#fff\" stroke-width=\"2\"/></svg></div>\n    <div><b>E&amp;E Help</b><span>Ask about services, emergencies, or booking</span></div>\n    <button type=\"button\" class=\"ee-chat-close\" id=\"eeChatClose\" aria-label=\"Close chat\">&times;</button>\n  </div>\n  <div class=\"ee-chat-msgs\" id=\"eeChatMsgs\" aria-live=\"polite\"></div>\n  <div class=\"ee-chips\" id=\"eeChatChips\"></div>\n  <form class=\"ee-chat-input\" id=\"eeChatForm\" autocomplete=\"off\">\n    <input id=\"eeChatInput\" type=\"text\" placeholder=\"Type your question…\" maxlength=\"400\" aria-label=\"Message\">\n    <button type=\"submit\">Send</button>\n  </form>\n</div>";
+    if (html.indexOf('eeChatBtn') === -1) {
+      if (html.indexOf('class=\"float-call\"') !== -1) html = html.replace('<a class=\"float-call\"', widget + '\n<a class=\"float-call\"');
+      else html = html.replace('</body>', widget + '\n</body>');
+    }
+    if (html.indexOf('ee-chat.js') === -1) {
+      html = html.replace('</body>', '<script src=\"ee-chat.js\" defer><\\/script>\n</body>');
+    }
+
+    document.open();
+    document.write(html);
+    document.close();
+  } catch (e) {
+    console.error(e);
+    document.getElementById('boot').innerHTML = 'We could not load the full site right now. Please call <a href=\"tel:+12187792553\">' + PHONE + '</a> for service.';
+  }
+})();
 </script>
-</body></html>
+</body>
+</html>
