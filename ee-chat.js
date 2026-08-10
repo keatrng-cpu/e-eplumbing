@@ -10,7 +10,7 @@
 
   var PHONE = '(218) 779-2553';
   var TEL = 'tel:+12187792553';
-  var starters = ['Emergency help','Book a service','Water heater','Drain / sewer','Sump pump','Service area','Hours & pricing','Home Team Plan'];
+  var starters = ['Emergency help','Book a service','Water heater','Drain / sewer','Sump pump','Service area','Hours & pricing','Home Team Plan','Something else'];
 
   function addBubble(text, who){
     var d = document.createElement('div');
@@ -36,7 +36,7 @@
     btn.setAttribute('aria-expanded','true');
     panel.setAttribute('aria-hidden','false');
     if(!msgs.childElementCount){
-      addBubble('Hi — I\'m the E&E helper. I can point you to the right service, explain what to do in an emergency, or get you on the schedule.\n\nIf water is actively flooding, call <a href="'+TEL+'">'+PHONE+'</a> now.', 'bot');
+      addBubble('Hi — I\'m the E&E helper. Ask me about emergencies, booking a call, water heaters, drains, sumps, pricing, or anything else plumbing-related.\n\nIf water is actively flooding or you smell gas, call <a href="'+TEL+'">'+PHONE+'</a> right now — a licensed plumber answers 24/7.', 'bot');
       setChips(starters);
     }
     setTimeout(function(){ input.focus(); }, 50);
@@ -84,9 +84,19 @@
       return 'Happy to help — what do you need? Emergency, booking, water heater, drains, sump, or something else?';
     if(/(human|person|agent|real person|talk to)/.test(q))
       return 'For a real plumber, call or text <a href="'+TEL+'">'+PHONE+'</a> anytime. Or leave details on the <a href="#contact">Request Service</a> form.';
+    if(/(warranty|guarantee|guarantee|how long)/.test(q))
+      return 'We stand behind our work. Ask about the labor warranty and manufacturer coverage on parts when we quote your job.\n\nCall <a href="'+TEL+'">'+PHONE+'</a> or <a href="#contact">request service</a>.';
+    if(/(payment|pay|credit|card|cash|financing|bill)/.test(q))
+      return 'We accept major cards, checks, and cash. Financing options are available on larger jobs — ask when we quote.\n\n<a href="#contact">Request service</a> or call <a href="'+TEL+'">'+PHONE+'</a>.';
+    if(/(review|rating|google|yelp|testimonial)/.test(q))
+      return 'We love happy customers. After the job we\'ll send a quick review link. You can also find us on Google Business.\n\nNeed help now? <a href="#contact">Request service</a> or call <a href="'+TEL+'">'+PHONE+'</a>.';
+    if(/(who are you|about|company|estad|ellingson)/.test(q))
+      return 'We\'re Estad & Ellingson Plumbing (E&E) — local licensed plumbers serving both sides of the Red River Valley. Flat-rate pricing, 24/7 emergency response, and the Home Team Plan for priority service.\n\n<a href="#contact">Request service</a> · <a href="'+TEL+'">'+PHONE+'</a>';
+    if(/(help|what can you|anything|whatever|something else)/.test(q) || q === 'something else')
+      return 'I can help with:\n• Emergencies & shut-off tips\n• Booking a service call\n• Water heaters, drains, sumps, frozen pipes\n• Softeners / filtration\n• Service area, hours, pricing\n• Home Team membership\n• Warranties & payment options\n\nJust type what you need, tap a suggestion, or call <a href="'+TEL+'">'+PHONE+'</a>.\n\nFor a specific job: <a href="#contact">Request Service</a>.';
     if(q === 'call now'){ window.location.href = TEL; return 'Opening your phone dialer…'; }
     if(q === 'shut-off tips') return match('What should I do if a pipe bursts?');
-    return 'I can help with emergencies, booking, water heaters, drains, sumps, frozen pipes, service area, hours, pricing, and the Home Team Plan.\n\nTry a suggestion below, or call <a href="'+TEL+'">'+PHONE+'</a>.\n\nJob request: <a href="#contact">Request Service</a>.';
+    return 'Got it. I can help with emergencies, booking, water heaters, drains, sumps, frozen pipes, softeners, service area, hours, pricing, warranties, payments, and the Home Team Plan.\n\nTry a suggestion below, describe what you need, or call <a href="'+TEL+'">'+PHONE+'</a> anytime.\n\nJob request: <a href="#contact">Request Service</a>.';
   }
 
   function handleUser(text){
