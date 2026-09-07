@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /thanks.html
 
-# Replace with the live custom domain after Netlify + DNS.
-Sitemap: /sitemap.xml
+Sitemap: https://ellingsonplumbing.com/sitemap.xml

@@ -1,6 +1,14 @@
-# Static marketing site — no build step. Publish the repository root as-is.
+# Ellingson Plumbing — static marketing site
 [build]
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
 
 [[headers]]
   for = "/*"
@@ -9,11 +17,6 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-
-[[headers]]
-  for = "/*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.svg"
