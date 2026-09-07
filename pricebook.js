@@ -1,96 +1,87 @@
 /**
- * E&E flat-rate pricebook — starting-estimate ranges only.
+ * Ellingson flat-rate pricebook — starting-estimate ranges only.
+ * Source of truth: PRICEBOOK.md. Keep the two in sync.
  *
- * Source of truth: PRICEBOOK.md. Keep the two in sync — when you revise a
- * number in PRICEBOOK.md after real jobs come in, update it here too.
+ * Sept 2026 Valley calibration: win the click under GF/Fargo/EGF shops,
+ * keep the ceiling on cash jobs. Diagnostic floor covers the truck.
  *
- * This intentionally NEVER produces a single guaranteed price. Plumbing
- * repairs turn on things a web form cannot see (access, pipe material, code
- * upgrades needed) — a hard number here would contradict "flat-rate quote
- * before we start any work" and create a promise the tech on-site can't keep.
- * What it gives a visitor instead: a real starting range, computed the same
- * way every time, so "call for pricing" stops being the whole answer.
+ * After-hours / weekend = 1.5× shop book.
+ * Daytime emergency dispatch = +$119–$199 (not stacked with 1.5×).
  *
- * Isomorphic on purpose: loaded with <script src="pricebook.js"> in the
- * browser (attaches `window.EEPricebook`) and with require() from the
- * Netlify function that re-validates price + scheduling weight server-side
- * (netlify/functions/book.js), so both sides read the exact same numbers.
+ * Loaded as pricebook.js in the browser (window.EEPricebook) and
+ * required from netlify/functions/book.js so both sides share numbers.
  */
 (function (root, factory) {
-  if (typeof module === "object" && module.exports) {
-    module.exports = factory();
-  } else {
-    root.EEPricebook = factory();
+  var api = factory();
+  if (typeof module === "object" && module !== null) {
+    try { module.exports = api; } catch (e) { /* ESM interop */ }
   }
-})(typeof self !== "undefined" ? self : this, function () {
+  if (root && typeof root === "object") {
+    root.EEPricebook = api;
+  }
+  return api;
+})(typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : this), function () {
   "use strict";
 
-  // Diagnostic / service call — quoted when nothing below fits, or the
-  // customer just wants a plumber to look. Credited toward the repair.
   var DIAGNOSTIC_FEE = {
-    low: 89,
-    high: 149,
+    low: 129,
+    high: 199,
     note: "1st-hour diagnostic — credited toward the repair if you approve the work.",
   };
 
-  // Applies on top of the range below when urgency is "Emergency — now" and
-  // the request lands outside office hours (Mon–Fri 7am–5pm America/Chicago).
-  var EMERGENCY_SURCHARGE = { low: 75, high: 150 };
+  var EMERGENCY_SURCHARGE = { low: 119, high: 199 };
   var AFTER_HOURS_MULTIPLIER = 1.5;
 
-  // One entry per <select id="fservice"> option, in the same order, so the
-  // form's existing option text is the lookup key — nothing to keep in sync
-  // by hand beyond this file.
   var SERVICES = {
     "Emergency repair": {
       slots: 2,
       options: [
-        { label: "Shut off / isolate a leak", low: 125, high: 225 },
-        { label: "Burst pipe repair (accessible copper/PEX)", low: 350, high: 750 },
-        { label: "Freeze-thaw + minor repair", low: 275, high: 550 },
+        { label: "Shut off / isolate a leak", low: 199, high: 349 },
+        { label: "Burst pipe repair (accessible copper/PEX)", low: 549, high: 995 },
+        { label: "Freeze-thaw + minor repair", low: 379, high: 749 },
         { label: "Not sure — just need a plumber", diagnostic: true },
       ],
     },
     "Drain / sewer": {
       slots: 2,
       options: [
-        { label: "Clear a sink, tub, or toilet (auger)", low: 175, high: 275 },
-        { label: "Main line clear (auger)", low: 275, high: 450 },
-        { label: "Hydro jet the main line", low: 450, high: 850 },
-        { label: "Cleanout install", low: 350, high: 650 },
+        { label: "Clear a sink, tub, or toilet (auger)", low: 179, high: 289 },
+        { label: "Main line clear (auger)", low: 325, high: 549 },
+        { label: "Hydro jet the main line", low: 549, high: 995 },
+        { label: "Cleanout install", low: 395, high: 745 },
       ],
     },
     "Water heater": {
       slots: 3,
       options: [
-        { label: "Tank replace — standard (like-for-like)", low: 650, high: 1100, note: "Labor only — unit priced separately" },
-        { label: "Tank replace — w/ code upgrades", low: 850, high: 1400, note: "Labor only — unit priced separately" },
-        { label: "Flush / maintenance", low: 125, high: 195 },
-        { label: "T&P valve, anode, or element service", low: 150, high: 350 },
+        { label: "Tank replace — standard (like-for-like)", low: 895, high: 1495, note: "Labor only — unit priced separately" },
+        { label: "Tank replace — w/ code upgrades", low: 995, high: 1695, note: "Labor only — unit priced separately" },
+        { label: "Flush / maintenance", low: 149, high: 219 },
+        { label: "T and P valve, anode, or element service", low: 219, high: 429 },
         { label: "Tankless install", custom: true },
       ],
     },
     "Sump pump / flooding": {
       slots: 2,
       options: [
-        { label: "Primary pump replace", low: 450, high: 850 },
-        { label: "Battery backup add-on", low: 550, high: 950 },
-        { label: "Check valve / discharge repair", low: 175, high: 350 },
-        { label: "Seasonal test + service", low: 99, high: 165 },
+        { label: "Primary pump replace", low: 595, high: 1095 },
+        { label: "Battery backup add-on", low: 645, high: 1095 },
+        { label: "Check valve / discharge repair", low: 219, high: 395 },
+        { label: "Seasonal test + service", low: 129, high: 199 },
       ],
     },
     "Frozen or burst pipe": {
       slots: 2,
       options: [
-        { label: "Safe electric thaw + minor repair", low: 275, high: 550 },
-        { label: "Burst pipe repair (accessible)", low: 350, high: 750 },
+        { label: "Safe electric thaw + minor repair", low: 379, high: 749 },
+        { label: "Burst pipe repair (accessible)", low: 549, high: 995 },
         { label: "Difficult access / slab approach", custom: true },
       ],
     },
     "Softener / filtration": {
       slots: 2,
       options: [
-        { label: "Softener service / resin check", low: 125, high: 225 },
+        { label: "Softener service / resin check", low: 169, high: 259 },
         { label: "Softener install", custom: true },
         { label: "Iron filter / RO under-sink", custom: true },
       ],
@@ -120,14 +111,9 @@
     var hour = Number(parts.find(function (p) { return p.type === "hour"; }).value);
     var weekday = parts.find(function (p) { return p.type === "weekday"; }).value;
     var isWeekday = ["Mon", "Tue", "Wed", "Thu", "Fri"].indexOf(weekday) !== -1;
-    return !(isWeekday && hour >= 7 && hour < 17);
+    return !(isWeekday && hour >= 7 && hour <= 16);
   }
 
-  /**
-   * @param {string} serviceLabel - key into SERVICES (matches the <select> text)
-   * @param {number} optionIndex - index into that service's options[]
-   * @param {string} urgency - "Emergency — now" | "This week" | "Planning ahead"
-   */
   function estimate(serviceLabel, optionIndex, urgency) {
     var svc = SERVICES[serviceLabel];
     if (!svc) {
@@ -149,17 +135,21 @@
 
     var afterHours = isAfterHours();
     if (urgency === "Emergency — now" && afterHours) {
-      notes.push(
-        "Emergency dispatch outside business hours: +$" + EMERGENCY_SURCHARGE.low + "–$" + EMERGENCY_SURCHARGE.high + " on top of the repair."
-      );
+      notes.push("After-hours / weekend: 1.5× the shop-book range. Still quoted before work starts.");
       if (range) {
         range = {
-          low: Math.round(range.low + EMERGENCY_SURCHARGE.low),
-          high: Math.round(range.high + EMERGENCY_SURCHARGE.high),
+          low: Math.round(range.low * AFTER_HOURS_MULTIPLIER),
+          high: Math.round(range.high * AFTER_HOURS_MULTIPLIER),
         };
       }
     } else if (urgency === "Emergency — now") {
-      notes.push("Same-day emergency dispatch — no after-hours surcharge during office hours.");
+      notes.push("Daytime emergency dispatch +$" + EMERGENCY_SURCHARGE.low + "–$" + EMERGENCY_SURCHARGE.high + ".");
+      if (range) {
+        range = {
+          low: range.low + EMERGENCY_SURCHARGE.low,
+          high: range.high + EMERGENCY_SURCHARGE.high,
+        };
+      }
     }
 
     notes.push("Starting estimate — confirmed flat-rate quote given on-site before any work begins.");
