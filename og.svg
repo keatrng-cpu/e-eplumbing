@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Ellingson Plumbing">
+  <rect width="1200" height="630" fill="#0E1512"/>
+  <rect width="18" height="630" fill="#009A44"/>
+  <rect x="72" y="168" width="120" height="120" rx="22" fill="#009A44"/>
+  <text x="132" y="250" text-anchor="middle" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="78" font-weight="800" fill="#fff">E</text>
+  <text x="220" y="228" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="64" font-weight="800" fill="#F4F1EA" letter-spacing="3">ELLINGSON</text>
+  <text x="220" y="278" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="32" font-weight="700" fill="#009A44" letter-spacing="8">PLUMBING</text>
+  <text x="72" y="380" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="42" font-weight="800" fill="#F4F1EA">The Valley’s plumbers. On call. On time.</text>
+  <text x="72" y="440" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#C9D8CE">24/7 · Greater Grand Forks · Eastern ND · Western MN</text>
+  <text x="72" y="540" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="36" font-weight="800" fill="#009A44">(218) 779-2553</text>
+</svg>

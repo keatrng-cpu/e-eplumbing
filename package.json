@@ -1,7 +1,7 @@
 {
-  "name": "ee-plumbing-site",
+  "name": "ellingson-plumbing-site",
   "private": true,
-  "description": "Static marketing site for Estad & Ellingson Plumbing. No build step for the site itself — this package.json exists only so Netlify's function bundler can resolve @netlify/blobs for netlify/functions/*.",
+  "description": "Static marketing site for Ellingson Plumbing. No build step for the site itself — this package.json exists only so Netlify's function bundler can resolve @netlify/blobs for netlify/functions/*.",
   "dependencies": {
     "@netlify/blobs": "^8.1.0"
   }

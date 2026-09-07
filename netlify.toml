@@ -1,12 +1,29 @@
-# Static site — no build step. Publish the repository root as-is.
+# Ellingson Plumbing — static marketing site
 [build]
   publish = "."
-  functions = "netlify/functions"
 
 [functions]
-  node_bundler = "esbuild"
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
 
 [[headers]]
-  for = "/*.webp"
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

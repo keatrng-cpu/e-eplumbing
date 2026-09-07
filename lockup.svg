@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="Ellingson Plumbing">
+  <rect width="720" height="220" fill="#ffffff"/>
+  <rect x="36" y="48" width="124" height="124" rx="22" fill="#009A44"/>
+  <text x="98" y="132" text-anchor="middle" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="78" font-weight="800" fill="#fff">E</text>
+  <text x="184" y="108" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="52" font-weight="800" fill="#0B0F0D" letter-spacing="2">ELLINGSON</text>
+  <text x="184" y="152" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="28" font-weight="700" fill="#009A44" letter-spacing="6">PLUMBING</text>
+  <text x="184" y="178" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#5A665E" letter-spacing="1.2">LICENSED · BONDED · INSURED · ND + MN</text>
+</svg>
