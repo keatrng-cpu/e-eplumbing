@@ -1,0 +1,13 @@
+{
+  "name": "E&E — Estad & Ellingson Plumbing",
+  "short_name": "E&E Plumbing",
+  "description": "24/7 plumbers for Greater Grand Forks, Eastern North Dakota, and Western Minnesota.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E1512",
+  "theme_color": "#009A44",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "badge.webp", "sizes": "300x300", "type": "image/webp" }
+  ]
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with the live custom domain after Netlify + DNS.
+Sitemap: /sitemap.xml
