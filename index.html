@@ -8,10 +8,12 @@
 <meta property="og:title" content="Ellingson Plumbing">
 <meta property="og:description" content="24/7 plumbing across Eastern ND & Western MN. The name on the truck is the name on the work.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://ellingsonplumbing.com/lockup.svg">
+<meta property="og:image" content="https://ellingsonplumbing.com/og.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://ellingsonplumbing.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ellingsonplumbing.com/lockup.svg">
+<meta name="twitter:image" content="https://ellingsonplumbing.com/og.svg">
 <meta name="theme-color" content="#009A44">
 <link rel="canonical" href="https://ellingsonplumbing.com/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -36,7 +38,7 @@
 
 </head>
 <body data-live="true">
-<a class="skip" href="#services">Skip to content</a>
+<a class="skip" href="#book">Skip to booking</a>
 <div class="topbar"><div class="wrap">
   <div><span class="pulse" aria-hidden="true"></span><b>24/7 Emergency Service:</b> <a href="tel:+12187792553">(218) 779-2553</a></div>
   <div class="lic">Licensed &amp; Insured in North Dakota + Minnesota</div>
@@ -45,13 +47,22 @@
   <div><b id="seasonLabel">Valley season</b> — <span id="seasonCopy">Hard water, freeze/thaw, and Red River melt are why this shop exists.</span></div>
   <a href="#season">What to do this season →</a>
 </div></div>
+<div class="dispatch" aria-label="Dispatch line">
+  <div class="wrap">
+    <span class="dispatch-label">Dispatch line</span>
+    <div class="ticker-wrap" id="tickerWrap" data-paused="false">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+    <button type="button" id="tickerPause" aria-pressed="false">Pause</button>
+  </div>
+</div>
 <div class="masthead"><a href="#top" aria-label="Ellingson Plumbing home"><img src="lockup.svg" alt="Ellingson Plumbing. Licensed, bonded, insured."></a></div>
 <header class="site" id="siteHeader"><div class="wrap nav">
   <a class="brand" href="#top"><img src="badge.svg" alt=""><span class="name">Ellingson <span>Plumbing</span></span></a>
   <nav class="links" id="navLinks" aria-label="Primary">
-    <a href="#services">Services</a><a href="#why">Why us</a><a href="#how">How it works</a><a href="#area">Area</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    <a href="#book">Get a price</a><a href="#services">Services</a><a href="#why">Why us</a><a href="#how">The call</a><a href="#area">Area</a><a href="#faq">FAQ</a>
   </nav>
-  <a class="btn btn-green" href="#contact">Request Service</a>
+  <a class="btn btn-green" href="#book">Book</a>
   <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
 </div></header>
 <main id="top">
@@ -62,25 +73,78 @@
     <p class="lead">Ellingson Plumbing serves Eastern North Dakota and Western Minnesota with 24/7 emergency repairs, upfront flat-rate pricing, and workmanship the name on the truck has to stand behind.</p>
     <div class="ctas">
       <a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a>
-      <a class="btn btn-ghost" href="#contact">Request Service Online</a>
+      <a class="btn btn-ghost" href="#book">See instant pricing</a>
     </div>
     <div class="chips">
       <span class="chip">Licensed in both states</span>
       <span class="chip">Flat-rate before we start</span>
       <span class="chip">A plumber answers 24/7</span>
     </div>
+    <aside class="emcard" aria-label="Emergency steps" style="margin-top:28px;box-shadow:none;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff">
+      <div class="head">Water where it shouldn’t be?</div>
+      <div class="bodyc">
+        <ol>
+          <li><span><b>Shut off the main valve</b> — usually by the meter, basement front wall.</span></li>
+          <li><span><b>Keep power away</b> from standing water.</span></li>
+          <li><span><b>Call us.</b> A licensed plumber answers 24/7 — no answering service.</span></li>
+        </ol>
+      </div>
+    </aside>
   </div>
-  <aside class="emcard" aria-label="Emergency steps">
-    <div class="head">Water where it shouldn’t be?</div>
-    <div class="bodyc">
-      <ol>
-        <li><span><b>Shut off the main valve</b> — usually by the meter, basement front wall.</span></li>
-        <li><span><b>Kill power to the area</b> if water is near outlets or the panel.</span></li>
-        <li><span><b>Call us.</b> A licensed plumber answers 24/7 — no answering service.</span></li>
-      </ol>
-      <a class="call" href="tel:+12187792553">(218) 779-2553</a>
+  <form id="book" class="book-card" name="service-request" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="service-request">
+    <input type="hidden" name="notify" value="nateplumb97@icloud.com">
+    <input type="hidden" name="estimate" id="fEstimate">
+    <input type="hidden" name="day" id="fDay">
+    <input type="hidden" name="optionIndex" id="fOption" value="0">
+    <p style="display:none"><label>Don’t fill this <input name="bot-field"></label></p>
+    <p class="eyebrow">Get a price · pick a day</p>
+    <h2>What’s going on?</h2>
+    <p class="lead-sm">Tap a job. The range is from the shop book — confirmed before a wrench turns.</p>
+    <div class="job-pills" id="jobPills"></div>
+    <div class="quote-box" id="quoteBox" aria-live="polite"><p>Pick a job and the number appears here. No dash. No guessing.</p></div>
+    <div class="rail" role="group" aria-label="When">
+      <button type="button" class="rail-btn on" id="railNow">Now<span>24/7 dispatch. Call if water is moving.</span></button>
+      <button type="button" class="rail-btn" id="railDay">Pick a day<span>Heaters, softeners, planned work.</span></button>
     </div>
-  </aside>
+    <div class="day-grid" id="dayGrid" hidden></div>
+    <p class="now-note" id="nowNote">Dispatching now. Target: 60–120 minutes. Emergencies skip the calendar — or just call.</p>
+    <div class="row">
+      <div><label for="fname">Name</label><input id="fname" name="name" required autocomplete="name"></div>
+      <div><label for="fphone">Phone</label><input id="fphone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="218-555-0100"></div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="ftown">Town</label>
+        <select id="ftown" name="town" required></select>
+      </div>
+      <div>
+        <label for="fservice">Service needed</label>
+        <select id="fservice" name="service" required>
+          <option value="Emergency repair">Emergency repair</option>
+          <option value="Drain / sewer">Drain / sewer</option>
+          <option value="Water heater">Water heater</option>
+          <option value="Sump pump / flooding">Sump pump / flooding</option>
+          <option value="Frozen or burst pipe">Frozen or burst pipe</option>
+          <option value="Softener / filtration">Softener / filtration</option>
+          <option value="Remodel / rough-in">Remodel / rough-in</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Something else">Something else</option>
+        </select>
+      </div>
+    </div>
+    <label>How urgent is it?</label>
+    <div class="urgency" role="radiogroup" aria-label="Urgency">
+      <label><input type="radio" name="urgency" id="urgNow" value="Emergency — now" checked><span>Right now</span></label>
+      <label><input type="radio" name="urgency" id="urgWeek" value="This week"><span>This week</span></label>
+      <label><input type="radio" name="urgency" id="urgPlan" value="Planning ahead"><span>Planning ahead</span></label>
+    </div>
+    <label for="fmsg">What’s happening?</label>
+    <textarea id="fmsg" name="message" placeholder="Optional — basement, smell, no water…"></textarea>
+    <button class="btn btn-green" type="submit" id="bookSubmit" style="margin-top:20px;width:100%">Dispatch a plumber</button>
+    <p style="margin-top:10px;text-align:center;font-size:12px;color:var(--gray)">Flat-rate before work. We call to confirm. Water moving? <a href="tel:+12187792553">(218) 779-2553</a></p>
+    <div class="form-msg" id="formMsg">Thanks — you’re on the truck. We call back. Emergencies: (218) 779-2553 now.</div>
+  </form>
 </div></div>
 <div class="stats" aria-label="Quick facts"><div class="wrap">
   <div class="stat"><b>24/7</b><span>Real emergency dispatch</span></div>
@@ -200,42 +264,20 @@
   <details class="reveal"><summary>Same-day water heater?</summary><p>Often, when the unit is a common size we stock. Tank and tankless, sized for real Valley households.</p></details>
 </div></section>
 
+<section id="truck" class="truck-board"><div class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">On the truck</div>
+    <h2>Jobs this browser has booked</h2>
+    <p>This board lives on your device so a name and phone never sit on a public calendar. Dispatch above — the row appears here. The office still gets the Netlify form.</p>
+  </div>
+  <div id="truckList"></div>
+</div></section>
+
 <section id="contact"><div class="wrap">
   <div class="reveal">
     <div class="eyebrow">Dispatch</div>
-    <h2>Request Service</h2>
-    <p class="sec-head" style="margin:14px 0 0">Emergencies: call. Everything else can use the form. We call back with a window.</p>
-    <form id="serviceForm" name="service-request" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
-      <input type="hidden" name="form-name" value="service-request">
-      <input type="hidden" name="notify" value="nateplumb97@icloud.com">
-      <p style="display:none"><label>Don’t fill this <input name="bot-field"></label></p>
-      <div class="row">
-        <div><label for="fname">Name</label><input id="fname" name="name" required autocomplete="name"></div>
-        <div><label for="fphone">Phone</label><input id="fphone" name="phone" type="tel" required autocomplete="tel" placeholder="(701) 555-0000"></div>
-      </div>
-      <div class="row">
-        <div><label for="ftown">Town</label><input id="ftown" name="town" required placeholder="e.g. Grand Forks, EGF, Moorhead"></div>
-        <div><label for="fservice">Service needed</label>
-          <select id="fservice" name="service" required>
-            <option value="" selected disabled>Choose one…</option>
-            <option>Emergency repair</option><option>Drain / sewer</option><option>Water heater</option>
-            <option>Sump pump / flooding</option><option>Frozen or burst pipe</option>
-            <option>Softener / filtration</option><option>Remodel / rough-in</option>
-            <option>Commercial</option><option>Something else</option>
-          </select>
-        </div>
-      </div>
-      <label>How urgent is it?</label>
-      <div class="urgency" role="radiogroup" aria-label="Urgency">
-        <label><input type="radio" name="urgency" value="Emergency — now" required><span>Right now</span></label>
-        <label><input type="radio" name="urgency" value="This week"><span>This week</span></label>
-        <label><input type="radio" name="urgency" value="Planning ahead"><span>Planning ahead</span></label>
-      </div>
-      <label for="fmsg">What’s happening?</label>
-      <textarea id="fmsg" name="message" placeholder="Water heater is 14 years old and rumbling like a Zamboni…"></textarea>
-      <button class="btn btn-green" type="submit" style="margin-top:20px;width:100%">Send Request</button>
-      <div class="form-msg" id="formMsg">Thanks — request received. We call back. Emergencies: (218) 779-2553 now.</div>
-    </form>
+    <h2>Need a person, not a form?</h2>
+    <p class="sec-head" style="margin:14px 0 0">Emergencies: call. Pricing and a day hold live in the card at the top. We call back with a window.</p>
+    <p style="margin-top:22px"><a class="btn btn-green" href="#book">Get a price</a></p>
   </div>
   <div class="cinfo reveal">
     <div class="cardc"><b>Call or text</b><a class="big" href="tel:+12187792553">(218) 779-2553</a><p>24/7 — a plumber answers, not a machine.</p></div>
@@ -261,7 +303,7 @@
       <p>Hometown plumbers for Greater Grand Forks, Eastern North Dakota, and Western Minnesota. One name on the truck. One standard of work.</p>
     </div>
     <div><h4>Services</h4><a href="#services">Emergency Repairs</a><a href="#services">Drain &amp; Sewer</a><a href="#services">Water Heaters</a><a href="#services">Sump Pumps</a><a href="#services">Softeners</a></div>
-    <div><h4>Company</h4><a href="#why">Why us</a><a href="#area">Service Area</a><a href="#faq">FAQ</a><a href="#contact">Request Service</a><a href="tel:+12187792553">(218) 779-2553</a></div>
+    <div><h4>Company</h4><a href="#why">Why us</a><a href="#area">Service Area</a><a href="#faq">FAQ</a><a href="#book">Get a price</a><a href="tel:+12187792553">(218) 779-2553</a></div>
   </div>
   <div class="bottom">
     <span>© <span id="yr">2026</span> Ellingson Plumbing LLC. All rights reserved.</span>
@@ -307,16 +349,6 @@
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   document.getElementById('yr').textContent = new Date().getFullYear();
-  var form = document.getElementById('serviceForm');
-  form.addEventListener('submit', function(ev){
-    var host = location.hostname;
-    var live = /netlify\.app$/.test(host) || host.indexOf('eeplumbing') !== -1 || host.indexOf('estad') !== -1 || document.body.dataset.live === 'true';
-    if(!live){
-      ev.preventDefault();
-      document.getElementById('formMsg').style.display = 'block';
-      form.querySelector('button[type=submit]').disabled = true;
-    }
-  });
   (function(){
     var m = new Date().getMonth()+1;
     var label = document.getElementById('seasonLabel');
@@ -329,6 +361,9 @@
     });
   })();
 </script>
+<script src="pricebook.js"></script>
+<script src="schedule.js"></script>
+<script src="app.js" defer></script>
 <script src="ee-chat.js" defer></script>
 </body>
 </html>
