@@ -1,3 +1,5 @@
 node_modules/
 .netlify/
 .claude/settings.local.json
+ai/.sessions.log
+graphify-out/.post-commit.log
