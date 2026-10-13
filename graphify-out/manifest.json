@@ -1,0 +1,206 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1791928689.3932545,
+    "seen": 1791928699.0052323,
+    "ast_hash": "8a11bd3c471cdac14a4a288d79f86fc9",
+    "semantic_hash": ""
+  },
+  "ai/memory/mem.py": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052388,
+    "ast_hash": "f1adeb6954a832c8b6db344c7f8fd67a",
+    "semantic_hash": ""
+  },
+  "app.js": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052419,
+    "ast_hash": "62718cf9f8bbb6a491a99b1d9c4cc384",
+    "semantic_hash": ""
+  },
+  "ee-chat.js": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052435,
+    "ast_hash": "65301f918bec0e962137479d9ba78a77",
+    "semantic_hash": ""
+  },
+  "netlify/functions/availability.js": {
+    "mtime": 1791928689.39687,
+    "seen": 1791928699.0052452,
+    "ast_hash": "bfd8ba26d8950e771c7723ae4b4535a3",
+    "semantic_hash": ""
+  },
+  "netlify/functions/book.js": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.0052464,
+    "ast_hash": "553858bed54ec17a1b7c9efdaa5ce58b",
+    "semantic_hash": ""
+  },
+  "netlify/functions/submission-created.js": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.005248,
+    "ast_hash": "8d2ff2d4f2cfbfea9bcdddc90362cc03",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.0052493,
+    "ast_hash": "17d7fb095cabedf6c06ddb27e9261dae",
+    "semantic_hash": ""
+  },
+  "pricebook.js": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.0052505,
+    "ast_hash": "9bc417ca8499371f9efa661f6c404c3f",
+    "semantic_hash": ""
+  },
+  "schedule.js": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.005252,
+    "ast_hash": "9cf843a590d859e15effb97fea22e664",
+    "semantic_hash": ""
+  },
+  ".github/workflows/graphify-refresh.yml": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.005253,
+    "ast_hash": "b7464fc7fd063a2bab8d700e8bdfd9b4",
+    "semantic_hash": ""
+  },
+  ".grok/GROK.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052547,
+    "ast_hash": "1b111196354e6be6ce61937738488acf",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.005256,
+    "ast_hash": "e40684d6e279cad275260284614e4344",
+    "semantic_hash": ""
+  },
+  "BUSINESS-PLAN.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052574,
+    "ast_hash": "08b545c5ad78112e563dec507e67a02d",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052588,
+    "ast_hash": "eeb98878461aec6a6a3ce7258464deb0",
+    "semantic_hash": ""
+  },
+  "GBP-CONTENT.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.00526,
+    "ast_hash": "f46569bb5a696dc84dfb72f6e57d2848",
+    "semantic_hash": ""
+  },
+  "JOBBER-SETUP.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.005261,
+    "ast_hash": "1013e0950678e838305e9fab3d406565",
+    "semantic_hash": ""
+  },
+  "LAUNCH.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052624,
+    "ast_hash": "dbcce83ded1773d9550e440d3e884885",
+    "semantic_hash": ""
+  },
+  "MARKETING-KIT.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052636,
+    "ast_hash": "a792bbcce581abe4cc24904704a63994",
+    "semantic_hash": ""
+  },
+  "OPERATIONS.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052648,
+    "ast_hash": "aba0a20f4c961ce057b1cddaca17e75d",
+    "semantic_hash": ""
+  },
+  "PRICEBOOK.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052662,
+    "ast_hash": "be72bfced32f6481766f0810a12a3e0b",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052674,
+    "ast_hash": "0ec70c0b1fd30d61f10307c7f4e5b647",
+    "semantic_hash": ""
+  },
+  "TEMPLATES.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052693,
+    "ast_hash": "6a0194f934d082517dba6a76ed0a654b",
+    "semantic_hash": ""
+  },
+  "ai/DECISIONS.md": {
+    "mtime": 1791928689.394299,
+    "seen": 1791928699.0052702,
+    "ast_hash": "901a9d940aa42ddc13fc3bec19125fb4",
+    "semantic_hash": ""
+  },
+  "ai/NOW.md": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052714,
+    "ast_hash": "732bfacc7f505858bcfc49fa3f7fe995",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052729,
+    "ast_hash": "a9e4e8e534467115a7e37c789d294a4b",
+    "semantic_hash": ""
+  },
+  "robots.txt": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.005274,
+    "ast_hash": "14822c9cf84ad99ebc72f45660e09c0b",
+    "semantic_hash": ""
+  },
+  "thanks.html": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.0052757,
+    "ast_hash": "c6b5392c946ee5bd7253e9eec0a5b5f2",
+    "semantic_hash": ""
+  },
+  "badge.svg": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.005277,
+    "ast_hash": "d060325af541d850141d76ffeea65a72",
+    "semantic_hash": ""
+  },
+  "badge.webp": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.005278,
+    "ast_hash": "de8408d225464e6dd7f8e4a66b895357",
+    "semantic_hash": ""
+  },
+  "favicon.svg": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052795,
+    "ast_hash": "f77f3e00b06722842e83a1ee73d6964f",
+    "semantic_hash": ""
+  },
+  "lockup.svg": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052807,
+    "ast_hash": "1931b4b96453d86c934d1d661bf0fcc5",
+    "semantic_hash": ""
+  },
+  "lockup.webp": {
+    "mtime": 1791928689.3956306,
+    "seen": 1791928699.0052822,
+    "ast_hash": "c0f261f9682d579fe1ae4de17c0816c8",
+    "semantic_hash": ""
+  },
+  "og.svg": {
+    "mtime": 1791928689.3969812,
+    "seen": 1791928699.0052834,
+    "ast_hash": "3769e27791ae4a76d020bea371321a66",
+    "semantic_hash": ""
+  }
+}
