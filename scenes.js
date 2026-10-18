@@ -5,7 +5,7 @@
 (function () {
   var cur = document.currentScript && document.currentScript.src;
   var BASE = cur ? cur.replace(/scenes\.js(\?.*)?$/, "") : "/";
-  var VER = "5";
+  var VER = "6";
   var TITLES = {"shutoff": "Water shut off, leak stopped", "burst": "Burst pipe repaired", "freezethaw": "Frozen line thawed and repaired", "diagnose": "Leak found and diagnosed", "clog": "Toilet unclogged", "mainline": "Main line cleared", "hydrojet": "Line hydro-jetted", "cleanout": "Cleanout installed", "cammain": "Main line camera inspected", "cambranch": "Branch line camera inspected", "tankswap": "Water heater replaced", "tankcode": "Water heater brought to code", "flush": "Water heater flushed", "nohot": "T and P valve, anode, or element service", "tankless": "Tankless water heater installed", "sumpswap": "Sump pump replaced", "battery": "Battery backup sump installed", "checkvalve": "Check valve replaced", "sumptest": "Sump pump tested and serviced", "thaw": "Frozen pipes thawed", "frozenburst": "Frozen and burst pipe repaired", "slab": "Slab leak located", "softservice": "Water softener serviced", "softinstall": "Water softener installed", "ironro": "Iron filter or RO installed", "remodel": "Remodel plumbing roughed in", "commercial": "Backflow device tested", "other": "Plumber on the way", "toilet": "Toilet installed", "sink": "Faucet or sink installed", "shower": "Shower valve installed", "tub": "Tub installed", "disposal": "Garbage disposal installed", "cartridge": "Faucet cartridge replaced"};
   var OPTION_SCENES = {
     "Emergency repair": ["shutoff", "burst", "freezethaw", "diagnose"],
@@ -53,6 +53,8 @@
     host.classList.add("scene-loading");
     return load(key).then(function (d) {
       if (host._eeTok !== tok) return;          /* a newer play() on this host won */
+      if (d.kind === "kf") return playKF(host, d, opt, tok);
+      host.classList.remove("scene-kf");
       host.classList.remove("scene-loading");
       var p = "ees" + (++uid) + "-", defs = "", i;
       for (i = 0; i < d.f.length; i++) defs += '<g id="' + p + i + '">' + d.f[i] + "</g>";
@@ -99,6 +101,64 @@
           boil(Math.floor(e * BOIL / 1000) % bgs.length);
           if (n < N) show(n); else { show(N - 1); if (!done) { done = true; res(); } }
           if (e < N * 1000 / FPS + 2500) raf = requestAnimationFrame(tick); else boil(0);
+        }
+        host._eeStop = function () { cancelAnimationFrame(raf); if (!done) { done = true; res(); } };
+        raf = requestAnimationFrame(tick);
+      });
+    }).catch(function () { host.classList.remove("scene-loading"); });
+  }
+
+  /* v6 illustrated keyframes: raster frames (WebP) with timed holds, a turbulence line-boil, small eased tweens, and SVG overlays. */
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, a, kids) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); (kids || []).forEach(function (c) { e.appendChild(c); }); return e; }
+  function overlay(o, p) {
+    var g = el("g", { "class": "kfo", fill: "none", stroke: "currentColor", "stroke-linecap": "round" }), i, a;
+    if (o.t === "effort") for (i = 0; i < 4; i++) { a = (o.a || -90) + (i - 1.5) * 28; a *= Math.PI / 180;
+      g.appendChild(el("path", { d: "M" + (o.x + 34 * Math.cos(a)) + " " + (o.y + 34 * Math.sin(a)) + "L" + (o.x + 58 * Math.cos(a)) + " " + (o.y + 58 * Math.sin(a)), "stroke-width": 6, "class": "kf-pulse" })); }
+    if (o.t === "swirl") g.appendChild(el("path", { d: "M" + (o.x - 40) + " " + o.y + "a40 12 0 1 0 80 0a28 8 0 1 0 -56 0a14 4 0 1 0 28 0", stroke: "#4CC97E", "stroke-width": 5, "class": "kf-spin", style: "transform-origin:" + o.x + "px " + o.y + "px" }));
+    if (o.t === "drips") for (i = 0; i < 3; i++) g.appendChild(el("path", { d: "M" + (o.x + i * 16) + " " + (o.y + i * 10) + "q-6 12 0 16q6 -4 0 -16z", fill: "#4CC97E", stroke: "none", "class": "kf-drip", style: "animation-delay:" + (i * 140) + "ms" }));
+    if (o.t === "bubbles") for (i = 0; i < 4; i++) g.appendChild(el("circle", { cx: o.x + (i % 2) * 14 - 6, cy: o.y - i * 12, r: 5 + (i % 3) * 2, "stroke-width": 3, "class": "kf-rise", style: "animation-delay:" + (i * 110) + "ms" }));
+    if (o.t === "steam") for (i = 0; i < 3; i++) g.appendChild(el("path", { d: "M" + (o.x + i * 22) + " " + o.y + "q10 -14 0 -28q-10 -14 0 -28", "stroke-width": 4, "class": "kf-rise", style: "animation-delay:" + (i * 160) + "ms" }));
+    if (o.t === "word") { var t = el("text", { x: o.x, y: o.y, fill: o.c || "currentColor", stroke: "none", "font-family": "Barlow Condensed,Arial Narrow,sans-serif", "font-weight": 800, "font-size": o.s || 46, "letter-spacing": 2, transform: "rotate(-6 " + o.x + " " + o.y + ")", "class": "kf-pop" }); t.textContent = o.text; g.appendChild(t); }
+    if (o.t === "check") { var c = el("path", { d: "M" + (o.x - 40) + " " + (o.y + 6) + "l30 32l58 -76", stroke: "#009A44", "stroke-width": 16, pathLength: 1, "class": "kf-check" }); if (p) c.style.strokeDashoffset = 0; g.appendChild(c); }
+    return g;
+  }
+  function playKF(host, d, opt, tok) {
+    var N = d.frames.length, imgs = d.frames.map(function (f) { var im = new Image(); im.decoding = "async"; im.src = BASE + f.src; return im; });
+    return Promise.all(imgs.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; })).then(function () {
+      if (host._eeTok !== tok) return;
+      host.classList.remove("scene-loading"); host.classList.add("scene-kf");
+      var p = "ees" + (++uid) + "-", W = d.w, H = d.h;
+      Array.prototype.slice.call(host.children).forEach(function (n) { if (n.tagName.toLowerCase() === "svg") n.remove(); });
+      var turb = el("feTurbulence", { type: "fractalNoise", baseFrequency: ".03", numOctaves: 1, seed: 1 });
+      var svg = el("svg", { viewBox: "0 0 " + W + " " + H, preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": d.alt, style: "color:#0B0F0D" }, [
+        el("defs", {}, [el("filter", { id: p + "b", x: "-2%", y: "-2%", width: "104%", height: "104%" }, [turb, el("feDisplacementMap", { "in": "SourceGraphic", scale: d.boil || 2.4 })])]),
+        el("rect", { width: W, height: H, fill: "#F1F6F2" })]);
+      var stage = el("g", { "class": "kfs", filter: "url(#" + p + "b)" }), img = el("image", { width: W, height: H, preserveAspectRatio: "xMidYMid slice" }), ov = el("g");
+      stage.appendChild(img); svg.appendChild(stage); svg.appendChild(ov); host.insertBefore(svg, host.firstChild);
+      var last = -1;
+      function show(n, still) {
+        if (n === last) return; last = n; var f = d.frames[n];
+        img.setAttribute("href", imgs[n].src);
+        while (ov.firstChild) ov.removeChild(ov.firstChild);
+        (f.o || []).forEach(function (o) { ov.appendChild(overlay(o, still)); });
+        if (!still && f.tw && stage.animate) {         /* small eased tween into the key pose: nudge / squash / lean */
+          var tw = f.tw, o0 = "translate(" + (tw.x || 0) + "px," + (tw.y || 0) + "px) scale(" + (tw.sx || 1) + "," + (tw.sy || 1) + ") rotate(" + (tw.r || 0) + "deg)";
+          stage.style.transformOrigin = (tw.ox || W / 2) + "px " + (tw.oy || H) + "px";
+          stage.animate([{ transform: o0 }, { transform: "none" }], { duration: tw.ms || 260, easing: "cubic-bezier(.3,.7,.4,1)" });
+        }
+      }
+      if (opt.frame != null) { show(opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame), true); stage.removeAttribute("filter"); return; }
+      if (rm()) { show(N - 1, true); stage.removeAttribute("filter"); return; }
+      var ends = [], acc = 0; d.frames.forEach(function (f) { acc += f.hold; ends.push(acc); });
+      return new Promise(function (res) {
+        var t0 = performance.now(), raf, done = false, lb = -1;
+        function tick(now) {
+          var e = Math.max(0, now - t0), n = 0; while (n < N - 1 && e >= ends[n]) n++;
+          var b = Math.floor(e * BOIL / 1000) % 3; if (b !== lb) { lb = b; turb.setAttribute("seed", b + 1); }
+          show(n);
+          if (e >= acc && !done) { done = true; res(); }
+          if (e < acc + 2500) raf = requestAnimationFrame(tick);
         }
         host._eeStop = function () { cancelAnimationFrame(raf); if (!done) { done = true; res(); } };
         raf = requestAnimationFrame(tick);

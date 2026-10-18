@@ -33,3 +33,18 @@
   .hero-stage .hm-scrib{animation:none;stroke-dashoffset:0}
   .confirm .details{transition:none}
 }
+/* v6 keyframe scenes: overlays */
+.kfo .kf-check{stroke-dasharray:1;stroke-dashoffset:1;animation:kf-draw .52s .18s cubic-bezier(.45,.1,.35,1) forwards}
+@keyframes kf-draw{to{stroke-dashoffset:0}}
+.kfo .kf-pulse{animation:kf-pulse .3s ease-in-out infinite alternate}
+@keyframes kf-pulse{from{opacity:.35}to{opacity:1}}
+.kfo .kf-spin{animation:kf-spin .9s linear infinite}
+@keyframes kf-spin{to{transform:rotate(-360deg) scale(.6)}}
+.kfo .kf-drip,.kfo .kf-rise{animation:kf-rise .6s ease-out infinite}
+.kfo .kf-drip{animation-name:kf-fall}
+@keyframes kf-rise{from{transform:translateY(8px);opacity:0}40%{opacity:1}to{transform:translateY(-18px);opacity:0}}
+@keyframes kf-fall{from{transform:translateY(-6px);opacity:0}40%{opacity:1}to{transform:translateY(14px);opacity:0}}
+.kfo .kf-pop{animation:kf-pop .32s cubic-bezier(.3,.7,.4,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes kf-pop{from{opacity:0;scale:.8}to{opacity:1;scale:1}}
+@media(prefers-reduced-motion:reduce){.kfo *{animation:none!important}.kfo .kf-check{stroke-dashoffset:0}}
+.scene.scene-kf{aspect-ratio:16/9}
