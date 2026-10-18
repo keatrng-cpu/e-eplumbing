@@ -33,7 +33,16 @@ exports.handler = async (event) => {
   const service = typeof data.service === "string" ? data.service : "";
   const optionIndex = Number.isInteger(data.optionIndex) ? data.optionIndex : 0;
   const urgency = typeof data.urgency === "string" ? data.urgency : "";
+  const arrivalWindow = typeof data.window === "string" ? data.window : "First available";
   const priced = pricebook.estimate(service, optionIndex, urgency);
+
+  // Short human-quotable reference the customer sees on /thanks.html and can
+  // read back over the phone. Not a secret and not a primary key — the Netlify
+  // Forms submission is still the record of the lead.
+  const ref =
+    "EP-" +
+    Date.now().toString(36).toUpperCase().slice(-5) +
+    Math.floor(Math.random() * 36).toString(36).toUpperCase();
 
   // Emergency: no calendar slot to reserve — the on-call plumber is
   // dispatched today regardless of the scheduled board.
@@ -43,8 +52,10 @@ exports.handler = async (event) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         ok: true,
+        ref,
         emergency: true,
         confirmedDay: null,
+        window: "60–120 min target",
         range: priced.range,
         notes: priced.notes,
       }),
@@ -82,9 +93,11 @@ exports.handler = async (event) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         ok: true,
+        ref,
         emergency: false,
         confirmedDay,
         dayChanged,
+        window: arrivalWindow,
         range: priced.range,
         notes: priced.notes,
       }),
@@ -99,9 +112,11 @@ exports.handler = async (event) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         ok: true,
+        ref,
         emergency: false,
         confirmedDay: data.day || null,
         dayChanged: false,
+        window: arrivalWindow,
         range: priced.range,
         notes: priced.notes.concat(["We'll confirm the exact date by phone or text."]),
       }),

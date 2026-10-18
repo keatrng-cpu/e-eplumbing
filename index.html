@@ -91,36 +91,91 @@
       </div>
     </aside>
   </div>
-  <form id="book" class="book-card" name="service-request" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+  <form id="book" class="book-card" name="service-request" method="POST" action="/thanks.html" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="service-request">
     <input type="hidden" name="notify" value="nateplumb97@icloud.com">
     <input type="hidden" name="estimate" id="fEstimate">
     <input type="hidden" name="day" id="fDay">
-    <input type="hidden" name="optionIndex" id="fOption" value="0">
+    <input type="hidden" name="window" id="fWindow" value="First available">
+    <input type="hidden" name="optionIndex" id="fOption">
+    <input type="hidden" name="scope" id="fScope">
+    <input type="hidden" name="mapLink" id="fCoords">
+    <input type="hidden" name="ref" id="fRef">
+    <input type="hidden" name="details" id="fdetails">
     <p style="display:none"><label>Don’t fill this <input name="bot-field"></label></p>
     <p class="eyebrow">Get a price · pick a day</p>
     <h2>What’s going on?</h2>
-    <p class="lead-sm">Tap a job. The range is from the shop book — confirmed before a wrench turns.</p>
+    <p class="lead-sm">Tap a job, then the closest match. The range is from the shop book — confirmed before a wrench turns.</p>
+
     <div class="job-pills" id="jobPills"></div>
-    <div class="quote-box" id="quoteBox" aria-live="polite"><p>Pick a job and the number appears here. No dash. No guessing.</p></div>
-    <div class="rail" role="group" aria-label="When">
-      <button type="button" class="rail-btn on" id="railNow">Now<span>24/7 dispatch. Call if water is moving.</span></button>
-      <button type="button" class="rail-btn" id="railDay">Pick a day<span>Heaters, softeners, planned work.</span></button>
+
+    <div class="scope-row" id="scopeRow" hidden>
+      <span class="scope-head">Closest match</span>
+      <div class="scope-pills" id="scopePills"></div>
     </div>
-    <div class="day-grid" id="dayGrid" hidden></div>
-    <p class="now-note" id="nowNote">Dispatching now. Target: 60–120 minutes. Emergencies skip the calendar — or just call.</p>
-    <div class="row">
-      <div><label for="fname">Name</label><input id="fname" name="name" required autocomplete="name"></div>
-      <div><label for="fphone">Phone</label><input id="fphone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="218-555-0100"></div>
+
+    <div class="quote-box" id="quoteBox" aria-live="polite">
+      <p class="quote-prompt">Tap what’s going on above — your number appears here. No dash. No guessing.</p>
     </div>
-    <div class="row">
-      <div>
-        <label for="ftown">Town</label>
-        <select id="ftown" name="town" required></select>
+
+    <div class="rail" role="group" aria-label="When do you need us">
+      <button type="button" class="rail-btn" id="railNow" aria-pressed="false">Now<span>24/7 dispatch. Call if water is moving.</span></button>
+      <button type="button" class="rail-btn on" id="railDay" aria-pressed="true">Pick a day<span>Heaters, softeners, planned work.</span></button>
+    </div>
+    <div class="day-grid" id="dayGrid" role="group" aria-label="Choose a day" hidden></div>
+    <div class="window-row" id="windowRow" hidden>
+      <span class="scope-head">Arrival window</span>
+      <div class="window-pills" id="windowPills" role="group" aria-label="Arrival window"></div>
+    </div>
+    <p class="day-note" id="dayNote"></p>
+    <p class="now-note" id="nowNote" hidden>Dispatching now. Target: 60–120 minutes. Emergencies skip the calendar — or just call.</p>
+
+    <div class="followup" id="followupBox" hidden></div>
+
+    <fieldset class="fs">
+      <legend>Where are we going?</legend>
+      <div class="field"><label for="fstreet">Street address</label>
+        <input id="fstreet" name="street" required autocomplete="street-address" placeholder="1420 Demers Ave"></div>
+      <div class="row">
+        <div class="field"><label for="fzip">ZIP</label>
+          <input id="fzip" name="zip" required inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="58201"></div>
+        <div class="field"><label for="ftown">Town</label>
+          <select id="ftown" name="town" required autocomplete="address-level2">
+            <option>Grand Forks, ND</option><option>East Grand Forks, MN</option><option>Fargo, ND</option>
+            <option>West Fargo, ND</option><option>Moorhead, MN</option><option>Crookston, MN</option>
+            <option>Grafton, ND</option><option>Mayville, ND</option><option>Hillsboro, ND</option>
+            <option>Larimore, ND</option><option>Casselton, ND</option><option>Devils Lake, ND</option>
+            <option>Wahpeton, ND</option><option>Thief River Falls, MN</option><option>Detroit Lakes, MN</option>
+            <option>Ada, MN</option><option>Warren, MN</option><option>Fertile, MN</option>
+            <option>Breckenridge, MN</option><option>Dilworth, MN</option><option>Other — still call</option>
+          </select></div>
       </div>
-      <div>
+      <button type="button" class="geo-btn" id="geoBtn">Use my current location</button>
+      <p class="geo-note" id="geoNote" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="fs">
+      <legend>How do we reach you?</legend>
+      <div class="row">
+        <div class="field"><label for="fname">Name</label>
+          <input id="fname" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="fphone">Phone</label>
+          <input id="fphone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="218-555-0100"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="femail">Email <span class="opt">for photos &amp; invoice</span></label>
+          <input id="femail" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="fcontact">Best way to reach you</label>
+          <select id="fcontact" name="contactPref">
+            <option>Call me</option><option>Text me</option><option>Either</option>
+          </select></div>
+      </div>
+      <label class="check"><input type="checkbox" name="smsConsent" value="Yes — OK to text">
+        <span>OK to text me arrival updates and the invoice. Message rates apply; reply STOP to opt out.</span></label>
+      <div class="field">
         <label for="fservice">Service needed</label>
         <select id="fservice" name="service" required>
+          <option value="" selected>Choose a service…</option>
           <option value="Emergency repair">Emergency repair</option>
           <option value="Drain / sewer">Drain / sewer</option>
           <option value="Water heater">Water heater</option>
@@ -132,16 +187,57 @@
           <option value="Something else">Something else</option>
         </select>
       </div>
-    </div>
-    <label>How urgent is it?</label>
-    <div class="urgency" role="radiogroup" aria-label="Urgency">
-      <label><input type="radio" name="urgency" id="urgNow" value="Emergency — now" checked><span>Right now</span></label>
-      <label><input type="radio" name="urgency" id="urgWeek" value="This week"><span>This week</span></label>
-      <label><input type="radio" name="urgency" id="urgPlan" value="Planning ahead"><span>Planning ahead</span></label>
-    </div>
-    <label for="fmsg">What’s happening?</label>
-    <textarea id="fmsg" name="message" placeholder="Optional — basement, smell, no water…"></textarea>
-    <button class="btn btn-green" type="submit" id="bookSubmit" style="margin-top:20px;width:100%">Dispatch a plumber</button>
+    </fieldset>
+
+    <fieldset class="fs">
+      <legend>How urgent is it?</legend>
+      <div class="urgency" role="radiogroup" aria-label="Urgency">
+        <label><input type="radio" name="urgency" id="urgNow" value="Emergency — now"><span>Right now</span></label>
+        <label><input type="radio" name="urgency" id="urgWeek" value="This week" checked><span>This week</span></label>
+        <label><input type="radio" name="urgency" id="urgPlan" value="Planning ahead"><span>Planning ahead</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fs">
+      <legend>Getting in the door</legend>
+      <div class="row">
+        <div class="field"><label for="fprop">Property</label>
+          <select id="fprop" name="property">
+            <option>House</option><option>Townhome / condo</option><option>Apartment</option>
+            <option>Rental I own</option><option>Commercial</option>
+          </select></div>
+        <div class="field"><label for="frole">You are the</label>
+          <select id="frole" name="role">
+            <option>Owner</option><option>Tenant</option><option>Property manager</option>
+          </select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="fhome">Who will be there?</label>
+          <select id="fhome" name="whoHome">
+            <option>I'll be home</option><option>Someone else will be</option><option>Nobody — call first</option>
+          </select></div>
+        <div class="field"><label for="fshut">Know where the main shut-off is?</label>
+          <select id="fshut" name="shutoffKnown">
+            <option>Yes</option><option>No</option><option>Already shut it off</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="faccess">Access notes <span class="opt">gate code, dogs, parking, basement entry</span></label>
+        <textarea id="faccess" name="access" rows="2" placeholder="Code 1234 at the alley gate. Friendly dog in the yard."></textarea></div>
+    </fieldset>
+
+    <fieldset class="fs">
+      <legend>Show us</legend>
+      <div class="field">
+        <label for="fphoto">Photos <span class="opt">the fix starts here — snap the leak or the data plate</span></label>
+        <input id="fphoto" name="photo" type="file" accept="image/*" capture="environment" multiple>
+      </div>
+      <div class="field"><label for="fmsg">Anything else?</label>
+        <textarea id="fmsg" name="message" rows="2" placeholder="Optional — basement, smell, no water…"></textarea></div>
+    </fieldset>
+
+    <noscript><p class="nojs-note">Scripts are off, so the instant price and calendar are unavailable — fill this in and submit, and we’ll call you back with a number. Emergencies: call (218) 779-2553.</p></noscript>
+
+    <button class="btn btn-green" type="submit" id="bookSubmit" style="margin-top:20px;width:100%">Hold this slot</button>
     <p style="margin-top:10px;text-align:center;font-size:12px;color:var(--gray)">Flat-rate before work. We call to confirm. Water moving? <a href="tel:+12187792553">(218) 779-2553</a></p>
     <div class="form-msg" id="formMsg">Thanks — you’re on the truck. We call back. Emergencies: (218) 779-2553 now.</div>
   </form>
