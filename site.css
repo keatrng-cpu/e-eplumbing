@@ -153,7 +153,13 @@ footer .bottom{border-top:1px solid #22302A;padding:18px 0;display:flex;justify-
 .js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
 .dispatch{background:#121916;border-bottom:1px solid #24312a;color:#f4f1ea}
-.dispatch .wrap{display:flex;align-items:center;gap:12px;padding:8px 24px}
+.dispatch .wrap{display:flex;align-items:center;gap:12px;padding:6px 24px}
+.season-mini{flex:none;display:flex;align-items:center;gap:8px;min-width:0;font-size:13px;color:#D3E7DA;padding-right:12px;border-right:1px solid #24312a}
+.season-mini b{color:#fff;font-family:var(--display);letter-spacing:.8px;text-transform:uppercase;font-size:14px;white-space:nowrap}
+.season-mini span{max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.season-mini a{color:#8FD6AC;font-weight:700;white-space:nowrap}
+@media(max-width:1180px){.season-mini span{display:none}}
+@media(max-width:720px){.dispatch .wrap{flex-wrap:wrap;row-gap:4px}.season-mini{flex:1 1 100%;border-right:0;padding-right:0}.dispatch-label{display:none}}
 .dispatch-label{flex:none;font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--kelly)}
 .ticker-wrap{overflow:hidden;min-width:0;flex:1}
 .ticker-track{display:flex;width:max-content;gap:8px;animation:ticker 36s linear infinite}
@@ -199,3 +205,8 @@ footer .bottom{border-top:1px solid #22302A;padding:18px 0;display:flex;justify-
 .hero .emcard .bodyc{color:#fff}
 .hero .emcard ol li::before{background:rgba(255,255,255,.12);color:#8FD6AC}
 .hero .emcard ol li{border-bottom-color:rgba(255,255,255,.12)}
+/* v5 CLS: metric-matched fallbacks so the webfont swap does not re-wrap the hero, and a reserved dispatch line */
+@font-face{font-family:"BC Fallback";src:local("Arial Narrow"),local("Liberation Sans Narrow"),local("Arial"),local("Liberation Sans");size-adjust:73%;ascent-override:100%;descent-override:25%}
+@font-face{font-family:"B Fallback";src:local("Arial"),local("Liberation Sans");size-adjust:95%}
+:root{--display:'Barlow Condensed','BC Fallback',sans-serif;--body:'Barlow','B Fallback','Segoe UI',Arial,sans-serif}
+.dispatch .wrap{min-height:43px}

@@ -1,17 +1,18 @@
 /* Mascot motion (v4 ink). No framework; frame swaps + one transform. */
-/* ---------- Hero walk lane: sits in the left column under the CTAs, inside the first screen ---------- */
-.hero-lane{position:relative;height:clamp(118px,11.5vw,160px);margin-top:18px;color:#F1F6F2;--mp-paper:#123A24;--mp-accent:#4CC97E;pointer-events:none}
-.hero-lane::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,rgba(76,201,126,.5) 0 22px,transparent 22px 34px)}
-.hero-walker{position:absolute;bottom:4px;left:0;height:100%;aspect-ratio:700/580;will-change:transform}
-.hero-walker svg{display:block;width:100%;height:100%;overflow:visible}
+/* ---------- Hero stage: the mascot's job site under the CTAs (space reserved up front: no layout shift when frames arrive) ---------- */
+.hero-stage{position:relative;height:340px;margin:0 0 14px;color:#F1F6F2;--mp-paper:#123A24;--mp-accent:#4CC97E;pointer-events:none;contain:layout}
+.hero-stage>svg,.hero-stage img{position:absolute;inset:0;width:100%;height:100%;overflow:visible;display:block}
 .hm-scrib{stroke-dasharray:1 1;stroke-dashoffset:1}
-.hero-lane.draw .hm-scrib{animation:hm-draw .95s cubic-bezier(.45,.1,.35,1) forwards}
+.hero-stage.draw .hm-scrib{animation:hm-draw .95s cubic-bezier(.45,.1,.35,1) forwards}
 @keyframes hm-draw{to{stroke-dashoffset:0}}
 .hero h1 em{background:linear-gradient(#4CC97E,#4CC97E) no-repeat 0 100%/100% 4px;padding-bottom:2px}
-/* desktop: the strip lives in the hero's top padding, above the kicker, so it adds no height and never overlaps the H1/CTAs/booking card */
-@media(min-width:921px){.hero .wrap>div:first-child{position:relative}.hero-lane{position:absolute;left:0;right:0;top:-80px;height:102px;margin:0}
-  .hero .kicker{margin-top:24px;margin-bottom:12px}.hero p.lead{margin-bottom:12px}} /* net zero: CTAs stay where they were */
-@media(max-width:920px){.hero-lane{height:112px;margin-top:6px}}
+@media(min-width:921px){
+  .hero .wrap{padding-top:24px;padding-bottom:40px}
+  .hero .kicker{margin-bottom:12px}
+  .hero p.lead{margin:14px 0 18px}
+  .hero .ctas{margin-bottom:6px}
+}
+@media(max-width:920px){.hero-stage{height:250px;margin-top:4px}}
 
 /* ---------- Booking confirmation + scenes ---------- */
 .confirm{margin-top:16px;border:1.5px solid var(--kelly);border-radius:12px;background:var(--mist);overflow:hidden;color:var(--ink)}
@@ -29,6 +30,6 @@
 .dev-tag{position:absolute;top:8px;left:8px;z-index:2;background:var(--ink);color:#fff;font:700 10px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border-radius:6px}
 
 @media (prefers-reduced-motion: reduce){
-  .hero-lane .hm-scrib{animation:none;stroke-dashoffset:0}
+  .hero-stage .hm-scrib{animation:none;stroke-dashoffset:0}
   .confirm .details{transition:none}
 }
