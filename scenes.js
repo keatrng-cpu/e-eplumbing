@@ -33,7 +33,12 @@
     r.setAttribute("stroke-linecap", "round"); r.setAttribute("stroke-linejoin", "round");
     this.back = h(r, ""); this.mid = h(r, ""); this.front = h(r, "");
   }
-  Ctx.prototype.add = function (m, layer) { return h(layer || this.front, m); };
+  Ctx.prototype.add = function (m, layer) {
+    var g = h(layer || this.front, m);
+    /* single-element markup with opacity="0": hoist it to the wrapper so animating the wrapper reveals it */
+    if (g.children.length === 1 && g.firstElementChild.getAttribute("opacity") === "0") { g.firstElementChild.removeAttribute("opacity"); g.setAttribute("opacity", "0"); }
+    return g;
+  };
   /* animate: o = {t:start, d:duration, e:easing, i:iterations, o:transform-origin, dir} */
   Ctx.prototype.a = function (el, kf, o) {
     if (!el) return null;
@@ -74,7 +79,8 @@
     if (o.tool !== true) [].forEach.call(m.p("tool").querySelectorAll(":scope>path"), function (p) { p.style.display = "none"; });
     /* hold(): prop in the tool hand (mascot coords, fist at 322,358). carry(): prop in the arm hand (~505,272). */
     m.hold = function (markup) { var g = document.createElementNS(NS, "g"); g.innerHTML = markup; m.p("tool").insertBefore(g, m.p("hand")); return g; };
-    m.carry = function (markup) { return h(m.p("arm"), markup); };
+    m.carried = [];
+    m.carry = function (markup) { var g = h(m.p("arm"), markup); m.carried.push(g); return g; };
     return m;
   };
   /* mascot beats (each 300–600 ms, no overshoot) */
@@ -151,7 +157,10 @@
     puddle: function (c, x, y, w, t) { var g = c.add('<ellipse cx="' + x + '" cy="' + y + '" rx="' + w + '" ry="6" fill="' + C.wt + '" stroke="none"/>', c.back); c.a(g, [{ transform: "scaleX(.1)", opacity: 0 }, { transform: "none", opacity: 1 }], { t: t, d: 600 }); return g; },
   };
   /* shared finale: green check + hat tip, ~700 ms */
-  function finale(c, m, t, x, y) { FX.check(c, x || 742, y || 62, t); tipHat(c, m, t + 120); }
+  function finale(c, m, t, x, y) {
+    m.carried.forEach(function (g) { c.a(g, [{ opacity: 1 }, { opacity: 0 }], { t: t, d: 160 }); }); /* free hand for the tip */
+    FX.check(c, x || 742, y || 62, t); tipHat(c, m, t + 120);
+  }
 
   /* ---------- registry ---------- */
   var SCENES = {};
@@ -206,7 +215,7 @@
     /* clamp leaves the hand and seats on the pipe */
     var seat = c.add('<g opacity="0"><rect x="566" y="108" width="62" height="40" rx="6" fill="' + C.cream + '" stroke-width="6"/><path d="M576,108 v-10 M618,108 v-10 M576,148 v10 M618,148 v10" stroke-width="5"/><circle cx="576" cy="96" r="5" fill="' + C.ink + '"/><circle cx="618" cy="96" r="5" fill="' + C.ink + '"/></g>');
     c.a(clamp, [{ opacity: 1 }, { opacity: 0 }], { t: 1030, d: 120 });
-    c.a(seat.firstChild, [{ opacity: 0, transform: "translate(-40px,30px) rotate(-8deg)" }, { opacity: 1, transform: "none" }], { t: 1030, d: 300, e: OUT });
+    c.a(seat, [{ opacity: 0, transform: "translate(-40px,30px) rotate(-8deg)" }, { opacity: 1, transform: "none" }], { t: 1030, d: 300, e: OUT });
     /* impact: two short strike lines, spray cut */
     var hit = c.add('<path d="M556,90 l-14,-12 M640,90 l14,-12 M597,82 v-16" stroke-width="4" opacity="0"/>');
     c.a(hit, [{ opacity: 0 }, { opacity: 1 }, { opacity: 0 }], { t: 1330, d: 360 });

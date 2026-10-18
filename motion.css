@@ -4,10 +4,12 @@
 .mascot [data-part]{transform-box:view-box}
 
 /* ---------- Hero walk lane (scroll-linked) ---------- */
-.hero-lane{grid-column:1/-1;position:relative;height:clamp(150px,21vw,240px);margin-top:-36px;container-type:inline-size;color:#F1F6F2;view-timeline:--lane block;pointer-events:none}
+/* desktop: lane fills the empty space under the left column; the booking card spans both rows */
+@media(min-width:921px){.hero .wrap>.book-card{grid-column:2;grid-row:1 / span 2}.hero .wrap>.hero-lane{grid-column:1;grid-row:2;align-self:end}}
+.hero-lane{position:relative;height:clamp(150px,19vw,230px);container-type:inline-size;color:#F1F6F2;view-timeline:--lane block;pointer-events:none}
 .hero-lane::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,rgba(76,201,126,.55) 0 22px,transparent 22px 34px)}
 .hero-walker{position:absolute;bottom:0;left:0;width:clamp(150px,22vw,250px)}
-.hero{timeline-scope:--lane}
+.hero{timeline-scope:--lane;overflow:clip} /* clip, not hidden: hidden makes .hero a scroll container and freezes the view timeline */
 @supports (animation-timeline: view()) and (timeline-scope: --a){
   .hero.sda{animation:hero-p linear both;animation-timeline:--lane;animation-range:entry 0% cover 62%}
 }
@@ -19,14 +21,17 @@
   --th:calc(var(--walk) * 1800deg);
   --sw:calc(1 - var(--set));
 }
-.hero-walker{transform:translateX(calc(var(--walk) * (100cqw - 100%) * .8 + (1 - var(--walk)) * -16%))}
+.hero-lane{--reach:.8}
+@media(max-width:920px){.hero-lane{--reach:.42}} /* stays clear of the floating Call button */
+.hero-walker{transform:translateX(calc(var(--walk) * (100cqw - 100%) * var(--reach) + (1 - var(--walk)) * -16%))}
 .hero .mp-body{transform:translateY(calc((1 - cos(calc(var(--th) * 2))) * -7px * var(--sw)))}
 .hero .mp-leg-front{transform:rotate(calc(sin(var(--th)) * 15deg * var(--sw)))}
 .hero .mp-shin-front{transform:rotate(calc((sin(calc(var(--th) + 90deg)) + 1) * 5deg * var(--sw)))}
 .hero .mp-leg-back{transform:rotate(calc(sin(var(--th)) * -13deg * var(--sw)))}
 .hero .mp-shin-back{transform:rotate(calc((sin(calc(var(--th) - 90deg)) + 1) * -4deg * var(--sw)))}
 .hero .mp-torso{transform:rotate(calc(sin(calc(var(--th) * 2)) * 1.2deg * var(--sw)))}
-.hero .mp-board{transform:translate(calc(var(--set) * -26px), calc(var(--set) * 168px)) rotate(calc(sin(calc(var(--th) * 2 - 55deg)) * 2.4deg * var(--sw) + var(--set) * -1.5deg))}
+.hero .mp-board{transform:translate(calc(var(--set) * -250px), calc(var(--set) * 172px)) rotate(calc(sin(calc(var(--th) * 2 - 55deg)) * 2.4deg * var(--sw) + var(--set) * -1.5deg))}
+.hero .mp-belly{display:block !important;opacity:var(--set)}
 .hero .mp-tool{transform:rotate(calc(sin(calc(var(--th) + 180deg)) * 6deg * var(--sw) + var(--set) * 18deg))}
 .hero .mp-head{transform:rotate(calc(sin(calc(var(--th) * 2 - 30deg)) * 2deg * var(--sw)))}
 .hero .mp-hat{transform:translate(calc(var(--tip) * 10px), calc(sin(calc(var(--th) * 2 - 80deg)) * 3.5px * var(--sw) + var(--tip) * -30px)) rotate(calc(var(--tip) * -14deg))}
