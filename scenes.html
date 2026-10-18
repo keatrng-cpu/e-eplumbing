@@ -20,21 +20,21 @@
 <p style="color:var(--gray)">Not linked from the site. Nothing here books anything. <code>?scene=key</code> shows one. <button type="button" id="all">Replay all</button></p>
 <div class="grid" id="grid"></div>
 </main>
-<script src="pricebook.js"></script><script src="assets/mascot.js"></script><script src="scenes.js"></script>
+<script src="pricebook.js"></script><script src="scenes.js"></script>
 <script>
 (function(){
-  var grid=document.getElementById('grid'), only=new URLSearchParams(location.search).get('scene');
+  var q=new URLSearchParams(location.search), grid=document.getElementById('grid'), only=q.get('scene'), fr=q.get('frame');
   var opt={}; Object.keys(EEScenes.OPTION_SCENES).forEach(function(s){EEScenes.OPTION_SCENES[s].forEach(function(k,i){opt[k]=s+' · #'+i;});});
   var cards=[];
   EEScenes.list().filter(function(s){return !only||s.key===only;}).forEach(function(s){
     var card=document.createElement('div'); card.className='card'; card.id='s-'+s.key;
     card.innerHTML='<div class="scene"></div><div class="meta"><span><b>'+s.label+'</b><br><code>'+s.key+'</code> · '+(opt[s.key]||'')+'</span><button type="button">Replay</button></div>';
     grid.appendChild(card); var stage=card.querySelector('.scene');
-    var go=function(){EEScenes.play(stage,s.key);}; card.querySelector('button').onclick=go; cards.push(go);
+    var go=function(){return EEScenes.play(stage,s.key,fr!=null?{frame:fr}:null);}; card.querySelector('button').onclick=go; cards.push(go);
   });
   if(only) document.body.classList.add('one');
   document.getElementById('all').onclick=function(){cards.forEach(function(g){g();});};
-  cards.forEach(function(g){g();});
+  Promise.all(cards.map(function(g){return g();})).then(function(){document.body.classList.add('ready');});
 })();
 </script>
 </body></html>

@@ -325,34 +325,48 @@
     return "job=" + encodeURIComponent(state.job.id) + "&svc=" + encodeURIComponent(state.job.service) +
       "&opt=" + encodeURIComponent(state.job.optionIndex) + "&est=" + encodeURIComponent(document.getElementById("fEstimate").value || "");
   }
+  var scenesReady = null;
+  function loadScenes() {
+    /* the scene player and the booked job's drawings load only now, never on the initial page */
+    if (window.EEScenes) return Promise.resolve(window.EEScenes);
+    if (!scenesReady) scenesReady = new Promise(function (res) {
+      var s = document.createElement("script");
+      s.src = "scenes.js?v=4"; s.async = true;
+      s.onload = function () { res(window.EEScenes || null); };
+      s.onerror = function () { scenesReady = null; res(null); };
+      document.head.appendChild(s);
+    });
+    return scenesReady;
+  }
   function showConfirm(ctx, dev) {
-    if (!confirmEl || !window.EEScenes) {
+    if (!confirmEl) {
       document.getElementById("formMsg").style.display = "block";
       return;
     }
-    lastScene = window.EEScenes.resolve(ctx);
     confirmEl.hidden = false;
     confirmEl.classList.remove("done");
-    var old = confirmEl.querySelector(".dev-tag");
-    if (old) old.remove();
-    if (dev) {
-      var tag = document.createElement("span");
-      tag.className = "dev-tag";
-      tag.textContent = "Preview — nothing booked · " + lastScene;
-      confirmScene.appendChild(tag);
-    }
     document.getElementById("confirmBody").textContent =
       (ctx.est ? "Starting estimate " + ctx.est + ". " : "") + "We call back to confirm the window and the flat-rate number. Water moving? Call now.";
-    window.EEScenes.play(confirmScene, lastScene).then(function () {
-      confirmEl.classList.add("done");
-      if (dev && !confirmScene.querySelector(".dev-tag")) confirmScene.appendChild(tag);
+    loadScenes().then(function (S) {
+      if (!S) { confirmEl.classList.add("done"); return; }
+      lastScene = S.resolve(ctx);
+      var old = confirmEl.querySelector(".dev-tag");
+      if (old) old.remove();
+      var tag = null;
+      if (dev) {
+        tag = document.createElement("span");
+        tag.className = "dev-tag";
+        tag.textContent = "Preview — nothing booked · " + lastScene;
+        confirmScene.appendChild(tag);
+      }
+      return S.play(confirmScene, lastScene).then(function () { confirmEl.classList.add("done"); });
     });
   }
   if (document.getElementById("confirmReplay")) {
     document.getElementById("confirmReplay").addEventListener("click", function () {
       if (!lastScene) return;
       confirmEl.classList.remove("done");
-      window.EEScenes.play(confirmScene, lastScene).then(function () { confirmEl.classList.add("done"); });
+      loadScenes().then(function (S) { if (S) S.play(confirmScene, lastScene).then(function () { confirmEl.classList.add("done"); }); });
     });
   }
 
