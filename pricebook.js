@@ -49,6 +49,8 @@
         { label: "Main line clear (auger)", low: 325, high: 549 },
         { label: "Hydro jet the main line", low: 549, high: 995 },
         { label: "Cleanout install", low: 395, high: 745 },
+        { label: "Camera inspection (main line)", low: 219, high: 349, note: "Video + findings" },
+        { label: "Camera inspection (branch)", low: 189, high: 295 },
       ],
     },
     "Water heater": {
@@ -84,6 +86,17 @@
         { label: "Softener service / resin check", low: 169, high: 259 },
         { label: "Softener install", custom: true },
         { label: "Iron filter / RO under-sink", custom: true },
+      ],
+    },
+    "Fixture install": {
+      slots: 2,
+      options: [
+        { label: "Toilet replace (standard)", low: 249, high: 449, note: "Labor — customer or our fixture" },
+        { label: "Faucet replace (kitchen/bath)", low: 199, high: 365, note: "Faucet / sink fixture labor" },
+        { label: "Shower install", custom: true },
+        { label: "Bath / tub install", custom: true },
+        { label: "Garbage disposal replace", low: 249, high: 399, note: "Labor" },
+        { label: "Shower valve cartridge", low: 249, high: 495, note: "Brand-dependent" },
       ],
     },
     "Remodel / rough-in": {

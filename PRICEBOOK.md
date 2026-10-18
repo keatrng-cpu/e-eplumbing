@@ -101,6 +101,10 @@ Sources used for the gauge: Grand Forks plumber-cost 2026 (call $70–$200, emer
 | FIX-03 | Supply stop replace | | $149–$249 |
 | FIX-04 | Garbage disposal replace | | $249–$399 labor |
 | FIX-05 | Shower valve cartridge | Brand-dependent | $249–$495 |
+| — | Shower install | Site visit | Custom |
+| — | Bath / tub install | Site visit | Custom |
+
+Website booking: these live under the **Fixture install** service in `pricebook.js` (toilet = FIX-01, sink/faucet = FIX-02, disposal = FIX-04, cartridge = FIX-05). Camera inspections DIAG-02/03 are options under **Drain / sewer**.
 
 ---
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scene gallery (dev) — Ellingson Plumbing</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="motion.css">
+<style>
+ body{background:var(--mist)} main{padding:32px 24px} h1{font-family:var(--display);text-transform:uppercase;font-size:34px}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:18px}
+ .card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+ .card .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;font-size:13px}
+ .card b{font-family:var(--display);text-transform:uppercase;font-size:16px} .card code{color:var(--gray)}
+ .card button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;cursor:pointer;font-weight:600}
+ body.one .grid{grid-template-columns:1fr;max-width:900px}
+</style></head>
+<body><main>
+<h1>Confirmation scenes — dev gallery</h1>
+<p style="color:var(--gray)">Not linked from the site. Nothing here books anything. <code>?scene=key</code> shows one. <button type="button" id="all">Replay all</button></p>
+<div class="grid" id="grid"></div>
+</main>
+<script src="pricebook.js"></script><script src="assets/mascot.js"></script><script src="scenes.js"></script>
+<script>
+(function(){
+  var grid=document.getElementById('grid'), only=new URLSearchParams(location.search).get('scene');
+  var opt={}; Object.keys(EEScenes.OPTION_SCENES).forEach(function(s){EEScenes.OPTION_SCENES[s].forEach(function(k,i){opt[k]=s+' · #'+i;});});
+  var cards=[];
+  EEScenes.list().filter(function(s){return !only||s.key===only;}).forEach(function(s){
+    var card=document.createElement('div'); card.className='card'; card.id='s-'+s.key;
+    card.innerHTML='<div class="scene"></div><div class="meta"><span><b>'+s.label+'</b><br><code>'+s.key+'</code> · '+(opt[s.key]||'')+'</span><button type="button">Replay</button></div>';
+    grid.appendChild(card); var stage=card.querySelector('.scene');
+    var go=function(){EEScenes.play(stage,s.key);}; card.querySelector('button').onclick=go; cards.push(go);
+  });
+  if(only) document.body.classList.add('one');
+  document.getElementById('all').onclick=function(){cards.forEach(function(g){g();});};
+  cards.forEach(function(g){g();});
+})();
+</script>
+</body></html>

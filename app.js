@@ -11,6 +11,10 @@
     { id: "heater", ticker: "Heater", service: "Water heater", optionIndex: 0, emergency: false },
     { id: "sump", ticker: "Sump", service: "Sump pump / flooding", optionIndex: 0, emergency: true },
     { id: "softener", ticker: "Softener", service: "Softener / filtration", optionIndex: 0, emergency: false },
+    { id: "toilet", ticker: "Toilet install", service: "Fixture install", optionIndex: 0, emergency: false },
+    { id: "sink", ticker: "Sink / faucet", service: "Fixture install", optionIndex: 1, emergency: false },
+    { id: "shower", ticker: "Shower install", service: "Fixture install", optionIndex: 2, emergency: false },
+    { id: "tub", ticker: "Bath / tub", service: "Fixture install", optionIndex: 3, emergency: false },
     { id: "other", ticker: "Other", service: "Something else", optionIndex: 0, emergency: false },
   ];
 
@@ -313,6 +317,45 @@
     this.setAttribute("aria-pressed", paused ? "false" : "true");
   });
 
+  /* ---------- confirmation scene (plays after a successful submit; replayable) ---------- */
+  var confirmEl = document.getElementById("confirm");
+  var confirmScene = document.getElementById("confirmScene");
+  var lastScene = null;
+  function confirmQuery() {
+    return "job=" + encodeURIComponent(state.job.id) + "&svc=" + encodeURIComponent(state.job.service) +
+      "&opt=" + encodeURIComponent(state.job.optionIndex) + "&est=" + encodeURIComponent(document.getElementById("fEstimate").value || "");
+  }
+  function showConfirm(ctx, dev) {
+    if (!confirmEl || !window.EEScenes) {
+      document.getElementById("formMsg").style.display = "block";
+      return;
+    }
+    lastScene = window.EEScenes.resolve(ctx);
+    confirmEl.hidden = false;
+    confirmEl.classList.remove("done");
+    var old = confirmEl.querySelector(".dev-tag");
+    if (old) old.remove();
+    if (dev) {
+      var tag = document.createElement("span");
+      tag.className = "dev-tag";
+      tag.textContent = "Preview — nothing booked · " + lastScene;
+      confirmScene.appendChild(tag);
+    }
+    document.getElementById("confirmBody").textContent =
+      (ctx.est ? "Starting estimate " + ctx.est + ". " : "") + "We call back to confirm the window and the flat-rate number. Water moving? Call now.";
+    window.EEScenes.play(confirmScene, lastScene).then(function () {
+      confirmEl.classList.add("done");
+      if (dev && !confirmScene.querySelector(".dev-tag")) confirmScene.appendChild(tag);
+    });
+  }
+  if (document.getElementById("confirmReplay")) {
+    document.getElementById("confirmReplay").addEventListener("click", function () {
+      if (!lastScene) return;
+      confirmEl.classList.remove("done");
+      window.EEScenes.play(confirmScene, lastScene).then(function () { confirmEl.classList.add("done"); });
+    });
+  }
+
   form.addEventListener("submit", async function (ev) {
     ev.preventDefault();
     var name = document.getElementById("fname").value.trim();
@@ -353,7 +396,7 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: encodeForm(form),
         });
-        location.href = "/thanks.html";
+        location.href = "/thanks.html?" + confirmQuery();
         return;
       } catch (e) {
         form.submit();
@@ -361,7 +404,7 @@
       }
     }
 
-    document.getElementById("formMsg").style.display = "block";
+    showConfirm({ job: state.job.id, service: state.job.service, optionIndex: state.job.optionIndex, est: document.getElementById("fEstimate").value });
     submitBtn.disabled = false;
     submitBtn.textContent = "Request received";
   });
@@ -373,4 +416,13 @@
   renderDays();
   renderTruck();
   loadAvailability();
+
+  /* Dev-only preview: ?scene=<key> (or ?scene=<job id>) plays a confirmation scene without submitting
+     or calling the booking function. Nothing is written to the truck board. */
+  var devScene = new URLSearchParams(location.search).get("scene");
+  if (devScene) {
+    var j = JOBS.filter(function (x) { return x.id === devScene; })[0];
+    showConfirm(j ? { job: j.id, service: j.service, optionIndex: j.optionIndex } : { scene: devScene }, true);
+    if (confirmEl) confirmEl.scrollIntoView({ block: "center" });
+  }
 })();

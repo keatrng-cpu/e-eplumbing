@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="motion.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -14,12 +15,35 @@
 <div class="topbar"><div class="wrap">
   <div><span class="pulse"></span><b>24/7:</b> <a href="tel:+12187792553">(218) 779-2553</a></div>
 </div></div>
-<main class="wrap" style="padding:88px 24px;max-width:720px">
+<main class="wrap" style="padding:56px 24px 88px;max-width:760px">
   <div class="eyebrow">Dispatch</div>
   <h2>We have the request.</h2>
-  <p class="sec-head" style="margin-top:16px">Office hours: we call back within 15 minutes. After hours, emergency rows get a plumber on the line. If water is moving now, do not wait — call.</p>
-  <p style="margin:28px 0"><a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a></p>
+  <p style="margin:18px 0 22px"><a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a></p>
+  <div class="confirm" id="confirm" hidden style="margin:0 0 22px">
+    <div class="scene" id="confirmScene"></div>
+    <div class="details" aria-live="polite"><h3 id="confirmTitle">You’re on the truck.</h3><p id="confirmBody"></p></div>
+    <div class="row-btns" style="padding:0 16px 16px"><button type="button" class="btn btn-line" id="confirmReplay">Replay</button></div>
+  </div>
+  <p class="sec-head" style="margin-top:0">Office hours: we call back within 15 minutes. After hours, emergency rows get a plumber on the line. If water is moving now, do not wait — call.</p>
   <p><a href="/">← Back to Ellingson Plumbing</a></p>
 </main>
+<script src="pricebook.js"></script>
+<script src="assets/mascot.js"></script>
+<script src="scenes.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), el = document.getElementById("confirm"), st = document.getElementById("confirmScene");
+  if (!window.EEScenes || !(q.get("job") || q.get("scene") || q.get("svc"))) return;
+  var ctx = { job: q.get("job"), service: q.get("svc"), optionIndex: q.get("opt"), scene: q.get("scene") };
+  var key = EEScenes.resolve(ctx), est = q.get("est");
+  var svc = window.EEPricebook && EEPricebook.SERVICES[ctx.service];
+  var opt = svc && svc.options[Number(ctx.optionIndex) || 0];
+  document.getElementById("confirmBody").textContent = (opt ? opt.label + ". " : "") + (est ? "Starting estimate " + est + ". " : "") + "We call back to confirm the window and the flat-rate number.";
+  el.hidden = false;
+  var run = function () { el.classList.remove("done"); EEScenes.play(st, key).then(function () { el.classList.add("done"); }); };
+  document.getElementById("confirmReplay").onclick = run;
+  run();
+})();
+</script>
 </body>
 </html>

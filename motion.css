@@ -1,0 +1,67 @@
+/* Mascot motion — style preview. No framework; transforms/opacity only. */
+@property --p{syntax:'<number>';inherits:true;initial-value:0}
+.mascot{display:block;width:100%;height:auto;overflow:visible}
+.mascot [data-part]{transform-box:view-box}
+
+/* ---------- Hero walk lane (scroll-linked) ---------- */
+.hero-lane{grid-column:1/-1;position:relative;height:clamp(150px,21vw,240px);margin-top:-36px;container-type:inline-size;color:#F1F6F2;view-timeline:--lane block;pointer-events:none}
+.hero-lane::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,rgba(76,201,126,.55) 0 22px,transparent 22px 34px)}
+.hero-walker{position:absolute;bottom:0;left:0;width:clamp(150px,22vw,250px)}
+.hero{timeline-scope:--lane}
+@supports (animation-timeline: view()) and (timeline-scope: --a){
+  .hero.sda{animation:hero-p linear both;animation-timeline:--lane;animation-range:entry 0% cover 62%}
+}
+@keyframes hero-p{from{--p:0}to{--p:1}}
+.hero{
+  --walk:clamp(0, var(--p) / .62, 1);
+  --set:clamp(0, (var(--p) - .6) / .16, 1);
+  --tip:clamp(0, (var(--p) - .78) / .16, 1);
+  --th:calc(var(--walk) * 1800deg);
+  --sw:calc(1 - var(--set));
+}
+.hero-walker{transform:translateX(calc(var(--walk) * (100cqw - 100%) * .8 + (1 - var(--walk)) * -16%))}
+.hero .mp-body{transform:translateY(calc((1 - cos(calc(var(--th) * 2))) * -7px * var(--sw)))}
+.hero .mp-leg-front{transform:rotate(calc(sin(var(--th)) * 15deg * var(--sw)))}
+.hero .mp-shin-front{transform:rotate(calc((sin(calc(var(--th) + 90deg)) + 1) * 5deg * var(--sw)))}
+.hero .mp-leg-back{transform:rotate(calc(sin(var(--th)) * -13deg * var(--sw)))}
+.hero .mp-shin-back{transform:rotate(calc((sin(calc(var(--th) - 90deg)) + 1) * -4deg * var(--sw)))}
+.hero .mp-torso{transform:rotate(calc(sin(calc(var(--th) * 2)) * 1.2deg * var(--sw)))}
+.hero .mp-board{transform:translate(calc(var(--set) * -26px), calc(var(--set) * 168px)) rotate(calc(sin(calc(var(--th) * 2 - 55deg)) * 2.4deg * var(--sw) + var(--set) * -1.5deg))}
+.hero .mp-tool{transform:rotate(calc(sin(calc(var(--th) + 180deg)) * 6deg * var(--sw) + var(--set) * 18deg))}
+.hero .mp-head{transform:rotate(calc(sin(calc(var(--th) * 2 - 30deg)) * 2deg * var(--sw)))}
+.hero .mp-hat{transform:translate(calc(var(--tip) * 10px), calc(sin(calc(var(--th) * 2 - 80deg)) * 3.5px * var(--sw) + var(--tip) * -30px)) rotate(calc(var(--tip) * -14deg))}
+.hero .mp-arm{transform:rotate(calc(var(--set) * -20deg + var(--tip) * -52deg + sin(calc(var(--th) - 20deg)) * 2deg * var(--sw)))}
+.hero h1 em{background:linear-gradient(#4CC97E,#4CC97E) no-repeat 0 100%/calc(var(--p) * 100%) 4px;padding-bottom:2px}
+.hero .ctas .btn-green{box-shadow:0 0 0 calc(var(--tip) * 6px) rgba(76,201,126,calc(.35 * var(--tip)))}
+
+/* draw-on (marker feel); hidden only after JS commits to drawing it */
+@media (prefers-reduced-motion: no-preference){
+  .js .hero-lane:not(.draw):not(.static) .mascot path{stroke-dasharray:1 1;stroke-dashoffset:1}
+  .js .hero-lane:not(.draw):not(.static) .mascot .mp-fill{opacity:0}
+}
+.hero-lane.draw .mascot path{stroke-dasharray:1 1;animation:mp-draw .55s cubic-bezier(.55,.1,.3,1) var(--d,0s) both}
+.hero-lane.draw .mascot .mp-fill{animation:mp-fade .3s calc(var(--d,0s) + .3s) both}
+.hero-lane .mp-board{--d:0s} .hero-lane .mp-torso{--d:.3s} .hero-lane .mp-head{--d:.45s} .hero-lane .mp-hat{--d:.75s}
+.hero-lane .mp-arm{--d:.95s} .hero-lane .mp-leg-back{--d:1.05s} .hero-lane .mp-leg-front{--d:1.2s} .hero-lane .mp-tool{--d:1.35s}
+@keyframes mp-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes mp-fade{from{opacity:0}to{opacity:1}}
+
+/* ---------- Booking confirmation + scenes ---------- */
+.confirm{margin-top:16px;border:1.5px solid var(--kelly);border-radius:12px;background:var(--mist);overflow:hidden;color:var(--ink)}
+.confirm[hidden]{display:none}
+.scene{position:relative;aspect-ratio:20/9;background:linear-gradient(#fff,#E6F2E9);overflow:hidden}
+.scene>svg{position:absolute;inset:0;width:100%;height:100%}
+.confirm .details{padding:14px 16px;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
+.confirm.done .details{opacity:1;transform:none}
+.confirm h3{font-family:var(--display);font-size:24px;text-transform:uppercase;line-height:1.05}
+.confirm p{font-size:14px;color:var(--gray);margin-top:6px}
+.confirm .row-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.confirm .row-btns .btn{font-size:15px;padding:9px 16px}
+.btn-line{background:#fff;color:var(--ink);border-color:var(--line)}
+.dev-tag{position:absolute;top:8px;left:8px;z-index:2;background:var(--ink);color:#fff;font:700 10px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border-radius:6px}
+
+@media (prefers-reduced-motion: reduce){
+  .hero{animation:none !important;--p:1}
+  .hero-lane.draw .mascot path,.hero-lane.draw .mascot .mp-fill{animation:none}
+  .confirm .details{transition:none}
+}
