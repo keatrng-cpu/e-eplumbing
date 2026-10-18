@@ -5,7 +5,7 @@
 (function () {
   var cur = document.currentScript && document.currentScript.src;
   var BASE = cur ? cur.replace(/scenes\.js(\?.*)?$/, "") : "/";
-  var VER = "4";
+  var VER = "5";
   var TITLES = {"shutoff": "Water shut off, leak stopped", "burst": "Burst pipe repaired", "freezethaw": "Frozen line thawed and repaired", "diagnose": "Leak found and diagnosed", "clog": "Toilet unclogged", "mainline": "Main line cleared", "hydrojet": "Line hydro-jetted", "cleanout": "Cleanout installed", "cammain": "Main line camera inspected", "cambranch": "Branch line camera inspected", "tankswap": "Water heater replaced", "tankcode": "Water heater brought to code", "flush": "Water heater flushed", "nohot": "T and P valve, anode, or element service", "tankless": "Tankless water heater installed", "sumpswap": "Sump pump replaced", "battery": "Battery backup sump installed", "checkvalve": "Check valve replaced", "sumptest": "Sump pump tested and serviced", "thaw": "Frozen pipes thawed", "frozenburst": "Frozen and burst pipe repaired", "slab": "Slab leak located", "softservice": "Water softener serviced", "softinstall": "Water softener installed", "ironro": "Iron filter or RO installed", "remodel": "Remodel plumbing roughed in", "commercial": "Backflow device tested", "other": "Plumber on the way", "toilet": "Toilet installed", "sink": "Faucet or sink installed", "shower": "Shower valve installed", "tub": "Tub installed", "disposal": "Garbage disposal installed", "cartridge": "Faucet cartridge replaced"};
   var OPTION_SCENES = {
     "Emergency repair": ["shutoff", "burst", "freezethaw", "diagnose"],
@@ -61,12 +61,32 @@
       Array.prototype.slice.call(host.children).forEach(function (n) { if (n.tagName.toLowerCase() === "svg") n.remove(); });
       var box = document.createElement("div");
       box.innerHTML = ('<svg viewBox="' + d.vb + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + d.alt.replace(/"/g, "&quot;") +
-        '" style="color:#0B0F0D"><defs>' + defs + "</defs>" + bg + '<g class="fr"></g></svg>');
+        '" style="color:#0B0F0D"><defs>' + defs + '<clipPath id="' + p + 'ic"><circle class="ic"/></clipPath></defs><g id="' + p + 'all">' + bg + '<g class="fr"></g></g>' +
+        /* punch-in inset: a live, magnified <use> of the frame itself (no extra drawing bytes) */
+        '<g class="ins" style="display:none"><path class="il" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>' +
+        '<circle class="ib" fill="#F1F6F2"/><g clip-path="url(#' + p + 'ic)"><use class="iu" href="#' + p + 'all"/></g>' +
+        '<circle class="ir" fill="none" stroke="currentColor" stroke-width="6"/></g></svg>');
       var svg = box.firstChild; host.insertBefore(svg, host.firstChild);
       var fr = svg.querySelector(".fr"), bgs = svg.querySelectorAll(".bgv"), last = -1, lb = 0;
+      var ins = svg.querySelector(".ins"), li = -1, lc = -1;
+      function sa(sel, o) { var e = ins.querySelector(sel) || svg.querySelector(sel); for (var k in o) e.setAttribute(k, o[k]); }
       function show(n) {
         if (n === last) return; last = n;
         fr.innerHTML = d.s[n].map(function (k) { return '<use href="#' + p + k + '"/>'; }).join("");
+        var c = d.c ? d.c[n] : -1;
+        if (c !== lc && c >= 0) { lc = c; svg.setAttribute("viewBox", d.cams[c]); }
+        var j = d.i ? d.i[n] : -1;
+        if (j !== li) {
+          li = j; ins.style.display = j < 0 ? "none" : "";
+          if (j >= 0) {
+            var q = d.ins[j], cx = q[0], cy = q[1], r = q[2], sx = q[3], sy = q[4], k = q[5];
+            ["ic", "ib", "ir"].forEach(function (cl) { sa("." + cl, { cx: cx, cy: cy, r: r }); });
+            sa(".iu", { transform: "translate(" + cx + " " + cy + ") scale(" + k + ") translate(" + (-sx) + " " + (-sy) + ")" });
+            var a = Math.atan2(sy - cy, sx - cx), sr = r / k;
+            sa(".il", { d: "M" + (cx + r * Math.cos(a)).toFixed(0) + " " + (cy + r * Math.sin(a)).toFixed(0) + "L" + (sx - sr * Math.cos(a)).toFixed(0) + " " + (sy - sr * Math.sin(a)).toFixed(0) +
+              "M" + (sx + sr).toFixed(0) + " " + sy + "a" + sr.toFixed(0) + " " + sr.toFixed(0) + " 0 1 0 0 .1" });
+          }
+        }
       }
       function boil(v) { if (v === lb || !bgs[v]) return; bgs[lb].style.display = "none"; bgs[v].style.display = ""; lb = v; }
       var N = d.s.length;
@@ -75,7 +95,7 @@
       return new Promise(function (res) {
         var t0 = performance.now(), raf, done = false;
         function tick(now) {
-          var e = now - t0, n = Math.floor(e * FPS / 1000);
+          var e = Math.max(0, now - t0), n = Math.floor(e * FPS / 1000);
           boil(Math.floor(e * BOIL / 1000) % bgs.length);
           if (n < N) show(n); else { show(N - 1); if (!done) { done = true; res(); } }
           if (e < N * 1000 / FPS + 2500) raf = requestAnimationFrame(tick); else boil(0);

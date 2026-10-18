@@ -19,3 +19,9 @@ Static Netlify site for Ellingson Plumbing (publish `.`, no bundler). Phone (218
 - PRICEBOOK.md is the price source. Fixture install: FIX-01 toilet 249–449, FIX-02 faucet 199–365, FIX-04 disposal 249–399, FIX-05 cartridge 249–495; shower/tub custom. DIAG-02 219–349, DIAG-03 189–295 under Drain / sewer.
 - `.hero` must use `overflow:clip` (hidden breaks the view timeline).
 - Never call the book function / submit real bookings when testing.
+
+
+## v5 (mascot-motion, PR #6 draft)
+- Hero: big ink stage (ground line, pipe run, valve, toolbox + wrench) under the CTAs; mascot ~330px tall at 1440x900 inside the first screen; header stack slimmed (lockup folded into header, season + dispatch ticker on one line, 24/7 phone kept in topbar). Stage height reserved in CSS (no CLS from frames). Metric fallback fonts cut desktop CLS from 0.18 to ~0.07-0.09 (remaining: booking-card JS render). Mobile: 250px stage below the CTAs, cropped viewBox, CLS 0.
+- Scenes: per-beat camera (medium close-up, cropped at waist/knees, figure ~75-85% of frame), tools drawn 1.3x, effort lines on EFF/DET beats, braced lean instead of upright standing when reaching, punch-in insets (live magnified <use>, zero extra bytes) on 10 scenes, labels min size 44. All 34 <= 197KB gz. Player fix: negative rAF delta no longer throws on the first tick.
+- Generators live outside the repo in /workspace/assets/ink (scenes4.py, scenes_tpl.js, hero4.py).
