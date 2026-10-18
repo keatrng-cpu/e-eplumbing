@@ -243,3 +243,6 @@ input[type=file]{padding:10px;background:#fff}
   .pulse{animation:none}
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
+.plan-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.plan-msg{flex-basis:100%;font-size:13px;color:#D3E7DA;margin:0}
+.plan-msg a{color:#8FD6AC;font-weight:700}

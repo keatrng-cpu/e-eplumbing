@@ -99,24 +99,55 @@ repo, score, status, top`). `score` is left `null`: Forge Command computes
 ]
 ```
 
-## 4. `data/income.json` — stream entry
+## 4. Income — a gap in Forge Command, not a row to paste
 
-Per the schema's own rule, an unsourced amount is `null` and renders "no data".
-Nothing has been collected, so nothing is claimed.
+I tried to add the stream and then backed it out, because neither route works
+today:
+
+- `data/income.json` is **regenerated** by `scripts/fetch-income.mjs`, which
+  hardcodes its three streams (`stripe`, `trading`, `manual`). A hand-added row
+  survives until the next refresh and then vanishes.
+- That script names `data/income_manual.json` as the manual source and the UI
+  prints the path — but nothing reads the file, and `totals.ttm_manual_usd` is
+  hardcoded `null`. The hook is documented and unimplemented.
+
+So Forge Command currently has no way to track a stream that has no connector.
+**That is the fix worth making** — wire `fetch-income.mjs` to read
+`income_manual.json` — and it is worth more than this one business: trading,
+local services and every pre-Stripe venture are all in the same position.
+
+Once it reads the file, this is the row:
 
 ```json
 { "id": "eep-plumbing", "name": "Ellingson Plumbing (service revenue)",
-  "kind": "services", "status": "building", "source": "none",
+  "kind": "services", "status": "building", "source": "manual",
   "source_ref": null, "mrr_usd": null, "ttm_usd": null,
-  "next_step": "Fix the canonical, prove the lead form, claim the GBP.",
+  "next_step": "Fix the canonical DNS, prove the lead form, claim the GBP.",
   "link": "https://plumbingmidwest.netlify.app" }
 ```
 
-Two unbuilt mechanisms are already written into this repo's own docs and would
-each give this stream a real Stripe source:
+Amounts stay `null` on purpose: nothing has been collected, so nothing is
+claimed, and per the schema's own rule an unsourced amount renders "no data"
+and never counts toward the $200k goal.
 
-- **Home Team Plan** — `$29/mo · $279/yr`, stated on the live page, no checkout behind it.
-- **Install deposits** — 30–50% on water heaters and softeners (OPERATIONS.md §5), currently collected by hand or not at all.
+Two unbuilt mechanisms are already written into this repo's docs. **Both are
+now built** (see §6) and will give this stream a real Stripe source as soon as
+the price IDs exist:
+
+- **Home Team Plan** — `$29/mo · $279/yr`, stated on the live page.
+- **Install deposits** — 30–50% on water heaters and softeners (OPERATIONS.md §5).
+
+## 4b. Two build bugs found while running Forge Command locally
+
+Both are Windows-only; CI is Linux so neither bites there, but they stop the
+dashboard building on this machine.
+
+- `tools/build_site.py` opens each JSON with the platform default encoding, so
+  `json.load(open(src))` dies on the first smart quote (`ventures.json`) with
+  `UnicodeDecodeError: 'charmap' codec`. Fix: `open(src, encoding="utf-8")`.
+  Workaround used here: `PYTHONUTF8=1`.
+- `rmtree`/`mkdir` on `dist/` fails with `FileExistsError` if anything holds the
+  directory open. Minor, but `dist.mkdir(exist_ok=True)` would survive it.
 
 ## 5. Atlas graph notes
 
@@ -127,3 +158,33 @@ each give this stream a real Stripe source:
 - Repo name `e-eplumbing` and the docs say **E&E / Estad & Ellingson**; the site
   says **Ellingson Plumbing**. Atlas should treat these as one entity with an
   unresolved naming decision (see `eep-brand-collision`).
+
+## 6. Status — what shipped 2026-10-18
+
+Ran both dashboards locally against this business.
+
+**Forge Command** already tracks it, with no config change needed:
+
+| Panel | Row |
+|---|---|
+| Atlas | `e-eplumbing  205/260  2026-10-13  fresh` · god nodes `mem.py 22, app.js 18, Ellingson Plumbing — Valley shop book 13` |
+| Site health | `ellingson-plumbing 90/95 92 100` · `plumbingmidwest 90/87 92 100` |
+| Deploys | both `ready`, no runs in 7d |
+| Activity | `e-eplumbing PR #4 open — Launch economics, job pipeline, hiring and van playbooks` |
+
+Note the Atlas slice is from **2026-10-13** and names `app.js` as a god node —
+that file was rewritten today, so the graph is stale for this repo.
+
+**HELIX** now has the business in it, on the `trades` template: 11 pricebook
+lines, 2 offers, 1 roster entry, capacity 1 person × 40 tech-hours. Every money
+figure renders as a dash, which is correct — no job has been done, so there is
+nothing to source. Helix's own first-week checklist reads
+`✓ Check one price (done)` off the seeded pricebook.
+
+Also found and patched locally in `helixscales` (not pushed, worth landing there):
+
+- `scripts/build.mjs:12` uses `new URL(import.meta.url).pathname`, which yields
+  `/C:/Users/...` on Windows and makes `path.resolve` produce `C:\C:\Users\...`.
+  Fix: `fileURLToPath(import.meta.url)`.
+- `npm run build` is gated on a claims check that currently fails on main:
+  `index.html: integration block is stale; it must equal renderIntegrationSection()`.

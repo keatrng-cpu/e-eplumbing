@@ -294,3 +294,64 @@ Worth connecting, in order of payback:
 
 Skipped deliberately: Figma/Canva/Adobe (no design bottleneck here), Semrush/Ahrefs (OpenSEO
 covers it), Airtable (Jobber is the system of record per JOBBER-SETUP.md).
+
+---
+
+## Status — 2026-10-18
+
+All ten are implemented and verified in a browser. Three further builds landed
+in the same pass:
+
+| # | Item | State |
+|---|---|---|
+| 1–10 | Order flow v2 | **Done**, verified live in a browser |
+| 11 | PostHog on the booking funnel | **Done** — `analytics.js`, project `671305` |
+| 12 | Stripe checkout for the Home Team Plan | **Done** — `netlify/functions/checkout.js`, needs price IDs |
+| 13 | Supabase calendar holds | **Done** — `supabase/001_schedule.sql`, falls back to Blobs until configured |
+
+**Analytics.** `analytics.js` fires `booking_viewed → service_selected →
+scope_selected → urgency_changed → day_selected → booking_submitted`, plus
+`booking_blocked` on a validation failure and `contact_tapped` on every
+`tel:`/`sms:` link — for a plumber the phone is probably the larger half of the
+funnel and was entirely invisible. Autocapture and session recording are
+**off**: this form holds a name, phone and home address, and autocapture would
+sweep up the DOM around those fields. Every event carries shape only — which
+service, which price band — never a value a household could be identified by.
+It also opts out on `localhost` and under Do Not Track.
+
+**Checkout.** The Home Team Plan has been advertised at `$29/mo · $279/yr` with
+no way to buy it; the CTA was an anchor. There are now two real buttons. The
+amounts live in Stripe as price IDs, not in this repo, so the number has one
+source of truth. With the env vars unset the buttons fall back to "call us"
+rather than failing — a dead button next to a price is worse than no button.
+
+**Calendar.** `supabase/001_schedule.sql` replaces the single Blobs counter.
+`ee_hold_slot()` claims a day under an advisory lock, so two visitors can no
+longer both take the last opening, and every hold is a row keyed by the
+customer's reference number — so a cancelled job gives its slot back, which the
+blob could never do. It is also idempotent on the ref, so a double submit
+cannot consume two slots. Backend selection is automatic: Supabase when
+`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are set, Netlify Blobs
+otherwise, so nothing breaks before the database is provisioned.
+
+### Still owner-side, and still ahead of all of this
+
+1. `ellingsonplumbing.com` points at a registrar lander, and every canonical on
+   the site names it.
+2. The lead form has still never received a submission.
+3. The MN name collision.
+
+### Environment variables to set in Netlify
+
+Full list with empty values in [`.env.example`](.env.example). Nothing in the
+table below is optional for the feature next to it to work.
+
+| Keys | Enables |
+|---|---|
+| `TWILIO_SID`, `TWILIO_TOKEN`, `TWILIO_FROM`, `DISPATCH_SMS` | 2am dispatch SMS |
+| `NOTIFY_WEBHOOK` | Slack/Zapier ticket |
+| `STRIPE_SECRET_KEY`, `STRIPE_PRICE_HTP_MONTHLY`, `STRIPE_PRICE_HTP_YEARLY` | Home Team Plan checkout |
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | atomic calendar holds |
+
+A build that passes locally and 500s in production is almost always a variable
+that was added to `.env` and not to the Netlify dashboard.

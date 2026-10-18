@@ -343,12 +343,17 @@
   </div>
   <p class="rev-foot">No placeholder five-stars. The live Google profile is the source of truth.</p>
 </div></section>
-<div class="plan"><div class="wrap">
+<div class="plan" id="plan"><div class="wrap">
   <div><h2>Never think about your plumbing again.</h2>
     <p>Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling, and 10% off repairs. Locked from the shop pricebook.</p>
     <span class="price">$29/mo · $279/yr</span>
   </div>
-  <a class="btn btn-ghost" href="#contact">Ask about the plan</a>
+  <div class="plan-actions">
+    <button type="button" class="btn btn-green" data-plan="monthly">Join — $29/mo</button>
+    <button type="button" class="btn btn-ghost" data-plan="yearly">Pay yearly — $279</button>
+    <a class="btn btn-ghost" href="#contact">Ask about the plan</a>
+    <p class="plan-msg" id="planMsg" role="status"></p>
+  </div>
 </div></div>
 
 <section id="faq"><div class="wrap">
@@ -457,9 +462,11 @@
     });
   })();
 </script>
+<script src="analytics.js" defer></script>
 <script src="pricebook.js"></script>
 <script src="schedule.js"></script>
 <script src="app.js" defer></script>
 <script src="ee-chat.js" defer></script>
+<script src="plan.js" defer></script>
 </body>
 </html>

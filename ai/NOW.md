@@ -9,7 +9,8 @@ Win plumbing jobs across Eastern ND + Western MN with an order flow detailed eno
 that the plumber can load the truck and drive without a diagnostic phone call.
 
 ## In flight
-- Order flow v2 **shipped to the working tree, not deployed**. See `ORDER-FLOW-AUDIT.md`.
+- Order flow v2 + analytics + checkout + Supabase calendar are **on branch
+  `order-flow-v2`, pushed, not merged and not deployed**. See `ORDER-FLOW-AUDIT.md`.
 - Owner-side blockers (not code): fix the `ellingsonplumbing.com` DNS, send one real
   test lead, lawyer call on the name, claim the Google Business Profile.
 
@@ -34,6 +35,15 @@ that the plumber can load the truck and drive without a diagnostic phone call.
   `TWILIO_FROM`, `DISPATCH_SMS` set in Netlify site env. Unset = log only.
 - Lighthouse 2026-10-18: desktop 95/92/100/100 (CLS 0.125, over threshold),
   mobile 90/92/100/100 (LCP 2,877 ms, over 2.5 s). `seo: 100` is a false pass.
-- No analytics anywhere. "No traffic" and "broken form" are indistinguishable today.
-- Home Team Plan ($29/mo · $279/yr) and install deposits (30–50%) are stated in the
-  docs and on the page with no way to pay for either.
+- PostHog is wired (`analytics.js`, project `671305`, token is a publishable
+  `phc_` client key). Autocapture and session recording are deliberately OFF —
+  the form holds a name, phone and home address. No events have landed yet
+  (`ingested_event: false`); it opts out on localhost and under Do Not Track.
+- Home Team Plan checkout is built (`netlify/functions/checkout.js` + two buttons)
+  but inert until `STRIPE_SECRET_KEY`, `STRIPE_PRICE_HTP_MONTHLY` and
+  `STRIPE_PRICE_HTP_YEARLY` exist; it falls back to "call us". Install deposits
+  (30–50%, OPERATIONS.md §5) are still collected by hand.
+- Calendar holds: `supabase/001_schedule.sql` is written but **not applied** to any
+  Supabase project (e-eplumbing has none). Until `SUPABASE_URL` +
+  `SUPABASE_SERVICE_ROLE_KEY` are set, `book.js` uses the racy Blobs fallback.
+- All new env keys are listed in `.env.example`; `.env` is gitignored.

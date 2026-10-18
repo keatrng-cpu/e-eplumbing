@@ -124,6 +124,9 @@
     coords: null,
   };
 
+  // No-op until analytics.js loads; never a hard dependency.
+  var track = function (e, p) { (window.EETrack || function () {})(e, p); };
+
   var $ = function (id) { return document.getElementById(id); };
   var form = $("book");
   if (!form) return;
@@ -153,6 +156,7 @@
     fScope: $("fScope"),
     fCoords: $("fCoords"),
     fRef: $("fRef"),
+    photo: $("fphoto"),
     geo: $("geoBtn"),
     geoNote: $("geoNote"),
     truckList: $("truckList"),
@@ -271,6 +275,12 @@
         els.fOption.value = String(i);
         els.fScope.value = o.label;
         render();
+        track("scope_selected", {
+          service: state.service,
+          scope: o.label,
+          priced: !o.custom,
+          band: o.low ? o.low + "-" + o.high : (o.diagnostic ? "diagnostic" : "quoted-on-site"),
+        });
       }, "scope-pill");
       var small = document.createElement("small");
       small.textContent = price;
@@ -289,6 +299,7 @@
     setRail(EMERGENCY_SERVICES[svc] ? "now" : "day", true);
     state.followup = {};
     render();
+    track("service_selected", { service: svc, emergency: !!EMERGENCY_SERVICES[svc] });
   }
 
   // ------------------------------------------------------------ rail / urgency
@@ -339,6 +350,7 @@
         state.day = state.day === d.day ? null : d.day;
         els.fDay.value = state.day || "";
         render();
+        track("day_selected", { picked: !!state.day, window: state.window });
       });
       els.dayGrid.appendChild(b);
     });
@@ -537,7 +549,10 @@
 
   form.addEventListener("submit", async function (ev) {
     ev.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      track("booking_blocked", { service: state.service, hasScope: state.optionIndex != null });
+      return;
+    }
 
     els.submit.disabled = true;
     els.submit.textContent = "Holding the window…";
@@ -567,6 +582,20 @@
       phone: els.phone.value,
     };
     try { sessionStorage.setItem("ee-last-order", JSON.stringify(summary)); } catch (e) {}
+    // Shape only — never the name, phone, address or map pin.
+    track("booking_submitted", {
+      service: state.service,
+      scope: els.fScope.value,
+      urgency: state.urgency,
+      rail: state.rail,
+      window: summary.window,
+      estimate: els.estimate.value,
+      hasPhoto: !!(els.photo && els.photo.files && els.photo.files.length),
+      photoCount: (els.photo && els.photo.files && els.photo.files.length) || 0,
+      answeredDetails: Object.keys(state.followup).filter(function (k) { return state.followup[k]; }).length,
+      usedGeo: !!state.coords,
+      town: els.town.value,
+    });
     writeTruck(summary);
 
     // multipart, not urlencoded — the photo input needs it and Netlify Forms
@@ -651,6 +680,7 @@
       if (r.value === "Emergency — now") setRail("now", false);
       else if (state.rail === "now") setRail("day", false);
       render();
+      track("urgency_changed", { urgency: r.value, service: state.service });
     });
   });
 
@@ -672,6 +702,8 @@
       this.setAttribute("aria-pressed", paused ? "false" : "true");
     });
   }
+
+  track("booking_viewed", { afterHours: pb ? pb.isAfterHours() : null });
 
   initGeo();
   initZip();
