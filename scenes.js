@@ -49,22 +49,26 @@
   function play(host, key, opt) {
     opt = opt || {}; stop(host);
     key = TITLES[key] ? key : "other";
+    var tok = host._eeTok = (host._eeTok || 0) + 1;
     host.classList.add("scene-loading");
     return load(key).then(function (d) {
+      if (host._eeTok !== tok) return;          /* a newer play() on this host won */
       host.classList.remove("scene-loading");
       var p = "ees" + (++uid) + "-", defs = "", i;
       for (i = 0; i < d.f.length; i++) defs += '<g id="' + p + i + '">' + d.f[i] + "</g>";
       var bg = "";
       for (i = 0; i < d.bg.length; i++) bg += '<g class="bgv"' + (i ? ' style="display:none"' : "") + ">" + d.bg[i] + "</g>";
-      host.querySelectorAll("svg").forEach(function (n) { n.remove(); });
-      host.insertAdjacentHTML("afterbegin", '<svg viewBox="' + d.vb + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + d.alt.replace(/"/g, "&quot;") +
+      Array.prototype.slice.call(host.children).forEach(function (n) { if (n.tagName.toLowerCase() === "svg") n.remove(); });
+      var box = document.createElement("div");
+      box.innerHTML = ('<svg viewBox="' + d.vb + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + d.alt.replace(/"/g, "&quot;") +
         '" style="color:#0B0F0D"><defs>' + defs + "</defs>" + bg + '<g class="fr"></g></svg>');
-      var svg = host.querySelector("svg"), fr = svg.querySelector(".fr"), bgs = svg.querySelectorAll(".bgv"), last = -1, lb = 0;
+      var svg = box.firstChild; host.insertBefore(svg, host.firstChild);
+      var fr = svg.querySelector(".fr"), bgs = svg.querySelectorAll(".bgv"), last = -1, lb = 0;
       function show(n) {
         if (n === last) return; last = n;
         fr.innerHTML = d.s[n].map(function (k) { return '<use href="#' + p + k + '"/>'; }).join("");
       }
-      function boil(v) { if (v === lb) return; bgs[lb].style.display = "none"; bgs[v].style.display = ""; lb = v; }
+      function boil(v) { if (v === lb || !bgs[v]) return; bgs[lb].style.display = "none"; bgs[v].style.display = ""; lb = v; }
       var N = d.s.length;
       if (opt.frame != null) { show(opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame)); return; }
       if (rm()) { show(N - 1); return; }
