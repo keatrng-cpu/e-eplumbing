@@ -15,3 +15,6 @@ Replaced the centerline mascot and WAAPI scene engine with pre-rendered ink draw
 
 ## 2026-10-18 — v7 mascot: plain-ink cap, locked-camera keyframes, illustrated hero
 Keaton's sign mascot wears a cap, not a fedora; he wants no color on the mascot, pro tool order with handoff frames, and 6-9 frames per scene with a locked camera. Clog and shutoff are redone on v7; the remaining scenes stay v6 until regenerated in batches (generation drift needs frame-by-frame review). Hero switched to illustrated raster frames on the existing vector stage to keep the walk-in without a framework.
+
+## 2026-10-18 — v7 batch 2 verified and pushed (burst, mainline, cambranch, sink)
+Verified the four batch-2 scenes (sizes under 250KB, gallery plays with no console errors, homepage 0 scene requests, reduced motion fetches only the end frame) and pushed them as-is. Art nits are logged in NOW instead of regenerating, because this pass was integration only and each regen needs another frame-by-frame review.

@@ -28,7 +28,9 @@ Static Netlify site for Ellingson Plumbing (publish `.`, no bundler). Phone (218
 
 ## v7 (mascot-motion, PR #6 draft) — in progress
 - Mascot: illustrated plain-ink cap (no color, no mesh), ink on cream; green only on overlays (check mark, swirl, drips). Generator pipeline: /workspace/assets/kf6/kf6.py (SPEC7 = v7 scenes, raw frames in /workspace/assets/preview/v7/raw/<key>-N.jpg, 6-9 frames, explicit holds, last ~1000ms); off7.py measures fixture offset; check7.py runs sizes / homepage 0 scene requests / CTA / reduced motion / console errors.
-- Scenes on v7: clog (8 frames, 190KB), shutoff (6 frames, 219KB). The other 32 scenes are still v6 illustrated keyframes (fedora). Encoder ladder adds a light smoothing pre-pass when dense hatching blows the 250KB budget.
+- Scenes on v7: clog (8 fr, 190KB), shutoff (6, 219KB), burst (7, 235KB), mainline (6, 214KB), cambranch (6, 186KB), sink (6, 230KB). The other 28 scenes are still v6 illustrated keyframes (fedora). Encoder ladder adds a light smoothing pre-pass when dense hatching blows the 250KB budget.
+- Known v7 art nits (not regenerated): sink supply line gone in frame 6 and stop handle floats in 3/6, basin wrench used at the stop not behind the bowl; cambranch trap bend vanishes in frame 3; burst valve handle reads closed again after the reopen; mainline mascot shifts right in 5-6.
+- Contact sheet: /workspace/assets/preview/v7/contact-sheet.png (sheet7.py, one row per v7 scene).
 - Player: reduced motion and ?frame= fetch only the frame shown. Registry still resolves key -> fallback "other" (scene keys unchanged).
 - Hero: assets/hero7/*.webp (cream ink on transparent, interior filled with --mp-paper so stage lines do not show through); hero-mascot.js keeps the v5 vector stage; plank is in the frames (board group empty). Reduced motion fetches only r.webp. Generator: /workspace/assets/preview/v7/hero/hero7.py.
 - Do not touch pricebook.js, app.js JOBS or the booking flow on this branch (order-flow-v2 owns it).
