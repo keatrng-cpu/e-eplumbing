@@ -5,7 +5,7 @@
 (function () {
   var cur = document.currentScript && document.currentScript.src;
   var BASE = cur ? cur.replace(/scenes\.js(\?.*)?$/, "") : "/";
-  var VER = "6";
+  var VER = "7";
   var TITLES = {"shutoff": "Water shut off, leak stopped", "burst": "Burst pipe repaired", "freezethaw": "Frozen line thawed and repaired", "diagnose": "Leak found and diagnosed", "clog": "Toilet unclogged", "mainline": "Main line cleared", "hydrojet": "Line hydro-jetted", "cleanout": "Cleanout installed", "cammain": "Main line camera inspected", "cambranch": "Branch line camera inspected", "tankswap": "Water heater replaced", "tankcode": "Water heater brought to code", "flush": "Water heater flushed", "nohot": "T and P valve, anode, or element service", "tankless": "Tankless water heater installed", "sumpswap": "Sump pump replaced", "battery": "Battery backup sump installed", "checkvalve": "Check valve replaced", "sumptest": "Sump pump tested and serviced", "thaw": "Frozen pipes thawed", "frozenburst": "Frozen and burst pipe repaired", "slab": "Slab leak located", "softservice": "Water softener serviced", "softinstall": "Water softener installed", "ironro": "Iron filter or RO installed", "remodel": "Remodel plumbing roughed in", "commercial": "Backflow device tested", "other": "Plumber on the way", "toilet": "Toilet installed", "sink": "Faucet or sink installed", "shower": "Shower valve installed", "tub": "Tub installed", "disposal": "Garbage disposal installed", "cartridge": "Faucet cartridge replaced"};
   var OPTION_SCENES = {
     "Emergency repair": ["shutoff", "burst", "freezethaw", "diagnose"],
@@ -124,8 +124,10 @@
     return g;
   }
   function playKF(host, d, opt, tok) {
-    var N = d.frames.length, imgs = d.frames.map(function (f) { var im = new Image(); im.decoding = "async"; im.src = BASE + f.src; return im; });
-    return Promise.all(imgs.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; })).then(function () {
+    var N = d.frames.length, only = opt.frame != null ? (opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame)) : rm() ? N - 1 : -1;
+    /* still render (reduced motion or ?frame=): fetch only the frame shown */
+    var imgs = d.frames.map(function (f, i) { if (only >= 0 && i !== only) return null; var im = new Image(); im.decoding = "async"; im.src = BASE + f.src; return im; });
+    return Promise.all(imgs.map(function (im) { return im && im.decode ? im.decode().catch(function () {}) : null; })).then(function () {
       if (host._eeTok !== tok) return;
       host.classList.remove("scene-loading"); host.classList.add("scene-kf");
       var p = "ees" + (++uid) + "-", W = d.w, H = d.h;
@@ -148,8 +150,7 @@
           stage.animate([{ transform: o0 }, { transform: "none" }], { duration: tw.ms || 260, easing: "cubic-bezier(.3,.7,.4,1)" });
         }
       }
-      if (opt.frame != null) { show(opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame), true); stage.removeAttribute("filter"); return; }
-      if (rm()) { show(N - 1, true); stage.removeAttribute("filter"); return; }
+      if (only >= 0) { show(only, true); stage.removeAttribute("filter"); return; }
       var ends = [], acc = 0; d.frames.forEach(function (f) { acc += f.hold; ends.push(acc); });
       return new Promise(function (res) {
         var t0 = performance.now(), raf, done = false, lb = -1;

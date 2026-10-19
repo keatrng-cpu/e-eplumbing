@@ -1,4 +1,4 @@
-/* Hero mascot stage (v4 ink). The stage box has a fixed height in CSS, so nothing shifts when the drawings arrive.
+/* Hero mascot stage (v7: illustrated plain-cap mascot frames, assets/hero7/*.webp, cream ink on transparent; stage lines still vector). The stage box has a fixed height in CSS, so nothing shifts when the drawings arrive.
    After window load the frames (assets/hero-mascot.js) are fetched; when the stage is on screen he draws himself on,
    walks in with the board and hammer, sets the board down and tips his hat. Scrolling the stage back into view replays the tip.
    Reduced motion: the settled still. The stage is decorative (aria-hidden) and never overlaps the H1, CTAs or booking card. */
@@ -12,13 +12,13 @@
   function load(cb) {
     if (window.EEHeroData) return cb();
     var s = document.createElement("script");
-    s.src = "assets/hero-mascot.js?v=5"; s.async = true; s.onload = cb;
+    s.src = "assets/hero-mascot.js?v=7"; s.async = true; s.onload = cb;
     document.head.appendChild(s);
   }
   function build() {
     var D = window.EEHeroData; if (!D) return;
     var defs = "", k;
-    for (k in D.f) defs += '<g id="hm-' + k + '">' + D.f[k] + "</g>";
+    for (k in D.f) if (!reduce || k === "r") defs += '<g id="hm-' + k + '">' + D.f[k] + "</g>";   /* reduced motion: only the settled frame is fetched */
     var vb = narrow && narrow.matches ? "250 16 750 552" : D.vb;
     stage.insertAdjacentHTML("beforeend", '<svg viewBox="' + vb + '" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><defs>' + defs +
       '<mask id="hmMask" maskUnits="userSpaceOnUse" x="-80" y="-40" width="860" height="680"><path class="hm-scrib" d="' + D.scrib +
