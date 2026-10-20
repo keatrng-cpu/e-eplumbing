@@ -1,28 +1,26 @@
 // GET /.netlify/functions/availability
-// Returns how full the next few weeks already are so the browser can gray
-// out full days before the visitor even picks a service. netlify/functions
-// gets its own dependency resolution from the nearest package.json (repo
-// root here), independent of the static-site publish step in netlify.toml.
-const { getStore } = require("@netlify/blobs");
+// How full the next few weeks already are, so the browser can gray out full
+// days before the visitor has even picked a service.
+//
+// Backend is Supabase when it is configured, Netlify Blobs otherwise — see
+// _schedule-store.js.
 const schedule = require("../../schedule.js");
+const store = require("./_schedule-store.js");
 
 exports.handler = async () => {
+  const headers = { "content-type": "application/json", "cache-control": "no-store" };
   try {
-    const store = getStore("ee-schedule");
-    const fill = (await store.get("fill", { type: "json" })) || [];
+    const fill = await store.readFill();
     return {
       statusCode: 200,
-      headers: { "content-type": "application/json", "cache-control": "no-store" },
-      body: JSON.stringify({ fill, dailySlots: schedule.DAILY_SLOTS }),
+      headers,
+      body: JSON.stringify({ fill, dailySlots: schedule.DAILY_SLOTS, backend: store.usingSupabase() ? "supabase" : "blobs" }),
     };
   } catch (err) {
-    // Never break the booking form over a Blobs hiccup — an empty fill just
-    // means every day shows open, which is the same as "we don't know yet."
+    // Never break the booking form over a storage hiccup. An empty fill shows
+    // every day as open, which is the same as "we don't know yet" — the office
+    // confirms the date by phone regardless.
     console.error("[availability] failed:", err);
-    return {
-      statusCode: 200,
-      headers: { "content-type": "application/json", "cache-control": "no-store" },
-      body: JSON.stringify({ fill: [], dailySlots: schedule.DAILY_SLOTS }),
-    };
+    return { statusCode: 200, headers, body: JSON.stringify({ fill: [], dailySlots: schedule.DAILY_SLOTS }) };
   }
 };

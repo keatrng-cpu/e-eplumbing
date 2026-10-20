@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thanks.html
 
-Sitemap: https://ellingsonplumbing.com/sitemap.xml
+Sitemap: https://plumbingmidwest.netlify.app/sitemap.xml

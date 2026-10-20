@@ -1,4 +1,4 @@
-# Ellingson Plumbing — static marketing site
+# North Fork Plumbing Co. — static marketing site
 [build]
   publish = "."
 
@@ -16,7 +16,7 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Permissions-Policy = "geolocation=(self), microphone=(), camera=(self)"
 
 [[headers]]
   for = "/*.svg"

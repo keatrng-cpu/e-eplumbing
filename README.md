@@ -1,8 +1,8 @@
-# Ellingson Plumbing
+# North Fork Plumbing Co.
 
-Marketing site and operating system for **Ellingson Plumbing** — 24/7 plumbing for Greater Grand Forks, Eastern North Dakota, and Western Minnesota.
+Marketing site and operating system for **North Fork Plumbing Co.** — plumbing for Greater Grand Forks, Eastern North Dakota, and Western Minnesota.
 
-Formerly drafted as Estad & Ellingson / E&E. The public brand is now **Ellingson Plumbing**.
+The former Ellingson / E&E draft has been retired. The public brand is now **North Fork Plumbing Co.**
 
 **Repo:** https://github.com/keatrng-cpu/e-eplumbing
 
@@ -12,13 +12,13 @@ Formerly drafted as Estad & Ellingson / E&E. The public brand is now **Ellingson
 
 This is a **plumbing company site**, not a booking product like Pick It Up E and not a parcel engine like RealEstate Genius.
 
-| Bar those sites set | How Ellingson matches it in its own way |
+| Bar those sites set | How North Fork matches it in its own way |
 |---|---|
 | Self-hosted, no remote HTML loader | Full site lives in `index.html` + `site.css` |
 | Distinct local voice | Valley freeze / melt / hard water — not generic plumber stock copy |
 | Clear “how a job moves” | Three-step **The call** (answer → flat-rate → fix + photos) |
 | Live operational surface | **Valley season board** instead of a haul crew board |
-| Trust + SEO | Dual-state license strip, FAQPage schema, favicon, manifest |
+| Trust + SEO | Clear service area, FAQPage schema, favicon, manifest |
 | Help without a phone tree | On-site chatbot + floating call on mobile |
 | Ops depth behind the page | Business plan, pricebook, Jobber, GBP, templates |
 
@@ -28,8 +28,8 @@ It does **not** become a Next.js app with account login. A 2 a.m. burst pipe nee
 
 ## Brand
 
-- **Name:** Ellingson Plumbing
-- **Color:** kelly green `#009A44`
+- **Name:** North Fork Plumbing Co.
+- **Color:** deep river green `#063B32` + fork green `#34B67A`
 - **Fonts:** Barlow Condensed / Barlow
 - **Assets:** `lockup.svg`, `badge.svg`, `favicon.svg`
 - **Phone:** (218) 779-2553
@@ -59,15 +59,15 @@ It does **not** become a Next.js app with account login. A 2 a.m. burst pipe nee
 
 ## You own
 
-- Netlify deploy + custom domain (ellingsonplumbing.com or similar) + form notifications
-- Legal entity name matching **Ellingson Plumbing**, licensing, bond, insurance
+- Netlify deploy + a North Fork custom domain + form notifications
+- Legal entity, licensing, bond, and insurance under the North Fork name
 - Replacing sample reviews after real jobs
 
 ## Launch checklist (remaining)
 
 - [ ] Deploy Netlify + form notifications
 - [ ] Custom domain and `data-live="true"` on `<body>`
-- [ ] Claim Google Business Profile as **Ellingson Plumbing**
+- [ ] Claim Google Business Profile as **North Fork Plumbing Co.**
 - [ ] Jobber trial + import pricebook
 - [ ] LLC / licenses / bond / insurance under the new name
 - [ ] Replace sample reviews

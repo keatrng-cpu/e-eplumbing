@@ -5,3 +5,8 @@ ai/.sessions.log
 graphify-out/.post-commit.log
 ai/.context.md
 ai/.context.md.tmp
+
+# Local secrets — never committed. See .env.example for the key list.
+.env
+.env.*
+!.env.example

@@ -3,23 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request received — Ellingson Plumbing</title>
+<title>Request received — North Fork Plumbing Co.</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="motion.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+.order{border:1.5px solid var(--kelly);border-radius:12px;background:var(--mist);padding:18px;margin:24px 0}
+.order dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0}
+.order dt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);align-self:center}
+.order dd{margin:0;font-weight:600}
+.order .ref{font-family:var(--display);font-size:30px;font-weight:800;color:var(--kelly-text);line-height:1}
+.next{list-style:none;margin:20px 0}
+.next li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.next li:last-child{border-bottom:none}
+.next b{font-family:var(--display);color:var(--kelly-text);flex:none}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+@media(max-width:560px){.order dl{grid-template-columns:1fr}.order dt{margin-top:8px}}
+</style>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
   <div><span class="pulse"></span><b>24/7:</b> <a href="tel:+12187792553">(218) 779-2553</a></div>
 </div></div>
-<main class="wrap" style="padding:88px 24px;max-width:720px">
+<main class="wrap" style="padding:72px 24px;max-width:720px">
   <div class="eyebrow">Dispatch</div>
   <h2>We have the request.</h2>
-  <p class="sec-head" style="margin-top:16px">Office hours: we call back within 15 minutes. After hours, emergency rows get a plumber on the line. If water is moving now, do not wait — call.</p>
-  <p style="margin:28px 0"><a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a></p>
-  <p><a href="/">← Back to Ellingson Plumbing</a></p>
+
+  <div class="order" id="order" hidden>
+    <dl id="orderList"></dl>
+  </div>
+
+  <ul class="next">
+    <li><b>1</b><span>Our team reviews the ticket and confirms the next step by phone or text.</span></li>
+    <li><b>2</b><span>You get a text with the arrival window, and the name of who is coming.</span></li>
+    <li><b>3</b><span>Flat-rate quote at the door. You approve the number before a wrench turns.</span></li>
+  </ul>
+
+  <p id="photoNudge" style="font-size:15px">Got a photo of the problem? Text it to
+    <a href="sms:+12187792553">(218) 779-2553</a><span id="refNudge"></span> — it often saves a trip.</p>
+
+  <div class="actions">
+    <a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a>
+    <a class="btn btn-ghost" id="calBtn" href="#" hidden download="north-fork-plumbing.ics">Add to calendar</a>
+  </div>
+
+  <p style="color:var(--gray);font-size:14px">If water is moving right now, do not wait on the callback — call.</p>
+  <p style="margin-top:20px"><a href="/">← Back to North Fork Plumbing Co.</a></p>
 </main>
+<script>
+(function () {
+  var o;
+  try { o = JSON.parse(sessionStorage.getItem('ee-last-order') || 'null'); } catch (e) { o = null; }
+  if (!o) return;
+
+  var rows = [
+    ['Reference', o.ref, 'ref'],
+    ['Job', o.scope || o.service],
+    ['Estimate', o.estimate],
+    ['When', o.when],
+    ['Window', o.window],
+    ['Address', o.address],
+    ['Callback', o.phone]
+  ];
+  var dl = document.getElementById('orderList');
+  rows.forEach(function (r) {
+    if (!r[1]) return;
+    var dt = document.createElement('dt'); dt.textContent = r[0];
+    var dd = document.createElement('dd'); dd.textContent = r[1];
+    if (r[2] === 'ref') dd.className = 'ref';
+    dl.appendChild(dt); dl.appendChild(dd);
+  });
+  document.getElementById('order').hidden = false;
+  if (o.ref) document.getElementById('refNudge').textContent = ' and quote ' + o.ref;
+
+  // Add-to-calendar for a held day. Emergencies have no date to add.
+  var iso = (o.when || '').match(/^\w{3} (\w{3}) (\d{1,2})$/);
+  if (o.rawDay || iso) {
+    var day = o.rawDay || null;
+    if (!day) {
+      var m = { Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11 };
+      var y = new Date().getFullYear();
+      var d = new Date(Date.UTC(y, m[iso[1]], Number(iso[2])));
+      day = d.toISOString().slice(0, 10);
+    }
+    var stamp = day.replace(/-/g, '');
+    var start = (o.window || '').indexOf('Morning') === 0 ? 'T130000Z' : 'T170000Z'; // 8am / 12pm CT
+    var end = (o.window || '').indexOf('Morning') === 0 ? 'T170000Z' : 'T210000Z';
+    var ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//North Fork Plumbing Co.//EN', 'BEGIN:VEVENT',
+      'UID:' + (o.ref || stamp) + '@northforkplumbing',
+      'DTSTART:' + stamp + start, 'DTEND:' + stamp + end,
+      'SUMMARY:North Fork Plumbing Co. — ' + (o.scope || o.service || 'service call'),
+      'DESCRIPTION:Ref ' + (o.ref || '') + '. Estimate ' + (o.estimate || '') + '. Flat-rate quote confirmed on site. Questions: (218) 779-2553',
+      'LOCATION:' + (o.address || ''), 'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    var btn = document.getElementById('calBtn');
+    btn.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    btn.hidden = false;
+  }
+})();
+</script>
 </body>
 </html>

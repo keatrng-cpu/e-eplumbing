@@ -1,9 +1,88 @@
 /**
  * Netlify Form trigger: runs after a successful `service-request` submit.
+ *
+ * Builds the dispatch ticket — everything the plumber needs to load the truck
+ * and drive, in the order the phone script in OPERATIONS.md §1 asks for it —
+ * and pushes it somewhere that actually buzzes a phone at 2am.
+ *
  * Site settings → Environment variables:
- *   NOTIFY_WEBHOOK  optional Slack/Zapier/Make incoming webhook URL
- *   NOTIFY_EMAIL    informational only (Netlify UI sends the actual email)
+ *   NOTIFY_WEBHOOK    Slack / Zapier / Make incoming webhook URL
+ *   TWILIO_SID        Twilio account SID          ┐ all three required
+ *   TWILIO_TOKEN      Twilio auth token           │ for the SMS leg
+ *   TWILIO_FROM       Twilio number, E.164        ┘
+ *   DISPATCH_SMS      comma-separated E.164 numbers to text (on-call plumbers)
+ *   NOTIFY_EMAIL      informational only (Netlify UI sends the actual email)
  */
+
+const FIELDS = [
+  ['Ref', 'ref'],
+  ['Urgency', 'urgency'],
+  ['Service', 'service'],
+  ['Scope', 'scope'],
+  ['Estimate', 'estimate'],
+  ['Day', 'day'],
+  ['Window', 'window'],
+  ['Name', 'name'],
+  ['Phone', 'phone'],
+  ['Email', 'email'],
+  ['Contact pref', 'contactPref'],
+  ['OK to text', 'smsConsent'],
+  ['Address', 'street'],
+  ['Town', 'town'],
+  ['ZIP', 'zip'],
+  ['Map', 'mapLink'],
+  ['Property', 'property'],
+  ['Role', 'role'],
+  ['Who is home', 'whoHome'],
+  ['Main shut-off', 'shutoffKnown'],
+  ['Access', 'access'],
+  ['Job details', 'details'],
+  ['Message', 'message'],
+];
+
+function ticket(data) {
+  const lines = ['North Fork Plumbing Co. — new service request'];
+  for (const [label, key] of FIELDS) {
+    const v = data[key];
+    if (v) lines.push(`${label}: ${String(v).replace(/\n/g, ' / ')}`);
+  }
+  lines.push('Call back: (218) 779-2553');
+  return lines.join('\n');
+}
+
+/** The 160-character version that fits one SMS and still dispatches a truck. */
+function sms(data) {
+  const urgent = data.urgency === 'Emergency — now' ? '🚨 EMERGENCY' : 'New job';
+  return [
+    `${urgent} ${data.ref || ''}`,
+    `${data.scope || data.service || 'Service call'} — ${data.estimate || 'quote on call'}`,
+    `${data.name || '?'} ${data.phone || ''}`,
+    `${data.street || ''}, ${data.town || ''}`,
+    data.urgency === 'Emergency — now' ? 'Dispatch now' : `${data.day || 'first opening'} ${data.window || ''}`,
+  ].join('\n');
+}
+
+async function sendSms(body) {
+  const { TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM, DISPATCH_SMS } = process.env;
+  if (!TWILIO_SID || !TWILIO_TOKEN || !TWILIO_FROM || !DISPATCH_SMS) return 'sms: not configured';
+  const to = DISPATCH_SMS.split(',').map((n) => n.trim()).filter(Boolean);
+  const auth = Buffer.from(`${TWILIO_SID}:${TWILIO_TOKEN}`).toString('base64');
+  const results = await Promise.allSettled(
+    to.map((number) =>
+      fetch(`https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${auth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ To: number, From: TWILIO_FROM, Body: body }),
+      })
+    )
+  );
+  const failed = results.filter((r) => r.status === 'rejected' || !r.value.ok).length;
+  return `sms: ${to.length - failed}/${to.length} sent`;
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
@@ -11,24 +90,17 @@ exports.handler = async (event) => {
 
   let payload = {};
   try {
-    payload = JSON.parse(event.body || '{}').payload || JSON.parse(event.body || '{}');
+    const parsed = JSON.parse(event.body || '{}');
+    payload = parsed.payload || parsed;
   } catch (err) {
     return { statusCode: 400, body: 'Bad payload' };
   }
 
   const data = payload.data || payload;
-  const webhook = process.env.NOTIFY_WEBHOOK;
-  const summary = [
-    'Ellingson Plumbing — new service request',
-    `Name: ${data.name || '—'}`,
-    `Phone: ${data.phone || '—'}`,
-    `Town: ${data.town || '—'}`,
-    `Service: ${data.service || '—'}`,
-    `Urgency: ${data.urgency || '—'}`,
-    `Message: ${data.message || '—'}`,
-    'Call back: (218) 779-2553',
-  ].join('\n');
+  const summary = ticket(data);
+  const notes = [];
 
+  const webhook = process.env.NOTIFY_WEBHOOK;
   if (webhook) {
     try {
       await fetch(webhook, {
@@ -36,12 +108,25 @@ exports.handler = async (event) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: summary, data }),
       });
+      notes.push('webhook: ok');
     } catch (err) {
       console.error('NOTIFY_WEBHOOK failed', err);
+      notes.push('webhook: failed');
     }
   } else {
-    console.log(summary);
+    notes.push('webhook: not configured');
   }
+
+  try {
+    notes.push(await sendSms(sms(data)));
+  } catch (err) {
+    console.error('SMS failed', err);
+    notes.push('sms: failed');
+  }
+
+  // Always log the full ticket — it is the last-resort record if every
+  // notification channel is unconfigured or down.
+  console.log(summary, '\n--', notes.join(' | '));
 
   return { statusCode: 200, body: 'ok' };
 };
