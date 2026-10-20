@@ -344,15 +344,17 @@
   function renderDays() {
     if (state.rail !== "day" || !sked) return;
     var need = (currentEstimate() && currentEstimate().slots) || 2;
-    var days = sked.dayOptions(state.fill, need);
+    // Capacity is enforced by the server, not displayed to customers. Show
+    // only dates that can currently take this job; no "spots left", "open",
+    // or "full" language gives away the truck board.
+    var days = sked.dayOptions(state.fill, need).filter(function (d) { return d.open; });
     els.dayGrid.innerHTML = "";
     days.slice(0, 10).forEach(function (d) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "day-chip" + (state.day === d.day ? " on" : "");
-      b.disabled = !d.open;
       b.setAttribute("aria-pressed", state.day === d.day ? "true" : "false");
-      b.innerHTML = "<span>" + d.label + "</span><small>" + (d.open ? "Open" : "Full") + "</small>";
+      b.innerHTML = "<span>" + d.label + "</span>";
       b.addEventListener("click", function () {
         // Explicit choice only — never auto-select a day on the customer's behalf.
         state.day = state.day === d.day ? null : d.day;
@@ -364,7 +366,7 @@
     });
     els.dayNote.textContent = state.day
       ? "Holding " + sked.formatDay(state.day) + ", " + state.window + ". We confirm by text."
-      : "Pick a day, or we’ll hold the first opening and confirm by text.";
+      : "Pick a day and preferred window, or we’ll confirm the first opening by text.";
   }
 
   function renderWindows() {
