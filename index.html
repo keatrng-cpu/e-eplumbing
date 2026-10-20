@@ -104,12 +104,12 @@
     <p style="display:none"><label>Don’t fill this <input name="bot-field"></label></p>
     <p class="eyebrow">Get a price · pick a day</p>
     <h2>What’s going on?</h2>
-    <p class="lead-sm">Tap a job, then the closest match. The range is from the shop book — confirmed before a wrench turns.</p>
+    <p class="lead-sm">You don't need to know the plumbing term. Pick the description that sounds closest — if you're not sure, we'll help.</p>
 
     <div class="job-pills" id="jobPills"></div>
 
     <div class="scope-row" id="scopeRow" hidden>
-      <span class="scope-head">Closest match</span>
+      <span class="scope-head">A little more detail (optional)</span>
       <div class="scope-pills" id="scopePills"></div>
     </div>
 
@@ -172,19 +172,19 @@
       <label class="check"><input type="checkbox" name="smsConsent" value="Yes — OK to text">
         <span>OK to text me arrival updates and the invoice. Message rates apply; reply STOP to opt out.</span></label>
       <div class="field">
-        <label for="fservice">Service needed</label>
+        <label for="fservice">What is happening?</label>
         <select id="fservice" name="service" required>
-          <option value="" selected>Choose a service…</option>
-          <option value="Emergency repair">Emergency repair</option>
-          <option value="Drain / sewer">Drain / sewer</option>
-          <option value="Water heater">Water heater</option>
-          <option value="Sump pump / flooding">Sump pump / flooding</option>
+          <option value="" selected>Choose what sounds closest…</option>
+          <option value="Emergency repair">Leak or water emergency</option>
+          <option value="Drain / sewer">Clogged drain or toilet</option>
+          <option value="Water heater">No hot water or heater problem</option>
+          <option value="Sump pump / flooding">Wet basement or sump pump</option>
           <option value="Frozen or burst pipe">Frozen or burst pipe</option>
-          <option value="Softener / filtration">Softener / filtration</option>
-          <option value="Fixture install">Fixture install</option>
-          <option value="Remodel / rough-in">Remodel / rough-in</option>
-          <option value="Commercial">Commercial</option>
-          <option value="Something else">Something else</option>
+          <option value="Softener / filtration">Water quality problem</option>
+          <option value="Fixture install">Toilet, faucet, shower, or disposal</option>
+          <option value="Remodel / rough-in">New bathroom, kitchen, or remodel</option>
+          <option value="Commercial">Business or commercial plumbing</option>
+          <option value="Something else">I'm not sure</option>
         </select>
       </div>
     </fieldset>
