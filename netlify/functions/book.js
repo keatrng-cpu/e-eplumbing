@@ -15,6 +15,7 @@
 // Emergencies never touch the calendar: a burst pipe is dispatched the same
 // day regardless of how full the scheduled board is.
 const pricebook = require("../../pricebook.js");
+const schedule = require("../../schedule.js");
 const store = require("./_schedule-store.js");
 
 function json(statusCode, body) {
@@ -24,7 +25,7 @@ function json(statusCode, body) {
 /** Short, human-quotable reference. Not a secret and not a primary key. */
 function makeRef() {
   return (
-    "EP-" +
+    "NF-" +
     Date.now().toString(36).toUpperCase().slice(-5) +
     Math.floor(Math.random() * 36).toString(36).toUpperCase()
   );
@@ -60,7 +61,7 @@ exports.handler = async (event) => {
   }
 
   const need = priced.slots || 2;
-  const requested = typeof data.day === "string" && /^\d{4}-\d{2}-\d{2}$/.test(data.day) ? data.day : null;
+  const requested = typeof data.day === "string" && schedule.isBookableDay(data.day) ? data.day : null;
   const wantsAsap = Boolean(data.asap) || !requested;
 
   try {

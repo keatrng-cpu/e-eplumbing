@@ -1,4 +1,4 @@
--- Ellingson Plumbing — scheduled-work calendar.
+-- North Fork Plumbing Co. — scheduled-work calendar.
 --
 -- Replaces the Netlify Blobs "fill" blob, which had two problems the shop
 -- would eventually feel:
@@ -101,7 +101,8 @@ begin
     return;
   end if;
 
-  if p_day is not null and ee_is_workday(p_day) and p_day > current_date then
+  if p_day is not null and ee_is_workday(p_day)
+    and p_day > current_date and p_day <= current_date + v_horizon then
     select coalesce(f.used, 0) into v_used from ee_fill f where f.day = p_day;
     if v_slots - coalesce(v_used, 0) >= p_need then v_pick := p_day; end if;
   end if;

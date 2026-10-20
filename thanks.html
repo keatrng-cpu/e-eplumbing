@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request received — Ellingson Plumbing</title>
+<title>Request received — North Fork Plumbing Co.</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="motion.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -36,7 +37,7 @@
   </div>
 
   <ul class="next">
-    <li><b>1</b><span>A licensed plumber reviews the ticket. Office hours: we call back within 15 minutes.</span></li>
+    <li><b>1</b><span>Our team reviews the ticket and confirms the next step by phone or text.</span></li>
     <li><b>2</b><span>You get a text with the arrival window, and the name of who is coming.</span></li>
     <li><b>3</b><span>Flat-rate quote at the door. You approve the number before a wrench turns.</span></li>
   </ul>
@@ -46,11 +47,11 @@
 
   <div class="actions">
     <a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a>
-    <a class="btn btn-ghost" id="calBtn" href="#" hidden download="ellingson-plumbing.ics">Add to calendar</a>
+    <a class="btn btn-ghost" id="calBtn" href="#" hidden download="north-fork-plumbing.ics">Add to calendar</a>
   </div>
 
   <p style="color:var(--gray);font-size:14px">If water is moving right now, do not wait on the callback — call.</p>
-  <p style="margin-top:20px"><a href="/">← Back to Ellingson Plumbing</a></p>
+  <p style="margin-top:20px"><a href="/">← Back to North Fork Plumbing Co.</a></p>
 </main>
 <script>
 (function () {
@@ -92,10 +93,10 @@
     var start = (o.window || '').indexOf('Morning') === 0 ? 'T130000Z' : 'T170000Z'; // 8am / 12pm CT
     var end = (o.window || '').indexOf('Morning') === 0 ? 'T170000Z' : 'T210000Z';
     var ics = [
-      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ellingson Plumbing//EN', 'BEGIN:VEVENT',
-      'UID:' + (o.ref || stamp) + '@ellingsonplumbing',
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//North Fork Plumbing Co.//EN', 'BEGIN:VEVENT',
+      'UID:' + (o.ref || stamp) + '@northforkplumbing',
       'DTSTART:' + stamp + start, 'DTEND:' + stamp + end,
-      'SUMMARY:Ellingson Plumbing — ' + (o.scope || o.service || 'service call'),
+      'SUMMARY:North Fork Plumbing Co. — ' + (o.scope || o.service || 'service call'),
       'DESCRIPTION:Ref ' + (o.ref || '') + '. Estimate ' + (o.estimate || '') + '. Flat-rate quote confirmed on site. Questions: (218) 779-2553',
       'LOCATION:' + (o.address || ''), 'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');

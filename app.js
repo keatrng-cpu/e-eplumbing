@@ -25,6 +25,7 @@
     "Sump pump / flooding",
     "Frozen or burst pipe",
     "Softener / filtration",
+    "Fixture install",
     "Remodel / rough-in",
     "Commercial",
     "Something else",
@@ -76,6 +77,11 @@
       { id: "symptom", label: "What are you seeing?", type: "choice", options: ["Hard water / scale", "Iron staining", "Taste or smell", "Unit not regenerating", "Want a new system"] },
       { id: "water", label: "Well or city water?", type: "choice", options: ["City", "Well", "Not sure"] },
       { id: "existing", label: "Is there a system now?", type: "choice", options: ["No system", "Softener", "Softener + filter", "Not sure"] },
+    ],
+    "Fixture install": [
+      { id: "fixture", label: "What are we working on?", type: "choice", options: ["Toilet", "Faucet", "Shower / tub", "Garbage disposal", "Shutoff / supply line", "Other fixture"] },
+      { id: "supplied", label: "Who is supplying the fixture?", type: "choice", options: ["I have it", "Please supply it", "Not sure yet"] },
+      { id: "location", label: "Where is it?", type: "choice", options: ["Kitchen", "Main bath", "Second bath", "Basement", "Other"] },
     ],
     "Remodel / rough-in": [
       { id: "scope", label: "What's the project?", type: "choice", options: ["Basement bath", "Kitchen", "Bath remodel", "Addition", "Whole-house re-pipe"] },
@@ -292,9 +298,11 @@
   function pickService(svc) {
     state.service = svc;
     state.optionIndex = null;
+    state.day = null;
     els.service.value = svc;
     els.fScope.value = "";
     els.fOption.value = "";
+    els.fDay.value = "";
     // Suggest a lane, but the urgency radios remain the customer's to change.
     setRail(EMERGENCY_SERVICES[svc] ? "now" : "day", true);
     state.followup = {};
@@ -356,7 +364,7 @@
     });
     els.dayNote.textContent = state.day
       ? "Holding " + sked.formatDay(state.day) + ", " + state.window + ". We confirm by text."
-      : "Pick a day, or leave it blank and we'll offer you the first opening.";
+      : "Pick a day, or we’ll hold the first opening and confirm by text.";
   }
 
   function renderWindows() {
@@ -568,7 +576,7 @@
         els.dayNote.classList.add("day-moved");
       }
     }
-    if (!els.fRef.value) els.fRef.value = "EP-" + Date.now().toString(36).toUpperCase().slice(-6);
+    if (!els.fRef.value) els.fRef.value = "NF-" + Date.now().toString(36).toUpperCase().slice(-6);
 
     var summary = {
       ref: els.fRef.value,
@@ -611,13 +619,13 @@
   // -------------------------------------------------------------- truck board
 
   function readTruck() {
-    try { return JSON.parse(localStorage.getItem("ellingson-bookings-v1") || "[]"); }
+    try { return JSON.parse(localStorage.getItem("north-fork-bookings-v1") || "[]"); }
     catch (e) { return []; }
   }
 
   function writeTruck(row) {
     try {
-      localStorage.setItem("ellingson-bookings-v1", JSON.stringify([row].concat(readTruck()).slice(0, 24)));
+      localStorage.setItem("north-fork-bookings-v1", JSON.stringify([row].concat(readTruck()).slice(0, 24)));
     } catch (e) {}
     renderTruck();
   }
@@ -711,4 +719,13 @@
   render();
   renderTruck();
   loadAvailability();
+
+  /* Dev-only preview: ?scene=<key> (or ?scene=<job id>) plays a confirmation scene without submitting
+     or calling the booking function. Nothing is written to the truck board. */
+  var devScene = new URLSearchParams(location.search).get("scene");
+  if (devScene) {
+    var j = JOBS.filter(function (x) { return x.id === devScene; })[0];
+    showConfirm(j ? { job: j.id, service: j.service, optionIndex: j.optionIndex } : { scene: devScene }, true);
+    if (confirmEl) confirmEl.scrollIntoView({ block: "center" });
+  }
 })();

@@ -95,3 +95,15 @@ and a real org row needs a real auth user. Also patched a Windows path bug in he
 
 Unchanged and still ahead of all of it: the parked canonical, the zero-submission form, and
 the Minnesota name collision.
+
+## 2026-10-19 — North Fork production identity
+
+The public name is **North Fork Plumbing Co.**. Customer-facing copy, metadata, manifest,
+calendar confirmation, dispatch ticket, and vector marks use that identity. The live Netlify
+host is temporarily canonical because no verified North Fork domain has been connected.
+
+`north-fork-production` combines `order-flow-v2` with the deployed mascot branch. The
+mascot artwork and motion assets are preserved unchanged. The booking flow now exposes every
+pricebook service (including fixtures), clears a date when the job changes, and rejects
+requests outside the calendar horizon. Supabase remains the required production backend for
+atomic capacity holds; no credentials or database were provisioned here.

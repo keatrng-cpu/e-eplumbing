@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ellingson Plumbing">
-  <rect width="64" height="64" rx="14" fill="#009A44"/>
-  <text x="32" y="42" text-anchor="middle" font-family="Arial Narrow, Barlow Condensed, sans-serif" font-size="34" font-weight="800" fill="#fff">E</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="North Fork Plumbing Co.">
+  <rect width="64" height="64" rx="15" fill="#063B32"/>
+  <path d="M17 16v32m0-16h30M34 16v13m13-13v32" fill="none" stroke="#E9F4EE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="17" cy="32" r="4" fill="#34B67A"/><circle cx="47" cy="32" r="4" fill="#34B67A"/>
 </svg>

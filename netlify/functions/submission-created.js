@@ -41,7 +41,7 @@ const FIELDS = [
 ];
 
 function ticket(data) {
-  const lines = ['Ellingson Plumbing — new service request'];
+  const lines = ['North Fork Plumbing Co. — new service request'];
   for (const [label, key] of FIELDS) {
     const v = data[key];
     if (v) lines.push(`${label}: ${String(v).replace(/\n/g, ' / ')}`);

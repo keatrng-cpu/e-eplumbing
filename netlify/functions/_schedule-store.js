@@ -81,7 +81,7 @@ async function hold({ ref, need, day, service, scope, arrival }) {
   const fill = (await store.get("fill", { type: "json" })) || [];
 
   let confirmed = null;
-  if (day && schedule.isWorkday(day)) {
+  if (day && schedule.isBookableDay(day)) {
     const entry = fill.find((f) => f.day === day);
     if (schedule.DAILY_SLOTS - (entry ? entry.used : 0) >= need) confirmed = day;
   }

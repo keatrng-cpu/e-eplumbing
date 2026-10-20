@@ -1,6 +1,6 @@
 # NOW — e-eplumbing current truth
 
-**As of:** 2026-10-18
+**As of:** 2026-10-19
 
 > Current truth only; history goes in `ai/DECISIONS.md`.
 
@@ -9,24 +9,23 @@ Win plumbing jobs across Eastern ND + Western MN with an order flow detailed eno
 that the plumber can load the truck and drive without a diagnostic phone call.
 
 ## In flight
-- Order flow v2 + analytics + checkout + Supabase calendar are **on branch
-  `order-flow-v2`, pushed, not merged and not deployed**. See `ORDER-FLOW-AUDIT.md`.
-- Owner-side blockers (not code): fix the `ellingsonplumbing.com` DNS, send one real
-  test lead, lawyer call on the name, claim the Google Business Profile.
+- `north-fork-production` combines the mascot work and order-flow v2, adds the
+  **North Fork Plumbing Co.** identity, and is awaiting a deploy verification.
+- Owner-side blockers (not code): connect a verified North Fork domain, configure
+  the form notification/SMS destination, apply the atomic calendar migration, and
+  complete entity, license, insurance, and Google Business Profile setup.
 
 ## Known facts / constraints
-- **Canonical points at a parked domain.** `ellingsonplumbing.com` serves a 114-byte
-  registrar lander. `index.html` canonical, `og:url`, `sitemap.xml` and `robots.txt`
-  all name it. The site is effectively invisible to search until this is fixed.
+- **Canonical uses the live Netlify host for now.** It must move to the verified North
+  Fork domain when one is connected; do not point it at an unowned or parked host.
 - **Lead form has never fired.** Netlify form `service-request`
   (`6a5cd388227f640007e8b2be`), created 2026-07-19: `submission_count: 0`.
 - **Three live hosts** serve identical content: `plumbingmidwest.netlify.app` (deploy
   target, site id `5b9e7eb6-95e0-4f75-925f-315090b70f9d`),
   `ellingson-plumbing.netlify.app` (`8e218d30-826e-41f2-87ce-ee0792bc5be6`), and the
   parked apex. Team `6a278c07e7f058c5a18f6361`, both `nf_team_pro`, forms enabled.
-- **Name collision.** "Ellingson Plumbing, Heating, A/C & Electrical", Alexandria MN,
-  4.8★/465 reviews, trading since 1980, rank 1 absolute for the name. This business is
-  seeking MN licensing + a $25k MN bond. Repo/ops docs say E&E / Estad & Ellingson.
+- **Prior-name collision retired.** The public identity is North Fork Plumbing Co.; do
+  not reintroduce Ellingson or E&E in customer-facing material.
 - `pricebook.js` and `schedule.js` are god nodes — loaded in the browser *and*
   `require()`d by `netlify/functions/book.js`. Changing either moves both the quoted
   price and the server-authoritative one.

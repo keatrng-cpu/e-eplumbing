@@ -81,6 +81,14 @@
     return DAILY_SLOTS - used >= need;
   }
 
+  function isBookableDay(iso, from) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
+    from = from || todayISO();
+    var start = shiftISO(from, 1);
+    var end = shiftISO(from, HORIZON_DAYS);
+    return isWorkday(iso) && iso >= start && iso <= end;
+  }
+
   /** fill: [{day: "YYYY-MM-DD", used: number}, ...] */
   function dayOptions(fill, need, from) {
     from = from || todayISO();
@@ -105,6 +113,7 @@
     HORIZON_DAYS: HORIZON_DAYS,
     todayISO: todayISO,
     isWorkday: isWorkday,
+    isBookableDay: isBookableDay,
     workdaysFrom: workdaysFrom,
     formatDay: formatDay,
     dayOptions: dayOptions,
