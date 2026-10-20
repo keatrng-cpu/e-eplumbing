@@ -1,3 +1,10 @@
+MethodException: 
+Line |
+   2 |  … tent -Raw 'site.css'; $s = $s.Replace([char]13+[char]10,[char]10); $s
+     |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Cannot convert argument "oldChar", with value: "
+", for "Replace" to type "System.Char": "Cannot convert value "
+" to type "System.Char". Error: "String must be exactly one character long.""
 :root{--kelly:#009A44;--kelly-dark:#007433;--kelly-deep:#003C1B;--kelly-text:#00662D;--ink:#0B0F0D;--night:#0E1512;--paper:#fff;--mist:#F1F6F2;--line:#DDE7DF;--gray:#5A665E;--shadow:0 10px 30px rgba(11,15,13,.10);--radius:14px;--display:'Barlow Condensed','Arial Narrow',sans-serif;--body:'Barlow','Segoe UI',Arial,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth} html,body{overflow-x:clip}
