@@ -171,7 +171,7 @@
       </div>
       <label class="check"><input type="checkbox" name="smsConsent" value="Yes — OK to text">
         <span>OK to text me arrival updates and the invoice. Message rates apply; reply STOP to opt out.</span></label>
-      <div class="field">
+      <div class="field canonical-service-fallback">
         <label for="fservice">What is happening?</label>
         <select id="fservice" name="service" required>
           <option value="" selected>Choose what sounds closest…</option>
@@ -198,8 +198,10 @@
       </div>
     </fieldset>
 
-    <fieldset class="fs">
-      <legend>Getting in the door</legend>
+    <details class="optional-fields">
+      <summary><span>Property, access &amp; photos<small>Optional details that help us arrive prepared</small></span></summary>
+      <fieldset class="fs">
+        <legend>Getting in the door</legend>
       <div class="row">
         <div class="field"><label for="fprop">Property</label>
           <select id="fprop" name="property">
@@ -223,17 +225,18 @@
       </div>
       <div class="field"><label for="faccess">Access notes <span class="opt">gate code, dogs, parking, basement entry</span></label>
         <textarea id="faccess" name="access" rows="2" placeholder="Code 1234 at the alley gate. Friendly dog in the yard."></textarea></div>
-    </fieldset>
+      </fieldset>
 
-    <fieldset class="fs">
-      <legend>Show us</legend>
+      <fieldset class="fs">
+        <legend>Show us</legend>
       <div class="field">
         <label for="fphoto">Photos <span class="opt">the fix starts here — snap the leak or the data plate</span></label>
         <input id="fphoto" name="photo" type="file" accept="image/*" capture="environment" multiple>
       </div>
       <div class="field"><label for="fmsg">Anything else?</label>
         <textarea id="fmsg" name="message" rows="2" placeholder="Optional — basement, smell, no water…"></textarea></div>
-    </fieldset>
+      </fieldset>
+    </details>
 
     <noscript><p class="nojs-note">Scripts are off, so the instant price and calendar are unavailable — fill this in and submit, and we’ll call you back with a number. Emergencies: call (218) 779-2553.</p></noscript>
 
