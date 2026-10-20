@@ -31,6 +31,61 @@
     "Something else",
   ];
 
+  // Customer-facing language stays symptom-first. The canonical service names
+  // remain unchanged underneath so pricing, dispatch, and reporting keep the
+  // same schema.
+  var SERVICE_GUIDE = {
+    "Emergency repair": { label: "Leak or water emergency", hint: "Water is moving, overflowing, or won't shut off" },
+    "Drain / sewer": { label: "Clogged drain or toilet", hint: "A sink, tub, toilet, floor drain, or several drains" },
+    "Water heater": { label: "No hot water or heater problem", hint: "No hot water, a leaking tank, or a heater that needs service" },
+    "Sump pump / flooding": { label: "Wet basement or sump pump", hint: "Water in the basement, a failed pump, or backup protection" },
+    "Frozen or burst pipe": { label: "Frozen or burst pipe", hint: "No water, a frozen line, or a pipe that is leaking" },
+    "Softener / filtration": { label: "Water quality problem", hint: "Hard water, iron, odor, taste, or a softener/filter" },
+    "Fixture install": { label: "Toilet, faucet, shower, or disposal", hint: "Repair or install a kitchen or bathroom fixture" },
+    "Remodel / rough-in": { label: "New bathroom, kitchen, or remodel", hint: "Planning, opening walls, or adding new plumbing" },
+    Commercial: { label: "Business or commercial plumbing", hint: "A restaurant, shop, office, rental, or multi-unit building" },
+    "Something else": { label: "I'm not sure", hint: "Tell us what you see and we'll help" },
+  };
+
+  // The pricebook keeps the precise scope names for the plumber; customers see
+  // a plain-language version of each choice.
+  var SCOPE_GUIDE = {
+    "Shut off / isolate a leak": "Leak is active but contained",
+    "Burst pipe repair (accessible copper/PEX)": "Pipe burst and water is escaping",
+    "Freeze-thaw + minor repair": "Frozen pipe thaw and small repair",
+    "Not sure — just need a plumber": "Not sure — send a plumber",
+    "Clear a sink, tub, or toilet (auger)": "Clear one sink, tub, or toilet",
+    "Main line clear (auger)": "Several drains or main line clogged",
+    "Hydro jet the main line": "Deep-clean the main drain line",
+    "Cleanout install": "Add an outside drain cleanout",
+    "Camera inspection (main line)": "Camera inspection of main drain",
+    "Camera inspection (branch)": "Camera inspection of one branch line",
+    "Tank replace — standard (like-for-like)": "Replace a standard water heater",
+    "Tank replace — w/ code upgrades": "Replace heater and update connections",
+    "Flush / maintenance": "Flush or service the water heater",
+    "T and P valve, anode, or element service": "Repair a valve, element, or other part",
+    "Tankless install": "Install a tankless water heater",
+    "Primary pump replace": "Replace the main sump pump",
+    "Battery backup add-on": "Add battery backup to the sump",
+    "Check valve / discharge repair": "Repair the sump discharge pipe",
+    "Seasonal test + service": "Test or service the sump pump",
+    "Safe electric thaw + minor repair": "Thaw a frozen pipe and make a small repair",
+    "Burst pipe repair (accessible)": "Repair an accessible burst pipe",
+    "Difficult access / slab approach": "Frozen pipe with difficult access",
+    "Softener service / resin check": "Service or check the water softener",
+    "Softener install": "Install a water softener",
+    "Iron filter / RO under-sink": "Install an iron filter or under-sink filter",
+    "Toilet replace (standard)": "Replace a standard toilet",
+    "Faucet replace (kitchen/bath)": "Replace a kitchen or bathroom faucet",
+    "Shower install": "Install a shower",
+    "Bath / tub install": "Install a bathtub",
+    "Garbage disposal replace": "Replace a garbage disposal",
+    "Shower valve cartridge": "Repair a shower valve",
+    "Basement bath, re-pipe, or fixture package": "Bathroom, kitchen, addition, or re-pipe",
+    "Backflow test, service contract, or build-out": "Repair, backflow, or ongoing service",
+    "Tell us what's going on below": "Tell us what you're seeing",
+  };
+
   // Services that should default to "now" dispatch rather than the calendar.
   var EMERGENCY_SERVICES = {
     "Emergency repair": true,
@@ -202,7 +257,7 @@
     if (state.optionIndex == null) {
       box.innerHTML =
         '<p class="quote-kicker">' + esc(state.service) + "</p>" +
-        '<p class="quote-prompt">Pick the closest match above for an exact number.</p>';
+        '<p class="quote-prompt">Choose the closest description for a starting estimate. Not sure? We can help on the call.</p>';
       els.estimate.value = "";
       return;
     }
@@ -259,9 +314,14 @@
     if (!els.servicePills) return;
     els.servicePills.innerHTML = "";
     SERVICE_ORDER.forEach(function (svc) {
-      els.servicePills.appendChild(
-        chip(svc, state.service === svc, function () { pickService(svc); })
-      );
+      var guide = SERVICE_GUIDE[svc] || { label: svc, hint: "Tell us what you need" };
+      var b = chip(guide.label, state.service === svc, function () { pickService(svc); }, "service-pill");
+      b.setAttribute("aria-label", guide.label + ". " + guide.hint);
+      b.title = guide.hint;
+      var small = document.createElement("small");
+      small.textContent = guide.hint;
+      b.appendChild(small);
+      els.servicePills.appendChild(b);
     });
   }
 
@@ -276,7 +336,7 @@
       if (o.low) price = "$" + o.low.toLocaleString() + "–$" + o.high.toLocaleString();
       else if (o.diagnostic) price = "diagnostic";
       else if (o.custom) price = "quoted on site";
-      var b = chip(o.label, state.optionIndex === i, function () {
+      var b = chip(SCOPE_GUIDE[o.label] || o.label, state.optionIndex === i, function () {
         state.optionIndex = i;
         els.fOption.value = String(i);
         els.fScope.value = o.label;
@@ -288,6 +348,7 @@
           band: o.low ? o.low + "-" + o.high : (o.diagnostic ? "diagnostic" : "quoted-on-site"),
         });
       }, "scope-pill");
+      b.setAttribute("aria-label", (SCOPE_GUIDE[o.label] || o.label) + ". Starting estimate details below.");
       var small = document.createElement("small");
       small.textContent = price;
       b.appendChild(small);
@@ -731,3 +792,4 @@
     if (confirmEl) confirmEl.scrollIntoView({ block: "center" });
   }
 })();
+
