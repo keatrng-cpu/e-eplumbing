@@ -61,6 +61,15 @@
       <label class="bf-f bf-wide"><span>Service address</span><input name="street" autocomplete="street-address" required placeholder="1420 Demers Ave, Grand Forks 58201" aria-describedby="e-street"><small class="bf-err" id="e-street" data-err="street" aria-live="polite"></small></label>
       <label class="bf-f bf-wide"><span>Email <em>(optional)</em></span><input name="email" type="email" autocomplete="email" aria-describedby="e-email"><small class="bf-err" id="e-email" data-err="email" aria-live="polite"></small></label>
     </div>
+    <div class="bf-photos">
+      <span class="bf-lab" id="bfPhLab">Photos <em>(optional, up to 3)</em></span>
+      <p class="bf-hint" id="bfPhHint">Optional: a photo of the leak, part, or label helps us bring the right parts.</p>
+      <div class="bf-thumbs" role="list" aria-label="Attached photos"></div>
+      <label class="btn btn-line bf-addph"><input type="file" class="bf-pick" accept="image/*" multiple aria-describedby="bfPhHint"><span class="bf-addtxt">Add photos</span></label>
+      <p class="bf-phmsg" aria-live="polite"></p>
+      <div hidden><input type="file" name="photo1" accept="image/*" tabindex="-1"><input type="file" name="photo2" accept="image/*" tabindex="-1"><input type="file" name="photo3" accept="image/*" tabindex="-1"></div>
+      <input type="hidden" name="photoCount" value="0">
+    </div>
     <div class="bf-when"><span class="bf-lab" id="bfWhen">Preferred date</span><div class="bf-days" role="radiogroup" aria-labelledby="bfWhen"></div></div>
     <p class="bf-plan">Members save 10% on repairs, up to $120 — <a href="/plans.html">see the Home Team Plan</a>.</p>
     <button type="submit" class="btn btn-green bf-submit">Book this job</button>

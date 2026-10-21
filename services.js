@@ -137,6 +137,7 @@
   });
   function openForm(btn) {
     pick = null;
+    photos.forEach(function (p) { URL.revokeObjectURL(p.url); }); photos = []; renderThumbs(); phNote("");
     btn.setAttribute("aria-expanded", "true");
     btn.parentNode.insertAdjacentElement("afterend", form);
     jobEl.textContent = cur.name;
@@ -165,6 +166,72 @@
     if (bad) bad.focus();
     return !bad;
   }
+  // ------------------------------------------------------------- photos (optional, never block submit)
+  /* 1–3 images, downscaled in the browser to ≤1600px JPEG so the whole submission stays
+     well under Netlify Forms' ~8 MB limit. Sent as photo1..photo3 (declared file fields). */
+  var MAXP = 3, MAXDIM = 1600, MAXRAW = 30 * 1024 * 1024, BUDGET = 6.5 * 1024 * 1024;
+  var photos = [], phPick = form.querySelector(".bf-pick"), phThumbs = form.querySelector(".bf-thumbs"), phMsg = form.querySelector(".bf-phmsg");
+  function phNote(t) { phMsg.textContent = t || ""; }
+  function phTotal() { return photos.reduce(function (a, p) { return a + p.blob.size; }, 0); }
+  function shrink(file, dim, q) {
+    return new Promise(function (res, rej) {
+      var url = URL.createObjectURL(file), im = new Image();
+      im.onload = function () {
+        var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, dim / Math.max(w, h));
+        var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+        var g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(im, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? res(b) : rej(new Error("encode")); }, "image/jpeg", q);
+      };
+      im.onerror = function () { URL.revokeObjectURL(url); rej(new Error("decode")); };
+      im.src = url;
+    });
+  }
+  function renderThumbs() {
+    phThumbs.innerHTML = "";
+    photos.forEach(function (p, k) {
+      var li = document.createElement("div"); li.className = "bf-thumb"; li.setAttribute("role", "listitem");
+      var img = document.createElement("img"); img.src = p.url; img.alt = "Photo " + (k + 1) + " (" + Math.round(p.blob.size / 1024) + " KB)";
+      var x = document.createElement("button"); x.type = "button"; x.className = "bf-rm"; x.setAttribute("aria-label", "Remove photo " + (k + 1)); x.textContent = "×";
+      x.addEventListener("click", function () {
+        URL.revokeObjectURL(p.url); photos.splice(k, 1); renderThumbs(); phNote("Photo removed.");
+        (phThumbs.querySelector(".bf-rm") || phPick).focus();
+      });
+      li.appendChild(img); li.appendChild(x); phThumbs.appendChild(li);
+    });
+    var full = photos.length >= MAXP;
+    phPick.disabled = full; phPick.parentNode.classList.toggle("is-full", full);
+    phPick.parentNode.querySelector(".bf-addtxt").textContent = full ? "3 photos attached" : photos.length ? "Add another photo" : "Add photos";
+    F("photoCount").value = String(photos.length);
+  }
+  phPick.addEventListener("change", async function () {
+    var files = Array.prototype.slice.call(phPick.files || []); phPick.value = "";
+    var skipped = [];
+    for (var k = 0; k < files.length; k++) {
+      var f = files[k];
+      if (photos.length >= MAXP) { skipped.push("only 3 photos fit"); break; }
+      if (!/^image\//.test(f.type || "image/")) { skipped.push(f.name + " isn’t an image"); continue; }
+      if (f.size > MAXRAW) { skipped.push(f.name + " is too big"); continue; }
+      phNote("Preparing photo…");
+      try {
+        var blob = await shrink(f, MAXDIM, 0.82);
+        if (blob.size > 2.5 * 1024 * 1024) blob = await shrink(f, 1280, 0.7);
+        if (phTotal() + blob.size > BUDGET) { skipped.push(f.name + " would make the upload too big"); continue; }
+        photos.push({ blob: blob, url: URL.createObjectURL(blob) });
+      } catch (e) { skipped.push(f.name + " couldn’t be read"); }
+    }
+    renderThumbs();
+    phNote(skipped.length ? "Heads up: " + skipped.join("; ") + ". No problem — you can still book without it." : photos.length ? photos.length + (photos.length === 1 ? " photo" : " photos") + " ready." : "");
+    track("booking_photo_added", { count: photos.length, skipped: skipped.length });
+  });
+  function formData(withPhotos) {
+    var fd = new FormData(form);
+    ["photo1", "photo2", "photo3"].forEach(function (n) { fd.delete(n); });
+    if (withPhotos) photos.forEach(function (p, k) { fd.append("photo" + (k + 1), p.blob, "photo-" + (k + 1) + ".jpg"); });
+    fd.set("photoCount", String(withPhotos ? photos.length : 0));
+    return fd;
+  }
+
   function code() {
     var a = "ABCDEFGHJKMNPQRSTUVWXYZ23456789", s = "";
     for (var k = 0; k < 5; k++) s += a[Math.floor(Math.random() * a.length)];
@@ -184,7 +251,7 @@
     var held = null;
     try {
       var r = await fetch("/.netlify/functions/book", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ service: cur.svc, optionIndex: cur.i, urgency: urg, day: F("day").value || null, window: F("window").value, asap: asap }) });
+        body: JSON.stringify({ service: cur.svc, optionIndex: cur.i, urgency: urg, day: F("day").value || null, window: F("window").value, asap: asap, photoCount: photos.length }) });
       held = r.ok ? await r.json() : null;
     } catch (e) { held = null; }
     var moved = false;
@@ -200,12 +267,17 @@
       note: cur.o.note || "", estimate: F("estimate").value, emergency: urg === EMERGENCY,
       rawDay: day || null, moved: moved,
       when: urg === EMERGENCY ? "ASAP — dispatch today" : day && sk ? sk.formatDay(day) : "First available",
-      window: F("window").value, address: addr, phone: F("phone").value,
+      window: F("window").value, address: addr, phone: F("phone").value, photos: photos.length,
     };
     try { sessionStorage.setItem("ee-last-order", JSON.stringify(summary)); } catch (e) {}
     track("booking_submitted", { service: cur.svc, scope: cur.o.label, urgency: urg, estimate: F("estimate").value, source: "services" });
     try {
-      var r2 = await fetch("/", { method: "POST", body: new FormData(form) });
+      var r2 = null;
+      if (photos.length) {
+        try { r2 = await fetch("/", { method: "POST", body: formData(true) }); } catch (e) { r2 = null; }
+        if (!r2 || !r2.ok) { phNote("The photos didn’t upload — sending your booking without them. You can text them to (218) 779-2553."); r2 = null; }
+      }
+      if (!r2) r2 = await fetch("/", { method: "POST", body: formData(false) });
       if (!r2.ok) throw new Error("form " + r2.status);
       location.href = "/thanks.html";
     } catch (e) {
