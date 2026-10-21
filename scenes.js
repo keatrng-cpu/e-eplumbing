@@ -162,19 +162,53 @@
       if (opt.onStart) opt.onStart();
       if (only >= 0) { show(only, true); stage.removeAttribute("filter"); host._eeStop = null; return; }
       var ends = [], acc = 0; d.frames.forEach(function (f) { acc += f.hold; ends.push(acc); });
+      /* Loop: hold the end frame HOLD ms, crossfade back to frame 1 (FADE ms), repeat.
+         opt.loop === false plays once. Paused while offscreen or the tab is hidden;
+         every timer, observer and listener is torn down by _eeStop (cancel / next play). */
+      var loop = opt.loop !== false, HOLD = 1500, FADE = 260;
       return new Promise(function (res) {
-        var t0 = performance.now(), raf, done = false, lb = -1, prev = t0;
+        var t0 = performance.now(), raf = 0, done = false, lb = -1, prev = t0, onScreen = true, pausedAt = 0, io = null, fadeEl = null;
+        function visible() { return onScreen && !document.hidden; }
+        function restart(now) {
+          if (fadeEl) fadeEl.remove();
+          fadeEl = el("image", { width: W, height: H, preserveAspectRatio: "xMidYMid slice", href: imgs[N - 1].src });
+          svg.insertBefore(fadeEl, ov);
+          var dur = FADE; fadeEl.style.transition = "opacity " + dur + "ms ease"; fadeEl.getBoundingClientRect();
+          fadeEl.style.opacity = "0";
+          var gone = fadeEl; setTimeout(function () { gone.remove(); if (fadeEl === gone) fadeEl = null; }, dur + 40);
+          t0 = now; prev = now; last = -1; show(0);
+        }
         function tick(now) {
+          raf = 0;
           var e = Math.max(0, now - t0), n = 0; while (n < N - 1 && e >= ends[n]) n++;
-          if (n > last && imgs[n] && !(imgs[n].complete && imgs[n].naturalWidth)) { t0 += now - prev; prev = now; raf = requestAnimationFrame(tick); return; }   /* hold until that frame arrives */
+          if (n > last && imgs[n] && !(imgs[n].complete && imgs[n].naturalWidth)) { t0 += now - prev; prev = now; schedule(); return; }   /* hold until that frame arrives */
           prev = now;
           var b = Math.floor(e * BOIL / 1000) % 3; if (b !== lb) { lb = b; turb.setAttribute("seed", b + 1); }
           show(n);
           if (e >= acc && !done) { done = true; res(); }
-          if (e < acc + 2500) raf = requestAnimationFrame(tick);
+          if (loop && e >= acc + HOLD) restart(now);
+          if (loop || e < acc + 2500) schedule(); else teardown();
         }
-        host._eeStop = function () { cancelAnimationFrame(raf); dropLoads(); if (!done) { done = true; res(); } };
-        raf = requestAnimationFrame(tick);
+        function schedule() { if (!raf && visible()) raf = requestAnimationFrame(tick); }
+        function pause() { if (raf) { cancelAnimationFrame(raf); raf = 0; } if (!pausedAt) pausedAt = performance.now(); }
+        function resume() { if (!visible()) return; if (pausedAt) { var dt = performance.now() - pausedAt; t0 += dt; prev += dt; pausedAt = 0; } schedule(); }
+        function onVis() { document.hidden ? pause() : resume(); }
+        function teardown() {
+          if (raf) cancelAnimationFrame(raf); raf = 0;
+          if (io) { io.disconnect(); io = null; }
+          document.removeEventListener("visibilitychange", onVis);
+          if (fadeEl) { fadeEl.remove(); fadeEl = null; }
+        }
+        if (loop) {
+          document.addEventListener("visibilitychange", onVis);
+          if ("IntersectionObserver" in window) {
+            io = new IntersectionObserver(function (es) { onScreen = es[es.length - 1].isIntersecting; onScreen ? resume() : pause(); });
+            io.observe(host);
+          }
+        }
+        host._eeStop = function () { teardown(); dropLoads(); if (!done) { done = true; res(); } };
+        if (document.hidden) pausedAt = t0;
+        schedule();
       });
     }).catch(function () { host.classList.remove("scene-loading"); });
   }
