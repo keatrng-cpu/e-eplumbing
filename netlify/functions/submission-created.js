@@ -40,12 +40,23 @@ const FIELDS = [
   ['Message', 'message'],
 ];
 
+/** Netlify sends uploaded files as { url, filename, ... } (or a bare URL string). */
+function photoUrls(data) {
+  return ['photo1', 'photo2', 'photo3', 'photo']
+    .map((k) => data[k])
+    .filter(Boolean)
+    .map((v) => (typeof v === 'string' ? v : v && typeof v === 'object' ? v.url || '' : ''))
+    .filter((u) => /^https?:/.test(u));
+}
+
 function ticket(data) {
   const lines = ['North Fork Plumbing Co. — new service request'];
   for (const [label, key] of FIELDS) {
     const v = data[key];
-    if (v) lines.push(`${label}: ${String(v).replace(/\n/g, ' / ')}`);
+    if (v && typeof v !== 'object') lines.push(`${label}: ${String(v).replace(/\n/g, ' / ')}`);
   }
+  const photos = photoUrls(data);
+  if (photos.length) lines.push(`Photos (${photos.length}): ${photos.join(' ')}`);
   lines.push('Call back: (218) 779-2553');
   return lines.join('\n');
 }
@@ -58,8 +69,9 @@ function sms(data) {
     `${data.scope || data.service || 'Service call'} — ${data.estimate || 'quote on call'}`,
     `${data.name || '?'} ${data.phone || ''}`,
     `${data.street || ''}, ${data.town || ''}`,
+    photoUrls(data).length ? `📷 ${photoUrls(data).length} photo(s) in Netlify Forms` : '',
     data.urgency === 'Emergency — now' ? 'Dispatch now' : `${data.day || 'first opening'} ${data.window || ''}`,
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 }
 
 async function sendSms(body) {

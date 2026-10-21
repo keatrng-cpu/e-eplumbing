@@ -25,6 +25,10 @@
 .btn-cal[hidden]{display:none}
 .thanks-scene{border:1.5px solid var(--kelly);border-radius:12px;margin:22px 0 0}
 .thanks-scene[hidden]{display:none}
+.ty-emerg{background:#FFF4E5;border:2px solid #C25700;border-radius:12px;padding:14px 16px;margin:16px 0;font-size:16px}
+.ty-emerg .btn{display:flex;margin-top:10px;font-size:20px}
+.ty-sooner{background:var(--mist);border-left:4px solid var(--kelly);border-radius:8px;padding:10px 14px;font-size:15px;margin:0 0 8px}
+.ty-sooner[hidden],.ty-emerg[hidden]{display:none}
 .ty-card{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
 .ty-card b{display:block;font-family:var(--display);font-size:20px;text-transform:uppercase}.ty-card span{display:block;color:var(--gray);font-size:14.5px;max-width:440px}
 .ty-plan{background:var(--mist);border-color:var(--kelly)}
@@ -40,7 +44,8 @@
 </div></div>
 <main class="wrap" style="padding:72px 24px;max-width:720px">
   <div class="eyebrow">Dispatch</div>
-  <h2>We have the request.</h2>
+  <h2 id="tyTitle">You’re booked. Thank you!</h2>
+  <div class="ty-emerg" id="tyEmerg" hidden role="alert"><b>Water still moving?</b> Don’t wait for our call — <a class="btn btn-green" href="tel:+12187792553">Call now — (218) 779-2553</a></div>
 
   <!-- Space is reserved by .scene's aspect-ratio before the drawing loads (no layout shift). -->
   <div class="scene scene-kf thanks-scene" id="thanksScene" hidden></div>
@@ -48,6 +53,7 @@
   <div class="order" id="order" hidden>
     <dl id="orderList"></dl>
   </div>
+  <p class="ty-sooner" id="tySooner" hidden>If a plumber frees up earlier, we may call to offer a sooner time.</p>
 
   <ul class="next">
     <li><b>1</b><span>We call or text to confirm the day and arrival window. Nothing is final until we do.</span></li>
@@ -70,10 +76,10 @@
     <a class="btn btn-line" href="/north-fork-plumbing.vcf" download>Save contact</a>
   </div>
   <div class="ty-card ty-plan" id="tyPlan">
-    <div><b>Want this to be the last surprise?</b><span>Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs — $29/mo or $279/yr.</span></div>
+    <div><b>We don’t just fix it — we prevent it.</b><span>Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs (up to $120) — $29/mo or $279/yr.</span></div>
     <a class="btn btn-green" href="/plans.html">See the plan</a>
   </div>
-  <nav class="ty-links" aria-label="More from North Fork"><a href="/">Home</a><a href="/services.html">Services</a><a href="/plans.html">Home Team Plan</a><a href="/about.html">About &amp; Contact</a></nav>
+  <nav class="ty-links" aria-label="More from North Fork"><a href="/">Home</a><a href="/services.html">Book another job</a><a href="/plans.html">Home Team Plan</a><a href="/about.html">About &amp; Contact</a></nav>
 </main>
 <script src="scenes.js" defer></script>
 <script>
@@ -83,12 +89,12 @@
   // dev preview. Reduced motion renders only the end frame (scenes.js).
   var q = new URLSearchParams(location.search).get('scene');
   var last; try { last = JSON.parse(sessionStorage.getItem('ee-last-order') || 'null'); } catch (e) { last = null; }
-  if (q || last) {
+  {  // always show the looping thank-you scene (dev: ?scene=<key>)
     var host = document.getElementById('thanksScene');
     host.hidden = false; // reserve the space now, before scenes.js arrives (no layout shift)
     window.addEventListener('DOMContentLoaded', function () {
       if (!window.EEScenes) { host.hidden = true; return; }
-      var key = window.EEScenes.resolve(q ? { scene: q } : { service: last.service, optionIndex: last.optionIndex });
+      var key = q ? window.EEScenes.resolve({ scene: q }) : 'thanks';
       host.setAttribute('data-scene', key);
       window.EEScenes.play(host, key);
     });
@@ -106,11 +112,11 @@
   if (!o) return;
 
   var rows = [
-    ['Reference', o.ref, 'ref'],
+    ['Booking code', o.ref ? '#' + o.ref : '', 'ref'],
     ['Job', o.job || o.scope || o.service],
+    ['Preferred date', o.when + (o.moved ? ' (that day filled — this is the next opening)' : '')],
     ['Estimate', o.estimate, 'est'],
-    ['When', o.when],
-    ['Window', o.window],
+    ['Window', o.emergency ? o.window : ''],
     ['Address', o.address],
     ['Callback', o.phone]
   ];
@@ -126,6 +132,10 @@
     dl.appendChild(dt); dl.appendChild(dd);
   });
   document.getElementById('order').hidden = false;
+  if (o.emergency) {
+    document.getElementById('tyEmerg').hidden = false;
+    document.getElementById('tyTitle').textContent = 'Got it — dispatching now.';
+  } else document.getElementById('tySooner').hidden = false;
   if (o.ref) document.getElementById('refNudge').textContent = ' and quote ' + o.ref;
 
   // Add-to-calendar for a held day. Emergencies have no date to add.

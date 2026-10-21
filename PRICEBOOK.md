@@ -146,7 +146,9 @@ Always custom after site visit. Ballpark only for phone screening.
 
 | Tier | Monthly | Annual | Includes |
 |------|---------|--------|----------|
-| Home Team | **$29/mo** | **$279/yr** (save $69) | Annual inspection, WH flush, pre-melt sump test, priority scheduling, 10% off repairs |
+| Home Team | **$29/mo** | **$279/yr** (save $69) | Annual inspection, WH flush, pre-melt sump test, priority scheduling, 10% off repairs (capped at $120 per repair) |
+
+**Member discount cap (2026-10-21, owner decision):** the 10% repair discount is capped at $120 per repair. Repair prices are unchanged.
 
 Flush + sump test already retail ~$278. Annual prepaid fills the slow weeks and keeps the repair call on this truck. Change `index.html` and this file together if COGS moves.
 

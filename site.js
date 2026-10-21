@@ -3,6 +3,8 @@
 (function () {
   "use strict";
   var hdr = document.getElementById("siteHeader");
+  function hh() { if (hdr) document.documentElement.style.setProperty("--hdr-h", hdr.offsetHeight + "px"); }
+  hh(); addEventListener("resize", hh, { passive: true });
   if (hdr) addEventListener("scroll", function () { hdr.classList.toggle("scrolled", scrollY > 8); }, { passive: true });
   var rv = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {

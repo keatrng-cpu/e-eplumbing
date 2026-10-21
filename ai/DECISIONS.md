@@ -154,3 +154,19 @@ Audit of the live multi-page site. Added a next-steps band on every page (Book /
 ## 2026-10-21 — Scenes loop (nf-loop)
 
 `scenes.js` playKF loops by default (opt.loop:false plays once): hold the end frame 1.5s, crossfade (260ms) from the end frame back to frame 1. The rAF loop pauses while the host is offscreen (IntersectionObserver) or the tab is hidden, and resumes on the same timeline. cancel()/next play() tears down rAF, observer, listener and fade layer. Reduced motion: static end frame, no loop. The play() promise still resolves after the first pass.
+
+## 2026-10-21 — Book on Services (nf-service-book)
+
+Keaton's design: the vertical booking ticket is gone; booking happens inside the Services
+job panels. One inline form per panel asks only name, address, phone, optional email and
+a preferred date (schedule.js dayOptions + availability, compact chips). The submit path is
+unchanged: book.js (server re-price, calendar hold, booking code) then the Netlify form
+`service-request` with the same field names (service/scope/optionIndex/urgency/estimate/
+day/window/ref/street/town/zip filled from the panel; town/ZIP parsed from the address).
+If book.js is unreachable a readable client code (NF-XXXXX, no 0/O/1/I) is generated and
+sent with the form. Emergencies use only existing rules: "ASAP / today" sets urgency
+"Emergency — now", which pricebook.estimate prices (daytime surcharge or after-hours 1.5x)
+and book.js keeps off the calendar. Member discount cap: 10% up to $120 per repair
+(Keaton's decision; PRICEBOOK.md had no cap; no repair prices changed). Plan slogan "We
+don't just fix it — we prevent it." on plans.html and plan teasers. Thank-you scene composed
+from existing v7 frames (other-1/2/6); no new art.
