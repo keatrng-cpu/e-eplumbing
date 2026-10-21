@@ -44,7 +44,9 @@
     });
     return pending[key];
   }
-  function stop(host) { if (host && host._eeStop) host._eeStop(); }
+  function stop(host) { if (host && host._eeStop) { var f = host._eeStop; host._eeStop = null; f(); } }
+  /* cancel(host): stop the animation and drop any in-flight load for this host (a later resolve is ignored). */
+  function cancel(host) { if (!host) return; stop(host); host._eeTok = (host._eeTok || 0) + 1; host.classList.remove("scene-loading"); }
   /* play(host, key[, {frame:n|"mid"}]) -> Promise that resolves when the scene ends (immediately under reduced motion). */
   function play(host, key, opt) {
     opt = opt || {}; stop(host);
@@ -69,6 +71,7 @@
         '<circle class="ib" fill="#F1F6F2"/><g clip-path="url(#' + p + 'ic)"><use class="iu" href="#' + p + 'all"/></g>' +
         '<circle class="ir" fill="none" stroke="currentColor" stroke-width="6"/></g></svg>');
       var svg = box.firstChild; host.insertBefore(svg, host.firstChild);
+      if (opt.onStart) opt.onStart();
       var fr = svg.querySelector(".fr"), bgs = svg.querySelectorAll(".bgv"), last = -1, lb = 0;
       var ins = svg.querySelector(".ins"), li = -1, lc = -1;
       function sa(sel, o) { var e = ins.querySelector(sel) || svg.querySelector(sel); for (var k in o) e.setAttribute(k, o[k]); }
@@ -127,7 +130,12 @@
     var N = d.frames.length, only = opt.frame != null ? (opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame)) : rm() ? N - 1 : -1;
     /* still render (reduced motion or ?frame=): fetch only the frame shown */
     var imgs = d.frames.map(function (f, i) { if (only >= 0 && i !== only) return null; var im = new Image(); im.decoding = "async"; im.src = BASE + f.src; return im; });
-    return Promise.all(imgs.map(function (im) { return im && im.decode ? im.decode().catch(function () {}) : null; })).then(function () {
+    /* start as soon as the first frame shown is decoded; later frames keep loading and the timeline waits for any frame not yet in */
+    var first = imgs[only >= 0 ? only : 0];
+    function dropLoads() { imgs.forEach(function (im) { if (im && !im.complete) im.src = ""; }); }
+    host._eeStop = dropLoads;
+    return (first.decode ? first.decode().catch(function () {}) : Promise.resolve()).then(function () {
+      if (host._eeTok !== tok) { dropLoads(); return; }
       if (host._eeTok !== tok) return;
       host.classList.remove("scene-loading"); host.classList.add("scene-kf");
       var p = "ees" + (++uid) + "-", W = d.w, H = d.h;
@@ -150,22 +158,37 @@
           stage.animate([{ transform: o0 }, { transform: "none" }], { duration: tw.ms || 260, easing: "cubic-bezier(.3,.7,.4,1)" });
         }
       }
-      if (only >= 0) { show(only, true); stage.removeAttribute("filter"); return; }
+      if (only < 0) show(0);
+      if (opt.onStart) opt.onStart();
+      if (only >= 0) { show(only, true); stage.removeAttribute("filter"); host._eeStop = null; return; }
       var ends = [], acc = 0; d.frames.forEach(function (f) { acc += f.hold; ends.push(acc); });
       return new Promise(function (res) {
-        var t0 = performance.now(), raf, done = false, lb = -1;
+        var t0 = performance.now(), raf, done = false, lb = -1, prev = t0;
         function tick(now) {
           var e = Math.max(0, now - t0), n = 0; while (n < N - 1 && e >= ends[n]) n++;
+          if (n > last && imgs[n] && !(imgs[n].complete && imgs[n].naturalWidth)) { t0 += now - prev; prev = now; raf = requestAnimationFrame(tick); return; }   /* hold until that frame arrives */
+          prev = now;
           var b = Math.floor(e * BOIL / 1000) % 3; if (b !== lb) { lb = b; turb.setAttribute("seed", b + 1); }
           show(n);
           if (e >= acc && !done) { done = true; res(); }
           if (e < acc + 2500) raf = requestAnimationFrame(tick);
         }
-        host._eeStop = function () { cancelAnimationFrame(raf); if (!done) { done = true; res(); } };
+        host._eeStop = function () { cancelAnimationFrame(raf); dropLoads(); if (!done) { done = true; res(); } };
         raf = requestAnimationFrame(tick);
       });
     }).catch(function () { host.classList.remove("scene-loading"); });
   }
+  /* preload(key): fetch the scene data and decode the first frame it will show (end frame under reduced motion). */
+  var warm = {};
+  function preload(key) {
+    key = TITLES[key] ? key : "other";
+    if (warm[key]) return warm[key];
+    return (warm[key] = load(key).then(function (d) {
+      if (d.kind !== "kf") return;
+      var f = d.frames[rm() ? d.frames.length - 1 : 0], im = new Image(); im.decoding = "async"; im.src = BASE + f.src;
+      return im.decode ? im.decode().catch(function () {}) : null;
+    }).catch(function () { delete warm[key]; }));
+  }
   function list() { return Object.keys(TITLES).map(function (k) { return { key: k, label: TITLES[k] }; }); }
-  window.EEScenes = { resolve: resolve, play: play, load: load, list: list, OPTION_SCENES: OPTION_SCENES, JOB_SCENES: JOB_SCENES };
+  window.EEScenes = { resolve: resolve, play: play, cancel: cancel, preload: preload, load: load, list: list, OPTION_SCENES: OPTION_SCENES, JOB_SCENES: JOB_SCENES };
 })();
