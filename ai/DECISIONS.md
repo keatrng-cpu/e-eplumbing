@@ -107,3 +107,14 @@ mascot artwork and motion assets are preserved unchanged. The booking flow now e
 pricebook service (including fixtures), clears a date when the job changes, and rejects
 requests outside the calendar horizon. Supabase remains the required production backend for
 atomic capacity holds; no credentials or database were provisioned here.
+
+## 2026-10-21 — Scenes wired to jobs; shorter ticket
+
+After order-flow v2, thanks.html played no scene and `app.js`'s `?scene=` preview
+referenced removed `JOBS`/`showConfirm`. Scenes now resolve from service + option
+index (1:1 with the 34 scene keys, `other` as fallback) and play inline on job tap
+and on the thanks page. Ticket shortened by hiding the duplicate urgency radios
+(the rail sets urgency; "This week" and "Planning ahead" price the same), moving
+follow-up questions and email/text preferences into collapsed optional sections,
+and showing 6 day chips instead of 10. No prices, pricebook/schedule shape,
+book.js logic, or capacity touched.

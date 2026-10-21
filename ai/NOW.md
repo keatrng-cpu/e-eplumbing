@@ -1,6 +1,6 @@
 # NOW — e-eplumbing current truth
 
-**As of:** 2026-10-19
+**As of:** 2026-10-21
 
 > Current truth only; history goes in `ai/DECISIONS.md`.
 
@@ -15,7 +15,18 @@ that the plumber can load the truck and drive without a diagnostic phone call.
   the form notification/SMS destination, apply the atomic calendar migration, and
   complete entity, license, insurance, and Google Business Profile setup.
 
+- `nf-flow-scenes` (draft PR): scenes wired to all 34 pricebook jobs (inline
+  preview on job tap + full scene on thanks.html), shorter booking ticket, booking
+  validation fix, service-card contrast fix. Awaiting review.
+
 ## Known facts / constraints
+- **Scene mapping** = `EEScenes.OPTION_SCENES` in `scenes.js`, keyed by pricebook
+  service + option *index*. Reordering options in `pricebook.js` silently
+  remaps scenes — update both together. `scenes.js` loads only after the first
+  job tap (homepage: 0 scene requests before interaction); reduced motion
+  fetches only the end frame.
+- Booking form uses `noValidate`; `validate()` in `app.js` is the only client
+  check (the native check used to block on the hidden service `<select>`).
 - **Canonical uses the live Netlify host for now.** It must move to the verified North
   Fork domain when one is connected; do not point it at an unowned or parked host.
 - **Lead form has never fired.** Netlify form `service-request`
