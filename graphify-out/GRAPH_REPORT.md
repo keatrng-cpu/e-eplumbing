@@ -1,7 +1,7 @@
 # Graph Report - e-eplumbing  (2026-10-21)
 
 ## Corpus Check
-- 77 files · ~1,194,476 words
+- 77 files · ~1,194,928 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 3, .part 3, (none) 2)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a695d3ac`
+- Built from commit: `43f92fb7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
