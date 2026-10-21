@@ -191,6 +191,14 @@
   var $ = function (id) { return document.getElementById(id); };
   var form = $("book");
   if (!form) return;
+  // validate() below gives inline, labelled errors. Without this, the browser's
+  // native check fires first on the visually hidden <select name="service">
+  // and blocks submit with a bubble the customer cannot see.
+  form.noValidate = true;
+  // The Now / Pick-a-day rail sets urgency (and "This week" and "Planning
+  // ahead" price the same), so the duplicate radio question is hidden when JS
+  // runs. The radios still submit; without JS the fieldset stays visible.
+  if ($("urgencyFs")) $("urgencyFs").hidden = true;
 
   var els = {
     servicePills: $("jobPills"),
@@ -410,7 +418,7 @@
     // or "full" language gives away the truck board.
     var days = sked.dayOptions(state.fill, need).filter(function (d) { return d.open; });
     els.dayGrid.innerHTML = "";
-    days.slice(0, 10).forEach(function (d) {
+    days.slice(0, 6).forEach(function (d) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "day-chip" + (state.day === d.day ? " on" : "");
@@ -449,6 +457,7 @@
   function renderFollowup() {
     var qs = (state.service && FOLLOWUP[state.service]) || [];
     els.followup.hidden = qs.length === 0;
+    if ($("fuDetails")) $("fuDetails").hidden = qs.length === 0;
     if (!qs.length) { els.details.value = ""; return; }
 
     // Only rebuild when the service changed, so typing isn't interrupted.
@@ -644,7 +653,10 @@
     var summary = {
       ref: els.fRef.value,
       service: state.service,
+      optionIndex: state.optionIndex == null ? 0 : state.optionIndex,
       scope: els.fScope.value,
+      job: SCOPE_GUIDE[els.fScope.value] || (SERVICE_GUIDE[state.service] || {}).label || state.service,
+      note: (function () { var o = options()[state.optionIndex == null ? 0 : state.optionIndex]; return (o && o.note) || ""; })(),
       estimate: els.estimate.value,
       rawDay: state.rail === "day" ? state.day : null,
       when: state.rail === "now" ? "Dispatch now" : (state.day ? sked.formatDay(state.day) : "First opening"),
@@ -727,7 +739,38 @@
     });
   }
 
+  // ------------------------------------------------- inline scene preview
+  // The job's confirmation scene, shown small as soon as a job is tapped.
+  // scenes.js and the scene file load only on that first tap (the homepage
+  // makes no scene requests before it). Never blocks the form; reduced motion
+  // gets the end frame only (handled inside scenes.js).
+  var sceneKey = null, scenesLoading = null;
+  function loadScenes() {
+    if (window.EEScenes) return Promise.resolve(window.EEScenes);
+    if (!scenesLoading) scenesLoading = new Promise(function (res, rej) {
+      var s = document.createElement("script");
+      s.src = "scenes.js"; s.async = true;
+      s.onload = function () { window.EEScenes ? res(window.EEScenes) : rej(); };
+      s.onerror = function () { scenesLoading = null; rej(); };
+      document.head.appendChild(s);
+    });
+    return scenesLoading;
+  }
+  function renderScenePreview() {
+    var host = $("jobScene");
+    if (!host || !state.service) return;
+    loadScenes().then(function (S) {
+      var key = S.resolve({ service: state.service, optionIndex: state.optionIndex == null ? 0 : state.optionIndex });
+      if (key === sceneKey) return;
+      sceneKey = key;
+      host.hidden = false;
+      host.setAttribute("data-scene", key);
+      S.play(host, key);
+    }).catch(function () { host.hidden = true; });
+  }
+
   function render() {
+    renderScenePreview();
     renderServicePills();
     renderScopePills();
     renderRail();
@@ -756,6 +799,12 @@
   });
 
   // The <select> is canonical and works without JS; keep state in step with it.
+  // With JS on it is visually hidden (the pills replace it), so keep it out of
+  // the tab order and the accessibility tree to avoid a duplicate question.
+  els.service.tabIndex = -1;
+  if (els.service.closest(".canonical-service-fallback")) {
+    els.service.closest(".canonical-service-fallback").setAttribute("aria-hidden", "true");
+  }
   els.service.addEventListener("change", function () {
     if (els.service.value !== state.service) pickService(els.service.value);
   });
@@ -783,12 +832,8 @@
   renderTruck();
   loadAvailability();
 
-  /* Dev-only preview: ?scene=<key> (or ?scene=<job id>) plays a confirmation scene without submitting
-     or calling the booking function. Nothing is written to the truck board. */
+  /* Dev-only preview: /?scene=<key> forwards to the thanks page, which plays
+     scenes. Nothing is booked or written to the truck board. */
   var devScene = new URLSearchParams(location.search).get("scene");
-  if (devScene) {
-    var j = JOBS.filter(function (x) { return x.id === devScene; })[0];
-    showConfirm(j ? { job: j.id, service: j.service, optionIndex: j.optionIndex } : { scene: devScene }, true);
-    if (confirmEl) confirmEl.scrollIntoView({ block: "center" });
-  }
+  if (devScene) location.replace("/thanks.html?scene=" + encodeURIComponent(devScene));
 })();
