@@ -21,6 +21,11 @@
 .next li:last-child{border-bottom:none}
 .next b{font-family:var(--display);color:var(--kelly-text);flex:none}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.btn-cal{background:#fff;color:var(--kelly-text);border:1.5px solid var(--kelly)}
+.btn-cal[hidden]{display:none}
+.thanks-scene{border:1.5px solid var(--kelly);border-radius:12px;margin:22px 0 0}
+.thanks-scene[hidden]{display:none}
+.order .note{display:block;font-size:13px;font-weight:400;color:var(--gray);margin-top:2px}
 @media(max-width:560px){.order dl{grid-template-columns:1fr}.order dt{margin-top:8px}}
 </style>
 </head>
@@ -32,14 +37,17 @@
   <div class="eyebrow">Dispatch</div>
   <h2>We have the request.</h2>
 
+  <!-- Space is reserved by .scene's aspect-ratio before the drawing loads (no layout shift). -->
+  <div class="scene scene-kf thanks-scene" id="thanksScene" hidden></div>
+
   <div class="order" id="order" hidden>
     <dl id="orderList"></dl>
   </div>
 
   <ul class="next">
-    <li><b>1</b><span>Our team reviews the ticket and confirms the next step by phone or text.</span></li>
-    <li><b>2</b><span>You get a text with the arrival window, and the name of who is coming.</span></li>
-    <li><b>3</b><span>Flat-rate quote at the door. You approve the number before a wrench turns.</span></li>
+    <li><b>1</b><span>We call or text to confirm the day and arrival window. Nothing is final until we do.</span></li>
+    <li><b>2</b><span>On the day, you get a text when the plumber is on the way, with their name.</span></li>
+    <li><b>3</b><span>The plumber gives you a flat-rate price before starting. You approve it before any work begins. The estimate above is a starting range.</span></li>
   </ul>
 
   <p id="photoNudge" style="font-size:15px">Got a photo of the problem? Text it to
@@ -47,13 +55,31 @@
 
   <div class="actions">
     <a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a>
-    <a class="btn btn-ghost" id="calBtn" href="#" hidden download="north-fork-plumbing.ics">Add to calendar</a>
+    <a class="btn btn-cal" id="calBtn" href="#" hidden download="north-fork-plumbing.ics">Add to calendar</a>
   </div>
 
   <p style="color:var(--gray);font-size:14px">If water is moving right now, do not wait on the callback — call.</p>
   <p style="margin-top:20px"><a href="/">← Back to North Fork Plumbing Co.</a></p>
 </main>
+<script src="scenes.js" defer></script>
 <script>
+(function () {
+  // Confirmation scene: picked from the job the customer booked (service +
+  // option index, see EEScenes.OPTION_SCENES). /thanks.html?scene=<key> is a
+  // dev preview. Reduced motion renders only the end frame (scenes.js).
+  var q = new URLSearchParams(location.search).get('scene');
+  var last; try { last = JSON.parse(sessionStorage.getItem('ee-last-order') || 'null'); } catch (e) { last = null; }
+  if (q || last) {
+    var host = document.getElementById('thanksScene');
+    host.hidden = false; // reserve the space now, before scenes.js arrives (no layout shift)
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!window.EEScenes) { host.hidden = true; return; }
+      var key = window.EEScenes.resolve(q ? { scene: q } : { service: last.service, optionIndex: last.optionIndex });
+      host.setAttribute('data-scene', key);
+      window.EEScenes.play(host, key);
+    });
+  }
+})();
 (function () {
   var o;
   try { o = JSON.parse(sessionStorage.getItem('ee-last-order') || 'null'); } catch (e) { o = null; }
@@ -61,8 +87,8 @@
 
   var rows = [
     ['Reference', o.ref, 'ref'],
-    ['Job', o.scope || o.service],
-    ['Estimate', o.estimate],
+    ['Job', o.job || o.scope || o.service],
+    ['Estimate', o.estimate, 'est'],
     ['When', o.when],
     ['Window', o.window],
     ['Address', o.address],
@@ -74,6 +100,9 @@
     var dt = document.createElement('dt'); dt.textContent = r[0];
     var dd = document.createElement('dd'); dd.textContent = r[1];
     if (r[2] === 'ref') dd.className = 'ref';
+    if (r[2] === 'est' && o.note) {
+      var n = document.createElement('span'); n.className = 'note'; n.textContent = o.note; dd.appendChild(n);
+    }
     dl.appendChild(dt); dl.appendChild(dd);
   });
   document.getElementById('order').hidden = false;
