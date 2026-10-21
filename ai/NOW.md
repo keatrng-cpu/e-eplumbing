@@ -18,10 +18,9 @@ that the plumber can load the truck and drive without a diagnostic phone call.
 - `nf-flow-scenes` (draft PR): scenes wired to every pricebook job (inline
   preview on job tap + full scene on thanks.html), shorter booking ticket, booking
   validation fix, service-card contrast fix. Awaiting review.
-  - v7 hand-inked scenes: 28 of 34 done (20 earlier + thaw, frozenburst, freezethaw,
-    slab, softinstall, softservice, ironro, disposal). Still v6: shower, cartridge,
-    diagnose, remodel, commercial, other. Isolated-mascot compositing:
-    `assets/kf6/place2.py`. Pipeline: `assets/kf6/` (kf6.py SPEC7, `<scene>build.py` plates,
+  - v7 hand-inked scenes: 34 of 34 done (all scenes v7; last batch shower, cartridge,
+    diagnose, remodel, commercial, other). Isolated-mascot compositing:
+    `assets/kf6/place2.py` + `comp.py`. Pipeline: `assets/kf6/` (kf6.py SPEC7, `<scene>build.py` plates,
     `dmask.py` diff-mask compositor, sheet7.py, check7.py).
   - Job picker: one-line plain-language hint under every option (`SCOPE_HINT` in
     app.js). 4 jobs appended at DIAG-01 price: hidden leak, sewer smell, leaking
