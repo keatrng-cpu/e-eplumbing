@@ -106,7 +106,7 @@ Lead → Qualify → Schedule → Dispatch → Quote (flat-rate) → Approve →
 | Field service / CRM | **Jobber** (or Housecall Pro) | Best price/feature for 1–5 truck shops; quoting, scheduling, payments, reviews |
 | Payments | Jobber Payments or Square | Instant deposits |
 | Accounting | QuickBooks Online | Syncs with Jobber |
-| Phone | Google Voice → later OpenPhone / local business line | Keep (218) 779-2553 consistent |
+| Phone | Google Voice → later OpenPhone / local business line | Keep (218) 309-8215 consistent |
 | Docs / SOPs | Notion or Google Drive | Cheap and shareable |
 | Review generation | Birdeye / Podium or native Jobber | Speed to 20+ Google reviews |
 

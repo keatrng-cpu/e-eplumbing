@@ -156,14 +156,14 @@
       </fieldset>
     </details>
 
-    <noscript><p class="nojs-note">Scripts are off, so the instant price and calendar are unavailable — fill this in and submit, and we’ll call you back with a number. Emergencies: call (218) 779-2553.</p></noscript>
+    <noscript><p class="nojs-note">Scripts are off, so the instant price and calendar are unavailable — fill this in and submit, and we’ll call you back with a number. Emergencies: call (218) 309-8215.</p></noscript>
 
     <button class="btn btn-green" type="submit" id="bookSubmit" style="margin-top:20px;width:100%">Hold this slot</button>
-    <p style="margin-top:10px;text-align:center;font-size:12px;color:var(--gray)">Flat-rate before work. We call to confirm. Water moving? <a href="tel:+12187792553">(218) 779-2553</a></p>
-    <div class="form-msg" id="formMsg">Thanks — you’re on the truck. We call back. Emergencies: (218) 779-2553 now.</div>
+    <p style="margin-top:10px;text-align:center;font-size:12px;color:var(--gray)">Flat-rate before work. We call to confirm. Water moving? <a href="tel:+12183098215">(218) 309-8215</a></p>
+    <div class="form-msg" id="formMsg">Thanks — you’re on the truck. We call back. Emergencies: (218) 309-8215 now.</div>
     <div class="confirm" id="confirm" hidden>
       <div class="scene" id="confirmScene"></div>
       <div class="details" aria-live="polite"><h3 id="confirmTitle">You’re on the truck.</h3><p id="confirmBody">We call back to confirm the window and the flat-rate number.</p></div>
-      <div class="row-btns" style="padding:0 16px 16px"><a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a><button type="button" class="btn btn-line" id="confirmReplay">Replay</button></div>
+      <div class="row-btns" style="padding:0 16px 16px"><a class="btn btn-green" href="tel:+12183098215">Call (218) 309-8215</a><button type="button" class="btn btn-line" id="confirmReplay">Replay</button></div>
     </div>
   </form>

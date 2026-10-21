@@ -10,7 +10,7 @@
 
 ## Appointment confirmation (SMS)
 
-> E&E Plumbing: You’re on the schedule [Day], [arrival window]. Tech: [Name]. We’ll text when we’re on the way. Questions? (218) 779-2553
+> E&E Plumbing: You’re on the schedule [Day], [arrival window]. Tech: [Name]. We’ll text when we’re on the way. Questions? (218) 309-8215
 
 ---
 
@@ -22,13 +22,13 @@
 
 ## Quote follow-up (if not approved on site)
 
-> Hi [Name], here’s the flat-rate option we discussed for [job]: $[amount]. Reply YES to book or call (218) 779-2553 with questions. Quote good for 14 days.
+> Hi [Name], here’s the flat-rate option we discussed for [job]: $[amount]. Reply YES to book or call (218) 309-8215 with questions. Quote good for 14 days.
 
 ---
 
 ## Invoice
 
-> Thanks for choosing E&E. Invoice #[#] for $[amount] is ready: [link]. Card and ACH accepted. Questions? (218) 779-2553
+> Thanks for choosing E&E. Invoice #[#] for $[amount] is ready: [link]. Card and ACH accepted. Questions? (218) 309-8215
 
 ---
 

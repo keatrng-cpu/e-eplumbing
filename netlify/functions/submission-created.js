@@ -57,7 +57,7 @@ function ticket(data) {
   }
   const photos = photoUrls(data);
   if (photos.length) lines.push(`Photos (${photos.length}): ${photos.join(' ')}`);
-  lines.push('Call back: (218) 779-2553');
+  lines.push('Call back: (218) 309-8215');
   return lines.join('\n');
 }
 

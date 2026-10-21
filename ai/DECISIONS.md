@@ -170,3 +170,5 @@ and book.js keeps off the calendar. Member discount cap: 10% up to $120 per repa
 (Keaton's decision; PRICEBOOK.md had no cap; no repair prices changed). Plan slogan "We
 don't just fix it — we prevent it." on plans.html and plan teasers. Thank-you scene composed
 from existing v7 frames (other-1/2/6); no new art.
+
+- 2026-10-21: Business phone changed from (218) 779-2553 to (218) 309-8215 (tel:+12183098215) everywhere on site, functions and docs. Owner: Keaton.

@@ -9,7 +9,7 @@ Paste-ready. Claim at [business.google.com](https://business.google.com).
 - **Business name:** Ellingson Plumbing
 - **Primary category:** Plumber
 - **Additional categories:** Emergency plumber, Water heater repair service, Drain cleaning service, Sewer cleaning service
-- **Phone:** (218) 779-2553
+- **Phone:** (218) 309-8215
 - **Website:** https://ellingsonplumbing.com
 - **Email:** nateplumb97@icloud.com
 - **Service area business:** Yes (no public storefront required)
@@ -19,7 +19,7 @@ Paste-ready. Claim at [business.google.com](https://business.google.com).
 
 ## Description (under 750 characters)
 
-Ellingson Plumbing is a 24/7 plumbing company serving Greater Grand Forks, Eastern North Dakota, and Western Minnesota. Emergency repairs, drain and sewer cleaning, water heaters, sump pumps, frozen pipes, softeners, and light remodel work. Flat-rate quotes before we start. A licensed plumber answers the phone — day or night. Home Team Plan $29/mo or $279/yr. Call (218) 779-2553.
+Ellingson Plumbing is a 24/7 plumbing company serving Greater Grand Forks, Eastern North Dakota, and Western Minnesota. Emergency repairs, drain and sewer cleaning, water heaters, sump pumps, frozen pipes, softeners, and light remodel work. Flat-rate quotes before we start. A licensed plumber answers the phone — day or night. Home Team Plan $29/mo or $279/yr. Call (218) 309-8215.
 
 ---
 
@@ -48,7 +48,7 @@ Emergency plumbing repair · Drain cleaning · Sewer line cleaning / hydro jetti
 ## First 4 posts
 
 **Launch**  
-Ellingson Plumbing is on the river. 24/7 emergency plumbing, flat-rate quotes, both sides of the line. Call (218) 779-2553.
+Ellingson Plumbing is on the river. 24/7 emergency plumbing, flat-rate quotes, both sides of the line. Call (218) 309-8215.
 
 **Winter**  
 Minus-thirty mornings freeze pipes. We thaw safely and fix the run so it does not happen twice.
@@ -63,6 +63,6 @@ You approve the number before we touch a wrench. Nights and weekends included in
 
 ## Review replies
 
-**5-star:** Thank you, [Name]. If anything else comes up on either side of the river, call (218) 779-2553.  
+**5-star:** Thank you, [Name]. If anything else comes up on either side of the river, call (218) 309-8215.  
 **4-star:** Thanks, [Name]. We aim for five — text or call if we can improve it.  
-**1–3 star:** We’re sorry this fell short. Call (218) 779-2553 and ask for the owner so we can make it right.
+**1–3 star:** We’re sorry this fell short. Call (218) 309-8215 and ask for the owner so we can make it right.

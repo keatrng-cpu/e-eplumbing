@@ -177,7 +177,7 @@ The form is currently 100% JS-dependent and has real a11y defects:
 
 - Give each request a **reference number** and show the full order back: job, scope, estimate,
   address, window, access notes.
-- "Text a photo to (218) 779-2553" with the reference — catches anyone who skipped improvement 4.
+- "Text a photo to (218) 309-8215" with the reference — catches anyone who skipped improvement 4.
 - Add-to-calendar link for scheduled days.
 - **SMS the shop, not just email.** `submission-created.js` currently only posts to an optional
   `NOTIFY_WEBHOOK`; if that env var is unset it does nothing but `console.log`. A burst pipe at

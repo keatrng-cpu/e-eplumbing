@@ -32,7 +32,7 @@ It does **not** become a Next.js app with account login. A 2 a.m. burst pipe nee
 - **Color:** deep river green `#063B32` + fork green `#34B67A`
 - **Fonts:** Barlow Condensed / Barlow
 - **Assets:** `lockup.svg`, `badge.svg`, `favicon.svg`
-- **Phone:** (218) 779-2553
+- **Phone:** (218) 309-8215
 - **Email:** nateplumb97@icloud.com
 
 ---
@@ -76,4 +76,4 @@ It does **not** become a Next.js app with account login. A 2 a.m. burst pipe nee
 
 ---
 
-**Phone:** (218) 779-2553 · **Email:** nateplumb97@icloud.com
+**Phone:** (218) 309-8215 · **Email:** nateplumb97@icloud.com

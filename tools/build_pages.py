@@ -8,7 +8,7 @@ from urllib.parse import quote
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda f: open(os.path.join(R, "tools/pages", f)).read()
 HOST = "https://plumbingmidwest.netlify.app"
-TEL = '<a href="tel:+12187792553">(218) 779-2553</a>'
+TEL = '<a href="tel:+12183098215">(218) 309-8215</a>'
 D = json.loads(subprocess.check_output(["node", os.path.join(R, "tools/svcdata.js")]))
 e = html.escape
 
@@ -71,7 +71,7 @@ def chrome_top(active):
   <a class="brand" href="/"><img src="badge.svg" alt=""><span class="name">North Fork <span>Plumbing Co.</span></span></a>
   <nav class="links" id="navLinks" aria-label="Primary">{links}</nav>
   <a class="btn btn-green nav-book" href="/services.html">Book</a>
-  <a class="hdr-call" href="tel:+12187792553" aria-label="Call (218) 779-2553">{icon("phone")}<span>Call</span></a>
+  <a class="hdr-call" href="tel:+12183098215" aria-label="Call (218) 309-8215">{icon("phone")}<span>Call</span></a>
 </div></header>
 '''
 
@@ -86,12 +86,12 @@ def chrome_bottom(active, scripts):
              '<a role="menuitem" href="/services.html">All services</a><a role="menuitem" href="/about.html">About &amp; Contact</a>'
              '<a role="menuitem" href="/about.html#area">Service area</a><a role="menuitem" href="/about.html#faq">FAQ</a>'
              '<button type="button" role="menuitem" class="sheet-chat">Chat with us</button>'
-             '<a role="menuitem" class="sheet-call" href="tel:+12187792553">Call (218) 779-2553</a></div></details>')
+             '<a role="menuitem" class="sheet-call" href="tel:+12183098215">Call (218) 309-8215</a></div></details>')
     foot_links = "".join(f'<a href="{h}">{t}</a>' for h, t, _ in NAV)
     nxt = []
     if active != "/services.html": nxt.append('<a class="ns-item" href="/services.html"><b>Got a problem now?</b><span>Find your job, see the price, book →</span></a>')
     if active != "/plans.html": nxt.append('<a class="ns-item" href="/plans.html"><b>We don’t just fix it — we prevent it</b><span>Home Team Plan, $29/mo →</span></a>')
-    nxt.append('<a class="ns-item" href="/north-fork-plumbing.vcf" download><b>Save our number</b><span>Add (218) 779-2553 to contacts →</span></a>')
+    nxt.append('<a class="ns-item" href="/north-fork-plumbing.vcf" download><b>Save our number</b><span>Add (218) 309-8215 to contacts →</span></a>')
     band = '<aside class="next-steps" aria-label="Next steps"><div class="wrap">' + "".join(nxt[:3]) + '</div></aside>'
     return band + f'''
 <div class="trust"><div class="wrap">
@@ -109,7 +109,7 @@ def chrome_bottom(active, scripts):
       <p>Hometown plumbing for Greater Grand Forks, Eastern North Dakota, and Western Minnesota. One name on the truck. One standard of work.</p>
     </div>
     <div><h4>Pages</h4>{foot_links}</div>
-    <div><h4>Reach us</h4><a href="tel:+12187792553">(218) 779-2553</a><a href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a><a href="/north-fork-plumbing.vcf" download>Save our number</a><a href="/about.html#area">Service area</a><a href="/about.html#faq">FAQ</a></div>
+    <div><h4>Reach us</h4><a href="tel:+12183098215">(218) 309-8215</a><a href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a><a href="/north-fork-plumbing.vcf" download>Save our number</a><a href="/about.html#area">Service area</a><a href="/about.html#faq">FAQ</a></div>
   </div>
   <div class="bottom">
     <span>© <span id="yr">2026</span> North Fork Plumbing Co. All rights reserved.</span>
@@ -117,7 +117,7 @@ def chrome_bottom(active, scripts):
   </div>
 </div></footer>
 <nav class="tabbar" aria-label="Sections">{tabs}</nav>
-{P("_chat.part")}<a class="float-call" href="tel:+12187792553" aria-label="Call North Fork Plumbing Co. now">Call Now</a>
+{P("_chat.part")}<a class="float-call" href="tel:+12183098215" aria-label="Call North Fork Plumbing Co. now">Call Now</a>
 <script src="site.js" defer></script>
 <script src="analytics.js" defer></script>
 {scripts}<script src="ee-chat.js" defer></script>
@@ -158,7 +158,7 @@ ORDER = list(DESC)
 
 # ------------------------------------------------------------------ Home
 HOME_LD = '''<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Plumber","name":"North Fork Plumbing Co.","alternateName":"North Fork Plumbing","url":"https://plumbingmidwest.netlify.app/","image":"https://plumbingmidwest.netlify.app/og.svg","telephone":"+1-218-779-2553","email":"nateplumb97@icloud.com","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Grand Forks","addressRegion":"ND","addressCountry":"US"},"areaServed":["Greater Grand Forks ND","Grand Forks ND","Fargo ND","West Fargo ND","Grafton ND","Devils Lake ND","Wahpeton ND","Hillsboro ND","Mayville ND","Larimore ND","Casselton ND","East Grand Forks MN","Moorhead MN","Crookston MN","Thief River Falls MN","Detroit Lakes MN","Ada MN","Warren MN","Fertile MN","Breckenridge MN","Dilworth MN"],"openingHours":"Mo-Su 00:00-24:00"}
+{"@context":"https://schema.org","@type":"Plumber","name":"North Fork Plumbing Co.","alternateName":"North Fork Plumbing","url":"https://plumbingmidwest.netlify.app/","image":"https://plumbingmidwest.netlify.app/og.svg","telephone":"+1-218-309-8215","email":"nateplumb97@icloud.com","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Grand Forks","addressRegion":"ND","addressCountry":"US"},"areaServed":["Greater Grand Forks ND","Grand Forks ND","Fargo ND","West Fargo ND","Grafton ND","Devils Lake ND","Wahpeton ND","Hillsboro ND","Mayville ND","Larimore ND","Casselton ND","East Grand Forks MN","Moorhead MN","Crookston MN","Thief River Falls MN","Detroit Lakes MN","Ada MN","Warren MN","Fertile MN","Breckenridge MN","Dilworth MN"],"openingHours":"Mo-Su 00:00-24:00"}
 </script>
 <script>/* Old one-page links (/#book, /#plan …) moved to their own pages. */
 (function(){var m={book:"/services.html",services:"/services.html",plan:"/plans.html",season:"/plans.html#season",reviews:"/reviews.html",why:"/about.html#why",how:"/about.html#how",area:"/about.html#area",faq:"/about.html#faq",contact:"/about.html#contact",truck:"/services.html",top:null};var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>
@@ -179,7 +179,7 @@ home = f'''<div class="hero hero-home"><div class="wrap">
     </ul>
     <div class="ctas ctas-big">
       <a class="btn btn-green btn-xl" href="/services.html">Book &amp; see your price</a>
-      <a class="btn btn-ghost btn-xl" href="tel:+12187792553">Call (218) 779-2553</a>
+      <a class="btn btn-ghost btn-xl" href="tel:+12183098215">Call (218) 309-8215</a>
     </div>
   </div>
   <div class="hero-stage" id="heroLane" aria-hidden="true"><noscript><img src="assets/hero-still.svg" alt="" width="1000" height="552"></noscript></div>
@@ -214,7 +214,7 @@ for s in ORDER:
              f'<summary><span class="sc-h"><b>{e(g["label"])}</b>' + (f'<span class="tag">{TAG[s]}</span>' if s in TAG else "") +
              f'<small>{e(g["hint"])}</small></span><span class="sc-from">{from_price(s)}</span></summary>'
              f'<div class="sc-body"><p>{e(DESC[s])}</p><p class="sc-pick">Tap a job to see the price and book it:</p><ul class="opt-list">{rows}</ul></div></details>')
-services = f'''<a class="em-strip" href="tel:+12187792553"><span class="em-dot" aria-hidden="true"></span><b>Water emergency?</b> <span>Call now — (218) 779-2553</span></a>
+services = f'''<a class="em-strip" href="tel:+12183098215"><span class="em-dot" aria-hidden="true"></span><b>Water emergency?</b> <span>Call now — (218) 309-8215</span></a>
 <section class="page-head"><div class="wrap">
   <div class="eyebrow">Services &amp; booking</div><h1>Find your job. See the price. Book it.</h1>
   <p>Tap what’s going on, then the job that fits. You’ll see what it means, what we do and the starting price — and book it right there. Flat-rate before we start.</p>
@@ -266,7 +266,7 @@ open(os.path.join(R, "book.html"), "w").write('''<!DOCTYPE html>
 <meta name="robots" content="noindex"><link rel="canonical" href="https://plumbingmidwest.netlify.app/services.html">
 <script>location.replace("/services.html" + location.search + location.hash);</script>
 <meta http-equiv="refresh" content="0; url=/services.html"></head>
-<body><p>Booking moved to <a href="/services.html">Services</a>. Emergencies: <a href="tel:+12187792553">(218) 779-2553</a>.</p></body></html>
+<body><p>Booking moved to <a href="/services.html">Services</a>. Emergencies: <a href="tel:+12183098215">(218) 309-8215</a>.</p></body></html>
 ''')
 
 # ------------------------------------------------------------------ Reviews
@@ -310,7 +310,7 @@ plans = f'''<section class="page-head page-head-plan"><div class="wrap">
   <div class="plan-actions plan-actions-row">
     <button type="button" class="btn btn-green" data-plan="monthly">Join — $29/mo</button>
     <button type="button" class="btn btn-ghost" data-plan="yearly">Pay yearly — $279</button>
-    <a class="btn btn-ghost" href="tel:+12187792553">Ask on the phone</a>
+    <a class="btn btn-ghost" href="tel:+12183098215">Ask on the phone</a>
   </div>
   <p class="plan-msg" id="planMsg" role="status"></p>
 </div></section>
@@ -343,7 +343,7 @@ plans = f'''<section class="page-head page-head-plan"><div class="wrap">
   <details><summary>When do the visits happen?</summary><p>We schedule them with you — typically the inspection and heater flush in the fall before freeze-up, and the sump test in early spring before the melt.</p></details>
   <details><summary>Does the 10% apply to emergencies?</summary><p>The 10% (up to $120 per repair) applies to repairs, and every repair is quoted flat-rate before work starts. Ask us about your specific job.</p></details>
   <details><summary>Can I cancel?</summary><p>Call or email us and we’ll walk you through it — plan terms are confirmed when you sign up.</p></details>
-  <details><summary>How do I sign up?</summary><p>Use the Join buttons above for secure online checkout. If online signup isn’t available yet, the button tells you, and we set it up over the phone at (218) 779-2553.</p></details>
+  <details><summary>How do I sign up?</summary><p>Use the Join buttons above for secure online checkout. If online signup isn’t available yet, the button tells you, and we set it up over the phone at (218) 309-8215.</p></details>
 </div></section>
 '''
 page("plans.html", "/plans.html", "Home Team Plan — Plumbing Maintenance Membership | North Fork Plumbing Co.",
@@ -357,7 +357,7 @@ about = f'''<section class="page-head"><div class="wrap">
 </div></section>
 <section id="contact" class="sec-tight"><div class="wrap">
   <div class="cinfo cinfo-3">
-    <div class="cardc"><b>Call or text</b><a class="big" href="tel:+12187792553">(218) 779-2553</a><p>24/7 — a plumber answers, not a machine.</p></div>
+    <div class="cardc"><b>Call or text</b><a class="big" href="tel:+12183098215">(218) 309-8215</a><p>24/7 — a plumber answers, not a machine.</p></div>
     <div class="cardc"><b>Email</b><a class="big" style="font-size:18px" href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a><p>Estimates, plan questions, and paperwork.</p></div>
     <div class="cardc"><b>Hours</b><p><b>Emergencies:</b> 24/7/365<br><b>Office:</b> Mon–Fri, 7:00 AM–5:00 PM</p></div>
   </div>
@@ -390,7 +390,7 @@ about = f'''<section class="page-head"><div class="wrap">
 </div></section>
 <section id="faq" class="sec-tight"><div class="wrap faq-wrap">
   <div class="sec-head"><div class="eyebrow">Straight answers</div><h2>FAQ</h2></div>
-  <details><summary>What if water is moving at 2 a.m.?</summary><p>Call (218) 779-2553 — do not wait on the form. Shut off the main water if it is safe, keep power away from standing water, and tell us what you see.</p></details>
+  <details><summary>What if water is moving at 2 a.m.?</summary><p>Call (218) 309-8215 — do not wait on the form. Shut off the main water if it is safe, keep power away from standing water, and tell us what you see.</p></details>
   <details><summary>Do you serve Minnesota and North Dakota?</summary><p>Yes — we serve both sides of the Red River. Availability and any permitting requirements depend on the job and jurisdiction, so call if you are unsure.</p></details>
   <details><summary>Will I know the price before work starts?</summary><p>Flat-rate from the pricebook, approved first. After-hours carries a published multiplier — still quoted before we start.</p></details>
   <details><summary>Same-day water heater?</summary><p>Often, when the unit is a common size we stock. Tank and tankless, sized for real Valley households.</p></details>
@@ -399,14 +399,14 @@ about = f'''<section class="page-head"><div class="wrap">
 '''
 FAQ_LD = '''<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Do you answer the phone at night?","acceptedAnswer":{"@type":"Answer","text":"For urgent water issues, call (218) 779-2553 rather than waiting on an online request."}},
+{"@type":"Question","name":"Do you answer the phone at night?","acceptedAnswer":{"@type":"Answer","text":"For urgent water issues, call (218) 309-8215 rather than waiting on an online request."}},
 {"@type":"Question","name":"Do you work on both sides of the Red River?","acceptedAnswer":{"@type":"Answer","text":"Yes. North Fork Plumbing Co. serves Eastern North Dakota and Western Minnesota; availability and permits depend on the job and jurisdiction."}},
 {"@type":"Question","name":"Do I get a price before work starts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Flat-rate quote before a wrench turns."}},
-{"@type":"Question","name":"What should I do if a pipe bursts?","acceptedAnswer":{"@type":"Answer","text":"Shut off the main valve, keep power away from standing water, and call (218) 779-2553."}}
+{"@type":"Question","name":"What should I do if a pipe bursts?","acceptedAnswer":{"@type":"Answer","text":"Shut off the main valve, keep power away from standing water, and call (218) 309-8215."}}
 ]}
 </script>
 '''
 page("about.html", "/about.html", "About & Contact — Grand Forks & EGF Plumbers | North Fork Plumbing Co.",
-     "Contact North Fork Plumbing Co.: (218) 779-2553, 24/7 emergencies, office Mon–Fri 7–5. Serving Grand Forks, East Grand Forks and towns across Eastern ND and Western MN.",
+     "Contact North Fork Plumbing Co.: (218) 309-8215, 24/7 emergencies, office Mon–Fri 7–5. Serving Grand Forks, East Grand Forks and towns across Eastern ND and Western MN.",
      about, "", FAQ_LD)
 print("built")

@@ -7,7 +7,7 @@ Recommended first field-service system. Housecall Pro is a fine alternative if y
 ## Day 1 setup
 
 1. Create account at getjobber.com (trial).
-2. **Company profile:** Estad & Ellingson Plumbing, phone (218) 779-2553, email nateplumb97@icloud.com, service area cities from the website.
+2. **Company profile:** Estad & Ellingson Plumbing, phone (218) 309-8215, email nateplumb97@icloud.com, service area cities from the website.
 3. **Users:** Owner + any helper. Enable mobile app.
 4. **Services / products:** Import categories from `PRICEBOOK.md` (DIAG, EMG, DRN, WH, SMP, FIX, SFT, RMI, COM).
 5. **Tax:** Configure ND / MN sales tax rules with your accountant.

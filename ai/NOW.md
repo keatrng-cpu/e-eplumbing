@@ -88,3 +88,5 @@ that the plumber can load the truck and drive without a diagnostic phone call.
   Supabase project (e-eplumbing has none). Until `SUPABASE_URL` +
   `SUPABASE_SERVICE_ROLE_KEY` are set, `book.js` uses the racy Blobs fallback.
 - All new env keys are listed in `.env.example`; `.env` is gitignored.
+
+- Phone is now (218) 309-8215 (merged via nf-phone).
