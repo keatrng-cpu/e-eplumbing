@@ -70,7 +70,7 @@
     panel.setAttribute("aria-label", cur.name + " details");
     var tipsHtml = tips.length ? '<div class="od-tips"><p class="sl-tips-h">' + (urgent ? "Do this first" : "In the meantime") + "</p><ul>" +
       tips.slice(0, 3).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div>" : "";
-    var callBig = '<a class="btn btn-green btn-call-now" href="tel:+12187792553">Call now — (218) 779-2553</a>';
+    var callBig = '<a class="btn btn-green btn-call-now" href="tel:+12183098215">Call now — (218) 309-8215</a>';
     body.innerHTML =
       (urgent ? '<p class="od-urgent" role="note"><b>Water moving or no water?</b> Call — it’s faster than any form.</p>' + callBig + tipsHtml : "") +
       '<p class="od-price"><b>' + money(o) + "</b>" + (o.note ? " <span>" + esc(o.note) + "</span>" : "") +
@@ -81,7 +81,7 @@
       (urgent ? "" : tipsHtml) + nudge(svc, i) +
       '<div class="od-btns">' +
       '<button type="button" class="btn ' + (urgent ? "btn-line" : "btn-green") + ' od-book" aria-expanded="false" aria-controls="bookForm">' + (urgent ? "Book online instead" : "Book this job") + "</button>" +
-      (urgent ? "" : '<a class="btn btn-line" href="tel:+12187792553">Call (218) 779-2553</a>') + "</div>";
+      (urgent ? "" : '<a class="btn btn-line" href="tel:+12183098215">Call (218) 309-8215</a>') + "</div>";
     hideForm();
     panel.hidden = false;
     var my = ++seq;
@@ -275,14 +275,14 @@
       var r2 = null;
       if (photos.length) {
         try { r2 = await fetch("/", { method: "POST", body: formData(true) }); } catch (e) { r2 = null; }
-        if (!r2 || !r2.ok) { phNote("The photos didn’t upload — sending your booking without them. You can text them to (218) 779-2553."); r2 = null; }
+        if (!r2 || !r2.ok) { phNote("The photos didn’t upload — sending your booking without them. You can text them to (218) 309-8215."); r2 = null; }
       }
       if (!r2) r2 = await fetch("/", { method: "POST", body: formData(false) });
       if (!r2.ok) throw new Error("form " + r2.status);
       location.href = "/thanks.html";
     } catch (e) {
       sub.disabled = false; sub.textContent = "Book this job";
-      msg.innerHTML = 'That didn’t go through. Please call <a href="tel:+12187792553">(218) 779-2553</a> — we’ll book it on the phone.';
+      msg.innerHTML = 'That didn’t go through. Please call <a href="tel:+12183098215">(218) 309-8215</a> — we’ll book it on the phone.';
     }
   });
 

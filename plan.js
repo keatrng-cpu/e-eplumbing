@@ -8,7 +8,7 @@
 (function () {
   "use strict";
   var msg = document.getElementById("planMsg");
-  var PHONE = '<a href="tel:+12187792553">(218) 779-2553</a>';
+  var PHONE = '<a href="tel:+12183098215">(218) 309-8215</a>';
   if (!msg) return;
 
   function fallback(why) {

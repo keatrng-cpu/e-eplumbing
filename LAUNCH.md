@@ -42,7 +42,7 @@ Site settings → Forms → Form notifications → **Add notification**
 | Email to | `nateplumb97@icloud.com` |
 | Subject | `North Fork job — {{urgency}} — {{town}}` |
 
-SMS: Zapier/Make trigger **Netlify → New form submission** → SMS to `(218) 779-2553`:
+SMS: Zapier/Make trigger **Netlify → New form submission** → SMS to `(218) 309-8215`:
 
 ```
 North Fork: {{urgency}} / {{service}} / {{town}} / {{phone}} / {{name}}
@@ -50,7 +50,7 @@ North Fork: {{urgency}} / {{service}} / {{town}} / {{phone}} / {{name}}
 
 ## 4. Google Business Profile
 
-Update `GBP-CONTENT.md` before using it. Primary category **Plumber**. Phone **(218) 779-2553**. Use the verified North Fork domain when it is connected. Do not publish reviews that did not happen.
+Update `GBP-CONTENT.md` before using it. Primary category **Plumber**. Phone **(218) 309-8215**. Use the verified North Fork domain when it is connected. Do not publish reviews that did not happen.
 
 ## 5. Minnesota contractor number
 

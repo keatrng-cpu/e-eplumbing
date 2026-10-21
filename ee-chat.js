@@ -8,8 +8,8 @@
   var input = document.getElementById('eeChatInput');
   if(!btn || !panel) return;
 
-  var PHONE = '(218) 779-2553';
-  var TEL = 'tel:+12187792553';
+  var PHONE = '(218) 309-8215';
+  var TEL = 'tel:+12183098215';
   var starters = ['Emergency help','Book a service','Water heater','Drain / sewer','Sump pump','Service area','Hours & pricing','Home Team Plan','Something else'];
 
   function addBubble(text, who){

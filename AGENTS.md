@@ -20,7 +20,7 @@ Do not introduce Next.js, a bundler, or an account system unless the owner expli
 
 - Color: kelly green `#009A44`. Keep contrast accessible.
 - Voice: Valley-specific, two names on the truck, flat-rate, plumber answers the phone.
-- Phone `(218) 779-2553` and email `nateplumb97@icloud.com` appear in many places — update all of them together.
+- Phone `(218) 309-8215` and email `nateplumb97@icloud.com` appear in many places — update all of them together.
 
 ## Netlify
 
