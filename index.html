@@ -74,6 +74,10 @@
       <a class="btn btn-ghost" href="#book">See instant pricing</a>
     </div>
     <div class="hero-stage" id="heroLane" aria-hidden="true"><noscript><img src="assets/hero-still.svg" alt="" width="1000" height="552"></noscript></div>
+    <div class="scene-left" id="sceneLeft" hidden>
+      <div class="sl-stage"><div class="sl-layer scene"></div><div class="sl-layer scene"></div></div>
+      <div class="sl-tips" id="sceneTips" aria-live="polite"></div>
+    </div>
     <div class="chips">
       <span class="chip">Built for the Valley</span>
       <span class="chip">Flat-rate before we start</span>
@@ -106,14 +110,16 @@
     <h2>What’s going on?</h2>
     <p class="lead-sm">Pick the closest match. Not sure? Pick “I'm not sure.”</p>
 
-    <div class="job-pills" id="jobPills"></div>
+    <div class="pick-zone">
+      <div class="scene-slot" id="sceneSlot"></div>
+      <div class="job-pills" id="jobPills"></div>
+    </div>
 
     <div class="scope-row" id="scopeRow" hidden>
       <span class="scope-head">Closest match</span>
       <div class="scope-pills" id="scopePills"></div>
     </div>
 
-    <div class="scene scene-kf job-scene" id="jobScene" hidden aria-hidden="true"></div>
 
     <div class="quote-box" id="quoteBox" aria-live="polite">
       <p class="quote-prompt">Tap what’s going on above — your number appears here. No dash. No guessing.</p>
@@ -483,6 +489,7 @@
 <script src="pricebook.js"></script>
 <script src="schedule.js"></script>
 <script src="motion.js" defer></script>
+<script src="tips.js" defer></script>
 <script src="app.js" defer></script>
 <script src="ee-chat.js" defer></script>
 <script src="plan.js" defer></script>

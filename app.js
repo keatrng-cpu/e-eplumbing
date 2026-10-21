@@ -377,8 +377,6 @@
     jobPanel.setAttribute("role", "region");
     els.scopeRow.parentNode.insertBefore(jobPanel, els.scopeRow);
     jobPanel.appendChild(els.scopeRow);
-    var sc = $("jobScene");
-    if (sc) jobPanel.appendChild(sc);
     return jobPanel;
   }
   function placePanel() {
@@ -444,6 +442,7 @@
           band: o.low ? o.low + "-" + o.high : (o.diagnostic ? "diagnostic" : "quoted-on-site"),
         });
       }, "scope-pill");
+      b.setAttribute("data-idx", String(i));
       b.setAttribute("aria-label", (SCOPE_GUIDE[o.label] || o.label) + ". Starting estimate details below.");
       if (SCOPE_HINT[o.label]) {
         var hint = document.createElement("span");
@@ -833,12 +832,20 @@
     });
   }
 
-  // ------------------------------------------------- inline scene preview
-  // The job's confirmation scene, shown small as soon as a job is tapped.
-  // scenes.js and the scene file load only on that first tap (the homepage
-  // makes no scene requests before it). Never blocks the form; reduced motion
-  // gets the end frame only (handled inside scenes.js).
-  var sceneKey = null, scenesLoading = null;
+  // ------------------------------------------------- job scene (left column)
+  // The chosen job's scene replaces the hero mascot in the left column (desktop,
+  // sticky) or sits in a sticky slot above the picker (mobile). scenes.js and
+  // scene files load only on the first interaction with the picker (the homepage
+  // makes no scene requests before it). Two stacked layers crossfade: the old
+  // scene stays up until the new one's first frame is decoded, then swaps.
+  // Every swap cancels the previous scene's timers and loads; a sequence number
+  // makes sure rapid taps can only ever show the latest pick. Reduced motion:
+  // end frames only (scenes.js) and no fade.
+  var scenesLoading = null, sceneWant = null, sceneShown = null, sceneSeq = 0;
+  var RM = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var MOBILE = window.matchMedia ? matchMedia("(max-width: 920px)") : { matches: false };
+  var sl = $("sceneLeft"), slSlot = $("sceneSlot"), slHome = sl ? sl.parentNode : null, slAnchor = sl ? sl.nextSibling : null;
+  var layers = sl ? Array.prototype.slice.call(sl.querySelectorAll(".sl-layer")) : [], front = -1;
   function loadScenes() {
     if (window.EEScenes) return Promise.resolve(window.EEScenes);
     if (!scenesLoading) scenesLoading = new Promise(function (res, rej) {
@@ -850,24 +857,68 @@
     });
     return scenesLoading;
   }
-  function renderScenePreview() {
-    var host = $("jobScene");
-    if (!host || !state.service) return;
-    loadScenes().then(function (S) {
-      var key = S.resolve({ service: state.service, optionIndex: state.optionIndex == null ? 0 : state.optionIndex });
-      if (key === sceneKey) return;
-      sceneKey = key;
-      host.hidden = false;
-      host.setAttribute("data-scene", key);
-      S.play(host, key);
-    }).catch(function () { host.hidden = true; });
+  function placeSceneBox() {
+    if (!sl) return;
+    if (MOBILE.matches) { if (sl.parentNode !== slSlot) slSlot.appendChild(sl); }
+    else if (sl.parentNode !== slHome) slHome.insertBefore(sl, slAnchor);
   }
+  if (MOBILE.addEventListener) MOBILE.addEventListener("change", placeSceneBox);
+  function sceneCtx(svc, idx) { return { service: svc, optionIndex: idx == null ? 0 : idx }; }
+  function preloadScene(svc, idx) {
+    loadScenes().then(function (S) { S.preload(S.resolve(sceneCtx(svc, idx))); }).catch(function () {});
+  }
+  function renderTips() {
+    var box = $("sceneTips"), T = window.EETips;
+    if (!box || !T || !state.service || !T[state.service]) { if (box) box.innerHTML = ""; return; }
+    var e = T[state.service], list = (state.optionIndex != null && e.o[state.optionIndex]) || e.all;
+    var key = state.service + "|" + state.optionIndex;
+    if (box.getAttribute("data-k") === key) return;
+    box.setAttribute("data-k", key);
+    box.innerHTML = '<p class="sl-tips-h">In the meantime</p><ul>' + list.slice(0, 3).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>";
+  }
+  function renderScene() {
+    if (!sl || !state.service) return;
+    placeSceneBox();
+    renderTips();
+    loadScenes().then(function (S) {
+      var key = S.resolve(sceneCtx(state.service, state.optionIndex));
+      if (key === sceneWant) return;
+      sceneWant = key;
+      var seq = ++sceneSeq;
+      var back = front === 0 ? 1 : 0, host = layers[back];
+      S.cancel(host);                        /* drop whatever the back layer was doing */
+      host.classList.remove("on");
+      S.play(host, key, { onStart: function () {
+        if (seq !== sceneSeq) { S.cancel(host); return; }   /* a newer pick won */
+        var old = front >= 0 ? layers[front] : null;
+        front = back; sceneShown = key;
+        host.setAttribute("data-scene", key);
+        if (sl.hidden) { sl.hidden = false; document.body.classList.add("scene-chosen"); }
+        host.classList.add("on");
+        if (old) {
+          old.classList.remove("on");
+          var done = function () { if (front !== back || seq !== sceneSeq) return; S.cancel(old); Array.prototype.slice.call(old.children).forEach(function (n) { n.remove(); }); old.removeAttribute("data-scene"); };
+          if (RM) done(); else setTimeout(done, 200);
+        }
+      } });
+    }).catch(function () {});
+  }
+  // warm the first frame on hover / touch / focus of a card or option
+  function warmFrom(ev) {
+    var b = ev.target && ev.target.closest && ev.target.closest(".service-pill,.scope-pill");
+    if (!b) return;
+    if (b.classList.contains("service-pill")) preloadScene(b.getAttribute("data-svc"), null);
+    else if (b.hasAttribute("data-idx")) preloadScene(state.service, +b.getAttribute("data-idx"));
+  }
+  if (els.servicePills) ["pointerover", "touchstart", "focusin"].forEach(function (t) {
+    els.servicePills.addEventListener(t, warmFrom, { passive: true });
+  });
 
   var placeTimer = null;
   window.addEventListener("resize", function () { clearTimeout(placeTimer); placeTimer = setTimeout(placePanel, 120); });
 
   function render() {
-    renderScenePreview();
+    renderScene();
     renderServicePills();
     renderScopePills();
     placePanel();
