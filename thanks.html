@@ -25,6 +25,11 @@
 .btn-cal[hidden]{display:none}
 .thanks-scene{border:1.5px solid var(--kelly);border-radius:12px;margin:22px 0 0}
 .thanks-scene[hidden]{display:none}
+.ty-card{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.ty-card b{display:block;font-family:var(--display);font-size:20px;text-transform:uppercase}.ty-card span{display:block;color:var(--gray);font-size:14.5px;max-width:440px}
+.ty-plan{background:var(--mist);border-color:var(--kelly)}
+.ty-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px}.ty-links a{font-weight:700;padding:10px 0}
+.btn-line{background:#fff;color:var(--ink);border-color:var(--line)}
 .order .note{display:block;font-size:13px;font-weight:400;color:var(--gray);margin-top:2px}
 @media(max-width:560px){.order dl{grid-template-columns:1fr}.order dt{margin-top:8px}}
 </style>
@@ -59,7 +64,16 @@
   </div>
 
   <p style="color:var(--gray);font-size:14px">If water is moving right now, do not wait on the callback — call.</p>
-  <p style="margin-top:20px"><a href="/">← Back to North Fork Plumbing Co.</a></p>
+
+  <div class="ty-card ty-save">
+    <div><b>Save our number for next time</b><span>Plumbing never breaks at a good hour. One tap and we’re in your contacts.</span></div>
+    <a class="btn btn-line" href="/north-fork-plumbing.vcf" download>Save contact</a>
+  </div>
+  <div class="ty-card ty-plan" id="tyPlan">
+    <div><b>Want this to be the last surprise?</b><span>Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs — $29/mo or $279/yr.</span></div>
+    <a class="btn btn-green" href="/plans.html">See the plan</a>
+  </div>
+  <nav class="ty-links" aria-label="More from North Fork"><a href="/">Home</a><a href="/services.html">Services</a><a href="/plans.html">Home Team Plan</a><a href="/about.html">About &amp; Contact</a></nav>
 </main>
 <script src="scenes.js" defer></script>
 <script>
@@ -79,6 +93,12 @@
       window.EEScenes.play(host, key);
     });
   }
+})();
+(function () {
+  var plan = new URLSearchParams(location.search).get('plan');
+  if (!plan) return;
+  var c = document.getElementById('tyPlan');
+  c.innerHTML = '<div><b>Welcome to the Home Team</b><span>Thanks for joining. We’ll call to schedule your first visit around the season.</span></div>';
 })();
 (function () {
   var o;

@@ -146,3 +146,7 @@ reviews exist yet, no Google review link exists in the repo, so none is linked. 
 uses only the locked Home Team tier from PRICEBOOK.md; visit timing is shown as "typical,
 scheduled with you" and cancellation terms are deferred to the owner. No license numbers
 shown (none issued in repo). Shipped as a PR + deploy preview, not merged.
+
+## 2026-10-21 — Final polish (nf-final-polish)
+
+Audit of the live multi-page site. Added a next-steps band on every page (Book / Home Team Plan / Save our number), a downloadable contact card (`north-fork-plumbing.vcf`), a monthly Valley season tip on Home (linked to the plan schedule), plan nudges in Services panels only where published plan benefits apply, an honest review ask (email; no Google link until the owner provides one), thanks-page save-number + plan upsell (welcome note on `?plan=` returns) and page links (it was a dead end). Tap targets raised to 44px. The mobile floating chat bubble covered in-page Call buttons, so chat moved into the tab bar More sheet. No prices, book.js or capacity changes.
