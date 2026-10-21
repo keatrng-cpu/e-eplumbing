@@ -15,7 +15,7 @@
   var cur = null, fill = null, fillP = null;
   var EMERGENCY = "Emergency — now", PLANNED = "This week";
   /* Jobs that need fixing NOW: active leak, burst, freeze/no water, sewage backup. */
-  var URGENT = { "Emergency repair": [0, 1, 2], "Frozen or burst pipe": [0, 1, 2], "Drain / sewer": [1] };
+  var URGENT = { "Emergency repair": [0, 1, 2], "Frozen or burst pipe": [0, 1, 2], "Drain / sewer": [1], "Sump pump / flooding": [0, 1, 2] };
   function isUrgent(svc, i) { return (URGENT[svc] || []).indexOf(i) !== -1; }
   var TOWNS = ["Grand Forks", "East Grand Forks", "Fargo", "West Fargo", "Grafton", "Devils Lake", "Wahpeton", "Hillsboro", "Mayville", "Larimore", "Casselton", "Moorhead", "Crookston", "Thief River Falls", "Detroit Lakes", "Ada", "Warren", "Fertile", "Breckenridge", "Dilworth"];
   var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
