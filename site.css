@@ -330,6 +330,7 @@ section.sec-tight{padding:48px 0}
 nav.links a[aria-current="page"]{color:#8FD6AC;box-shadow:inset 0 -2px 0 #4CC97E}
 .hdr-call{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--kelly-deep);font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.6px;text-transform:uppercase;padding:8px 14px;border-radius:999px}
 .hdr-call svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+.hdr-call{min-height:44px;box-sizing:border-box} /* 44px tap target */
 /* home */
 .hero-home .wrap{grid-template-columns:1.1fr .9fr;align-items:end;padding:60px 24px 56px}
 .hero-home .hero-stage{margin:0}
