@@ -150,3 +150,7 @@ shown (none issued in repo). Shipped as a PR + deploy preview, not merged.
 ## 2026-10-21 — Final polish (nf-final-polish)
 
 Audit of the live multi-page site. Added a next-steps band on every page (Book / Home Team Plan / Save our number), a downloadable contact card (`north-fork-plumbing.vcf`), a monthly Valley season tip on Home (linked to the plan schedule), plan nudges in Services panels only where published plan benefits apply, an honest review ask (email; no Google link until the owner provides one), thanks-page save-number + plan upsell (welcome note on `?plan=` returns) and page links (it was a dead end). Tap targets raised to 44px. The mobile floating chat bubble covered in-page Call buttons, so chat moved into the tab bar More sheet. No prices, book.js or capacity changes.
+
+## 2026-10-21 — Scenes loop (nf-loop)
+
+`scenes.js` playKF loops by default (opt.loop:false plays once): hold the end frame 1.5s, crossfade (260ms) from the end frame back to frame 1. The rAF loop pauses while the host is offscreen (IntersectionObserver) or the tab is hidden, and resumes on the same timeline. cancel()/next play() tears down rAF, observer, listener and fade layer. Reduced motion: static end frame, no loop. The play() promise still resolves after the first pass.
