@@ -6,18 +6,24 @@
   directory = "netlify/functions"
 
 [[redirects]]
+  from = "/book.html"
+  to = "/services.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/home"
   to = "/"
   status = 301
 
 [[redirects]]
   from = "/book"
-  to = "/book.html"
+  to = "/services.html"
   status = 301
 
 [[redirects]]
   from = "/get-a-price"
-  to = "/book.html"
+  to = "/services.html"
   status = 301
 
 [[redirects]]

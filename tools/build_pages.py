@@ -17,12 +17,13 @@ ICONS = {
  "services": '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4z"/>',
  "book": '<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/><path d="m9 15 2 2 4-4"/>',
  "plans": '<path d="M12 3.5 19 6v5.5c0 4.3-3 7.6-7 9-4-1.4-7-4.7-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+ "star": '<path d="m12 3.8 2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.6-5 2.6.9-5.6-4-3.9 5.6-.8z"/>',
  "more": '<circle cx="5.5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18.5" cy="12" r="1.6"/>',
  "phone": '<path d="M6.6 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.1 6.1l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/>',
 }
 def icon(k): return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + ICONS[k] + '</svg>'
 
-NAV = [("/", "Home", "home"), ("/services.html", "Services", "services"), ("/book.html", "Book", "book"),
+NAV = [("/", "Home", "home"), ("/services.html", "Services &amp; Book", "services"),
        ("/plans.html", "Plans", "plans"), ("/reviews.html", "Reviews", None), ("/about.html", "About &amp; Contact", None)]
 
 def head(title, desc, path, extra=""):
@@ -69,27 +70,27 @@ def chrome_top(active):
 <header class="site" id="siteHeader"><div class="wrap nav">
   <a class="brand" href="/"><img src="badge.svg" alt=""><span class="name">North Fork <span>Plumbing Co.</span></span></a>
   <nav class="links" id="navLinks" aria-label="Primary">{links}</nav>
-  <a class="btn btn-green nav-book" href="/book.html">Book</a>
+  <a class="btn btn-green nav-book" href="/services.html">Book</a>
   <a class="hdr-call" href="tel:+12187792553" aria-label="Call (218) 779-2553">{icon("phone")}<span>Call</span></a>
 </div></header>
 '''
 
 def chrome_bottom(active, scripts):
     tabs = ""
-    for h, t, k in NAV[:4]:
+    for h, t, k in [("/", "Home", "home"), ("/services.html", "Book", "book"), ("/plans.html", "Plans", "plans"), ("/reviews.html", "Reviews", "star")]:
         cur = ' aria-current="page"' if h == active else ""
         tabs += f'<a class="tab" href="{h}"{cur}>{icon(k)}<span>{t}</span></a>'
-    more_on = active in ("/reviews.html", "/about.html")
+    more_on = active in ("/about.html",)
     tabs += (f'<details class="tab-more"><summary class="tab"' + (' aria-current="page"' if more_on else "") +
              f'>{icon("more")}<span>More</span></summary><div class="tab-sheet" role="menu">'
-             '<a role="menuitem" href="/reviews.html">Reviews</a><a role="menuitem" href="/about.html">About &amp; Contact</a>'
+             '<a role="menuitem" href="/services.html">All services</a><a role="menuitem" href="/about.html">About &amp; Contact</a>'
              '<a role="menuitem" href="/about.html#area">Service area</a><a role="menuitem" href="/about.html#faq">FAQ</a>'
              '<button type="button" role="menuitem" class="sheet-chat">Chat with us</button>'
              '<a role="menuitem" class="sheet-call" href="tel:+12187792553">Call (218) 779-2553</a></div></details>')
     foot_links = "".join(f'<a href="{h}">{t}</a>' for h, t, _ in NAV)
     nxt = []
-    if active != "/book.html": nxt.append('<a class="ns-item" href="/book.html"><b>Got a problem now?</b><span>See your price and book →</span></a>')
-    if active != "/plans.html": nxt.append('<a class="ns-item" href="/plans.html"><b>Never think about it again</b><span>Home Team Plan, $29/mo →</span></a>')
+    if active != "/services.html": nxt.append('<a class="ns-item" href="/services.html"><b>Got a problem now?</b><span>Find your job, see the price, book →</span></a>')
+    if active != "/plans.html": nxt.append('<a class="ns-item" href="/plans.html"><b>We don’t just fix it — we prevent it</b><span>Home Team Plan, $29/mo →</span></a>')
     nxt.append('<a class="ns-item" href="/north-fork-plumbing.vcf" download><b>Save our number</b><span>Add (218) 779-2553 to contacts →</span></a>')
     band = '<aside class="next-steps" aria-label="Next steps"><div class="wrap">' + "".join(nxt[:3]) + '</div></aside>'
     return band + f'''
@@ -138,7 +139,7 @@ def from_price(svc):
     if any(o.get("diagnostic") for o in D["services"][svc]["options"]): return f"from ${D['diag']['low']} diagnostic"
     return "quoted on site"
 def book_link(svc, i=None):
-    return "/book.html?job=" + quote(svc) + ("" if i is None else f"&amp;opt={i}")
+    return "/services.html?job=" + quote(svc) + ("" if i is None else f"&amp;opt={i}")
 
 DESC = {
  "Emergency repair": "Burst lines, sewer backups, failed shut-offs. Call for active water — day, night, or blizzard.",
@@ -160,7 +161,7 @@ HOME_LD = '''<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Plumber","name":"North Fork Plumbing Co.","alternateName":"North Fork Plumbing","url":"https://plumbingmidwest.netlify.app/","image":"https://plumbingmidwest.netlify.app/og.svg","telephone":"+1-218-779-2553","email":"nateplumb97@icloud.com","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Grand Forks","addressRegion":"ND","addressCountry":"US"},"areaServed":["Greater Grand Forks ND","Grand Forks ND","Fargo ND","West Fargo ND","Grafton ND","Devils Lake ND","Wahpeton ND","Hillsboro ND","Mayville ND","Larimore ND","Casselton ND","East Grand Forks MN","Moorhead MN","Crookston MN","Thief River Falls MN","Detroit Lakes MN","Ada MN","Warren MN","Fertile MN","Breckenridge MN","Dilworth MN"],"openingHours":"Mo-Su 00:00-24:00"}
 </script>
 <script>/* Old one-page links (/#book, /#plan …) moved to their own pages. */
-(function(){var m={book:"/book.html",services:"/services.html",plan:"/plans.html",season:"/plans.html#season",reviews:"/reviews.html",why:"/about.html#why",how:"/about.html#how",area:"/about.html#area",faq:"/about.html#faq",contact:"/about.html#contact",truck:"/book.html#truck",top:null};var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>
+(function(){var m={book:"/services.html",services:"/services.html",plan:"/plans.html",season:"/plans.html#season",reviews:"/reviews.html",why:"/about.html#why",how:"/about.html#how",area:"/about.html#area",faq:"/about.html#faq",contact:"/about.html#contact",truck:"/services.html",top:null};var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>
 '''
 top4 = ORDER[:4]
 home_cards = "".join(
@@ -177,7 +178,7 @@ home = f'''<div class="hero hero-home"><div class="wrap">
       <li><b>ND + MN</b> one crew, both sides of the river</li>
     </ul>
     <div class="ctas ctas-big">
-      <a class="btn btn-green btn-xl" href="/book.html">Book &amp; see your price</a>
+      <a class="btn btn-green btn-xl" href="/services.html">Book &amp; see your price</a>
       <a class="btn btn-ghost btn-xl" href="tel:+12187792553">Call (218) 779-2553</a>
     </div>
   </div>
@@ -190,8 +191,8 @@ home = f'''<div class="hero hero-home"><div class="wrap">
   <p class="more-link"><a href="/services.html">All services and starting prices →</a></p>
 </div></section>
 <div class="plan plan-teaser"><div class="wrap">
-  <div><h2>Home Team Plan</h2>
-    <p>Annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs.</p>
+  <div><h2>We don’t just fix it — we prevent it.</h2>
+    <p>The Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs (up to $120).</p>
     <span class="price">$29/mo · $279/yr</span>
   </div>
   <div class="plan-actions"><a class="btn btn-green" href="/plans.html">See what’s included</a></div>
@@ -212,44 +213,52 @@ for s in ORDER:
     cats += (f'<details class="svc-cat" id="{quote(s.split(" ")[0].lower())}">'
              f'<summary><span class="sc-h"><b>{e(g["label"])}</b>' + (f'<span class="tag">{TAG[s]}</span>' if s in TAG else "") +
              f'<small>{e(g["hint"])}</small></span><span class="sc-from">{from_price(s)}</span></summary>'
-             f'<div class="sc-body"><p>{e(DESC[s])}</p><ul class="opt-list">{rows}</ul>'
-             f'<a class="btn btn-line btn-sm" href="{book_link(s)}">Book {e(g["label"].lower())} →</a></div></details>')
-services = f'''<section class="page-head"><div class="wrap">
-  <div class="eyebrow">What we do</div><h1>Services &amp; starting prices</h1>
-  <p>Tap what’s going on, then tap a job to see what it means, what we do, and its starting price. Flat-rate before we start; after-hours is 1.5× the shop book and still quoted first. Active water? Call {TEL}.</p>
+             f'<div class="sc-body"><p>{e(DESC[s])}</p><p class="sc-pick">Tap a job to see the price and book it:</p><ul class="opt-list">{rows}</ul></div></details>')
+services = f'''<a class="em-strip" href="tel:+12187792553"><span class="em-dot" aria-hidden="true"></span><b>Water emergency?</b> <span>Call now — (218) 779-2553</span></a>
+<section class="page-head"><div class="wrap">
+  <div class="eyebrow">Services &amp; booking</div><h1>Find your job. See the price. Book it.</h1>
+  <p>Tap what’s going on, then the job that fits. You’ll see what it means, what we do and the starting price — and book it right there. Flat-rate before we start.</p>
 </div></section>
 <section class="sec-tight"><div class="wrap svc-cats">{cats}
-  <div class="opt-detail" id="optDetail" role="region" hidden><div class="od-scene scene"></div><div class="od-body"></div></div>
+  <div class="opt-detail" id="optDetail" role="region" hidden><div class="od-scene scene"></div><div class="od-body"></div>
+  <form class="bf" id="bookForm" name="service-request" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate hidden aria-label="Book this job">
+    <input type="hidden" name="form-name" value="service-request">
+    <input type="hidden" name="notify" value="nateplumb97@icloud.com">
+    <input type="hidden" name="service"><input type="hidden" name="scope"><input type="hidden" name="optionIndex">
+    <input type="hidden" name="urgency"><input type="hidden" name="estimate"><input type="hidden" name="day"><input type="hidden" name="window">
+    <input type="hidden" name="ref"><input type="hidden" name="town"><input type="hidden" name="zip">
+    <p class="bf-hp" hidden><label>Don’t fill this <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <div class="bf-head"><span class="bf-job"></span><span class="bf-price" aria-live="polite"></span></div>
+    <div class="bf-grid">
+      <label class="bf-f"><span>Name</span><input name="name" autocomplete="name" required aria-describedby="e-name"><small class="bf-err" id="e-name" data-err="name" aria-live="polite"></small></label>
+      <label class="bf-f"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="218-555-0100" aria-describedby="e-phone"><small class="bf-err" id="e-phone" data-err="phone" aria-live="polite"></small></label>
+      <label class="bf-f bf-wide"><span>Service address</span><input name="street" autocomplete="street-address" required placeholder="1420 Demers Ave, Grand Forks 58201" aria-describedby="e-street"><small class="bf-err" id="e-street" data-err="street" aria-live="polite"></small></label>
+      <label class="bf-f bf-wide"><span>Email <em>(optional)</em></span><input name="email" type="email" autocomplete="email" aria-describedby="e-email"><small class="bf-err" id="e-email" data-err="email" aria-live="polite"></small></label>
+    </div>
+    <div class="bf-when"><span class="bf-lab" id="bfWhen">Preferred date</span><div class="bf-days" role="radiogroup" aria-labelledby="bfWhen"></div></div>
+    <p class="bf-plan">Members save 10% on repairs, up to $120 — <a href="/plans.html">see the Home Team Plan</a>.</p>
+    <button type="submit" class="btn btn-green bf-submit">Book this job</button>
+    <p class="bf-msg" role="alert"></p>
+    <p class="bf-fine">We call to confirm the time and give a flat-rate price before any work. Nothing is charged online.</p>
+  </form>
+  </div>
   <p class="fine">Starting estimates from our pricebook. Diagnostic (${D["diag"]["low"]}–${D["diag"]["high"]}) is credited toward the repair if you approve the work.</p>
 </div></section>
 '''
 page("services.html", "/services.html", "Plumbing Services & Starting Prices | North Fork Plumbing Co.",
      "Every North Fork Plumbing service with plain-language descriptions and flat-rate starting prices: emergency leaks, drains and sewer, water heaters, sump pumps, frozen pipes, softeners, fixtures, remodels and commercial.",
-     services, '<script src="pricebook.js"></script>\n<script src="tips.js" defer></script>\n<script src="jobinfo.js" defer></script>\n<script src="services.js" defer></script>\n')
+     services, '<script src="pricebook.js"></script>\n<script src="schedule.js"></script>\n<script src="tips.js" defer></script>\n<script src="jobinfo.js" defer></script>\n<script src="services.js" defer></script>\n')
 
-# ------------------------------------------------------------------ Book
-book = f'''<div class="hero hero-book"><div class="wrap">
-  <div>
-    <h1 class="book-h1">Get your price &amp; book</h1>
-    <p class="lead lead-short">Pick the job, see the flat-rate range, hold a day. Water moving? Call {TEL.replace("<a ", '<a class="lead-call" ')}.</p>
-    <div class="hero-stage" id="heroLane" aria-hidden="true"><noscript><img src="assets/hero-still.svg" alt="" width="1000" height="552"></noscript></div>
-    <div class="scene-left" id="sceneLeft" hidden>
-      <div class="sl-stage"><div class="sl-layer scene"></div><div class="sl-layer scene"></div></div>
-      <div class="sl-tips" id="sceneTips" aria-live="polite"></div>
-    </div>
-{P("_emcard.part")}  </div>
-{P("_form.part")}</div></div>
-<section id="truck" class="truck-board"><div class="wrap">
-  <div class="sec-head"><div class="eyebrow">On the truck</div>
-    <h2>Jobs this browser has booked</h2>
-    <p>This board lives on your device so a name and phone never sit on a public calendar.</p>
-  </div>
-  <div id="truckList"></div>
-</div></section>
-'''
-page("book.html", "/book.html", "Book a Plumber & See Your Price | North Fork Plumbing Co.",
-     "Pick your plumbing job, see the flat-rate starting price, and hold a day with North Fork Plumbing Co. in Greater Grand Forks and the Red River Valley. Emergencies: call (218) 779-2553.",
-     book, '<script src="pricebook.js"></script>\n<script src="schedule.js"></script>\n<script src="motion.js" defer></script>\n<script src="tips.js" defer></script>\n<script src="app.js" defer></script>\n')
+# ------------------------------------------------------------------ Book (moved)
+# Booking lives on services.html now. Netlify 301s /book.html -> /services.html (query kept);
+# this page is the fallback for anything that still serves the file.
+open(os.path.join(R, "book.html"), "w").write('''<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Book a plumber | North Fork Plumbing Co.</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="https://plumbingmidwest.netlify.app/services.html">
+<script>location.replace("/services.html" + location.search + location.hash);</script>
+<meta http-equiv="refresh" content="0; url=/services.html"></head>
+<body><p>Booking moved to <a href="/services.html">Services</a>. Emergencies: <a href="tel:+12187792553">(218) 779-2553</a>.</p></body></html>
+''')
 
 # ------------------------------------------------------------------ Reviews
 reviews = f'''<section class="page-head"><div class="wrap">
@@ -286,7 +295,7 @@ page("reviews.html", "/reviews.html", "Reviews | North Fork Plumbing Co.",
 
 # ------------------------------------------------------------------ Plans
 plans = f'''<section class="page-head page-head-plan"><div class="wrap">
-  <div class="eyebrow">Maintenance membership</div><h1>Home Team Plan</h1>
+  <div class="eyebrow">Home Team Plan · maintenance membership</div><h1>We don’t just fix it — we prevent it.</h1>
   <p>One plan, built around the Valley’s freeze and thaw. We keep the heater flushed, the sump tested before melt, and you at the front of the line.</p>
   <div class="plan-price"><b>$29<small>/mo</small></b><span>or <b>$279/yr</b> paid yearly (save $69)</span></div>
   <div class="plan-actions plan-actions-row">
@@ -303,11 +312,11 @@ plans = f'''<section class="page-head page-head-plan"><div class="wrap">
       <li><b>Water-heater flush</b> — Valley hard water leaves scale; a flush keeps the tank working</li>
       <li><b>Pre-melt sump test</b> — pump, float and check valve tested before the Red River rises</li>
       <li><b>Priority scheduling</b> — members go to the front of the line</li>
-      <li><b>10% off repairs</b> — on flat-rate repair pricing</li>
+      <li><b>10% off repairs</b> — on flat-rate repair pricing, up to $120 per repair</li>
     </ul></div>
   <div class="cardc reveal"><h2 class="h3">Member perks at a glance</h2>
     <p><b>Priority</b> when the phone is ringing off the hook in a cold snap or melt week.</p>
-    <p><b>10% off</b> every repair, always quoted flat-rate first.</p>
+    <p><b>10% off</b> every repair (up to $120), always quoted flat-rate first.</p>
     <p><b>One crew</b> that already knows your house, on both sides of the river.</p></div>
 </div></section>
 <section id="season" class="sec-tight sec-alt"><div class="wrap">
@@ -315,7 +324,7 @@ plans = f'''<section class="page-head page-head-plan"><div class="wrap">
     <p>We book your visits with you around the Grand Forks seasons. Typical timing:</p></div>
   <div class="season-grid">
     <article class="szn" data-months="9,10,11"><div class="when">Fall · before freeze-up</div><h3>Inspection + heater flush</h3><p>Check exposed runs, hose bibs and shut-offs, and flush scale out of the heater before the minus-thirty mornings.</p></article>
-    <article class="szn" data-months="11,12,1,2,3"><div class="when">Nov – Mar · freeze watch</div><h3>Priority when it freezes</h3><p>No water after a cold snap? Members go to the front of the line, with 10% off the repair.</p></article>
+    <article class="szn" data-months="11,12,1,2,3"><div class="when">Nov – Mar · freeze watch</div><h3>Priority when it freezes</h3><p>No water after a cold snap? Members go to the front of the line, with 10% off the repair (up to $120).</p></article>
     <article class="szn" data-months="3,4"><div class="when">Mar – Apr · before the melt</div><h3>Pre-melt sump test</h3><p>Pump, float and check valve tested with a bucket before the Red River writes your weekend.</p></article>
   </div>
 </div></section>
@@ -323,13 +332,13 @@ plans = f'''<section class="page-head page-head-plan"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Plan FAQ</div><h2>Questions about the plan</h2></div>
   <details><summary>How much is it?</summary><p>$29 a month, or $279 a year paid up front (that saves $69).</p></details>
   <details><summary>When do the visits happen?</summary><p>We schedule them with you — typically the inspection and heater flush in the fall before freeze-up, and the sump test in early spring before the melt.</p></details>
-  <details><summary>Does the 10% apply to emergencies?</summary><p>The 10% applies to repairs, and every repair is quoted flat-rate before work starts. Ask us about your specific job.</p></details>
+  <details><summary>Does the 10% apply to emergencies?</summary><p>The 10% (up to $120 per repair) applies to repairs, and every repair is quoted flat-rate before work starts. Ask us about your specific job.</p></details>
   <details><summary>Can I cancel?</summary><p>Call or email us and we’ll walk you through it — plan terms are confirmed when you sign up.</p></details>
   <details><summary>How do I sign up?</summary><p>Use the Join buttons above for secure online checkout. If online signup isn’t available yet, the button tells you, and we set it up over the phone at (218) 779-2553.</p></details>
 </div></section>
 '''
 page("plans.html", "/plans.html", "Home Team Plan — Plumbing Maintenance Membership | North Fork Plumbing Co.",
-     "North Fork Plumbing’s Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs for $29/mo or $279/yr in the Grand Forks area.",
+     "North Fork Plumbing’s Home Team Plan: annual inspection, water-heater flush, pre-melt sump test, priority scheduling and 10% off repairs (up to $120) for $29/mo or $279/yr in the Grand Forks area.",
      plans, '<script src="plan.js" defer></script>\n')
 
 # ------------------------------------------------------------------ About

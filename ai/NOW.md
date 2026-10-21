@@ -9,6 +9,15 @@ Win plumbing jobs across Eastern ND + Western MN with an order flow detailed eno
 that the plumber can load the truck and drive without a diagnostic phone call.
 
 ## In flight
+- `nf-service-book` (PR, awaiting Keaton's approval; NOT merged): booking moved onto
+  services.html. Each job's detail panel has "Book this job" → inline form (name,
+  address, phone, optional email, compact day chips from schedule.js). Posts book.js →
+  Netlify form `service-request` (the form now lives in services.html) → thanks.html.
+  Urgent jobs (`URGENT` in services.js: Emergency repair 0–2, Frozen 0–2, Drain main line)
+  lead with Call + shutoff tips and offer "ASAP / today" = urgency "Emergency — now".
+  /book.html 301s (force) to /services.html keeping ?job=&opt=; book.html is a JS forwarder.
+  app.js is no longer loaded by any page but tools/svcdata.js still reads its picker copy.
+  Thanks page plays the looping "thanks" scene (scenes/thanks.js, existing other-1/2/6 frames).
 - `nf-pages` (PR, NOT merged; deploy preview for Keaton's review): site split into
   pages — `/` (short landing), `/services.html`, `/book.html` (booking ticket, left
   scene, tips, truck board), `/plans.html`, `/reviews.html`, `/about.html`. Pages are
@@ -39,6 +48,7 @@ that the plumber can load the truck and drive without a diagnostic phone call.
   Deep link `/book.html?job=<service>&opt=<index>` preselects a job. Old `/#book`-style
   links are forwarded by a script on `/`; path aliases (`/book`, `/plan`, `/contact`…) are
   301s in `netlify.toml`.
+- Member discount: 10% off repairs, capped at $120 per repair (owner decision 2026-10-21).
 - Home Team Plan price ($29/mo · $279/yr) appears in `PRICEBOOK.md`, `index.html`
   teaser and `plans.html` (via the builder) — change all together.
 - **Scene mapping** = `EEScenes.OPTION_SCENES` in `scenes.js`, keyed by pricebook
