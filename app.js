@@ -44,7 +44,7 @@
     "Fixture install": { label: "Toilet, faucet, shower, or disposal", hint: "Repair or install a kitchen or bathroom fixture" },
     "Remodel / rough-in": { label: "New bathroom, kitchen, or remodel", hint: "Planning, opening walls, or adding new plumbing" },
     Commercial: { label: "Business or commercial plumbing", hint: "A restaurant, shop, office, rental, or multi-unit building" },
-    "Something else": { label: "I'm not sure", hint: "Tell us what you see and we'll help" },
+    "Something else": { label: "I'm not sure", hint: "Low pressure, a smell, a noise — describe it and we'll sort it" },
   };
 
   // The pricebook keeps the precise scope names for the plumber; customers see
@@ -84,6 +84,53 @@
     "Basement bath, re-pipe, or fixture package": "Bathroom, kitchen, addition, or re-pipe",
     "Backflow test, service contract, or build-out": "Repair, backflow, or ongoing service",
     "Tell us what's going on below": "Tell us what you're seeing",
+    "Hidden leak — wall, ceiling, or water line (find it)": "Leak I can't see (wall, ceiling, line)",
+    "Sewer smell — find the source": "Sewer smell in the house",
+    "Tank is leaking — check it first": "Water heater is leaking",
+    "Low water pressure — find the cause": "Low water pressure",
+  };
+
+  // One-line "pick this if..." hint under each choice, for customers who
+  // don't know the trade name for what's wrong. Keyed by pricebook label.
+  var SCOPE_HINT = {
+    "Shut off / isolate a leak": "Dripping or spraying and you can't stop it",
+    "Burst pipe repair (accessible copper/PEX)": "A pipe split or popped and water is out",
+    "Freeze-thaw + minor repair": "No water after a cold snap, small leak",
+    "Not sure — just need a plumber": "We look, find it, then quote the fix",
+    "Hidden leak — wall, ceiling, or water line (find it)": "Stain, drip from above, or the meter spins with taps off",
+    "Clear a sink, tub, or toilet (auger)": "One drain slow or stopped",
+    "Main line clear (auger)": "Several drains slow, gurgling, or backing up",
+    "Hydro jet the main line": "Main keeps clogging (roots, grease)",
+    "Cleanout install": "No easy access point to clear the main",
+    "Camera inspection (main line)": "See why the main keeps backing up",
+    "Camera inspection (branch)": "See inside one problem drain",
+    "Sewer smell — find the source": "Rotten-egg or sewer odor indoors",
+    "Tank replace — standard (like-for-like)": "Old tank, no hot water, same spot",
+    "Tank replace — w/ code upgrades": "Needs expansion tank, pan, or venting",
+    "Flush / maintenance": "Popping or rumbling, yearly upkeep",
+    "T and P valve, anode, or element service": "Lukewarm, smelly, or a valve dripping",
+    "Tankless install": "Switch to on-demand hot water",
+    "Tank is leaking — check it first": "Water under or around the heater",
+    "Primary pump replace": "Pump hums, won't run, or runs nonstop",
+    "Battery backup add-on": "Keep pumping when the power's out",
+    "Check valve / discharge repair": "Water falls back into the pit, or a pipe leaks",
+    "Seasonal test + service": "Spring check before the thaw",
+    "Safe electric thaw + minor repair": "A line froze, little or no water",
+    "Burst pipe repair (accessible)": "Frozen pipe split, water escaping",
+    "Difficult access / slab approach": "Under the floor or behind finished walls",
+    "Softener service / resin check": "Hard water is back, salt not dropping",
+    "Softener install": "Spots, scale, or no softener yet",
+    "Iron filter / RO under-sink": "Orange stains, odor, or drinking water",
+    "Toilet replace (standard)": "Cracked, rocking, or old toilet",
+    "Faucet replace (kitchen/bath)": "Drips or leaks at the base",
+    "Shower install": "New or rebuilt shower",
+    "Bath / tub install": "New or replacement tub",
+    "Garbage disposal replace": "Hums, leaks, or won't spin",
+    "Shower valve cartridge": "Shower drips or won't get hot/cold",
+    "Basement bath, re-pipe, or fixture package": "Planning a project",
+    "Backflow test, service contract, or build-out": "Business, rental, or yearly test",
+    "Tell us what's going on below": "Not listed? Describe it, we'll call",
+    "Low water pressure — find the cause": "Weak flow at one tap or the whole house",
   };
 
   // Services that should default to "now" dispatch rather than the calendar.
@@ -265,7 +312,7 @@
     if (state.optionIndex == null) {
       box.innerHTML =
         '<p class="quote-kicker">' + esc(state.service) + "</p>" +
-        '<p class="quote-prompt">Choose the closest description for a starting estimate. Not sure? We can help on the call.</p>';
+        '<p class="quote-prompt">Pick the one that sounds closest. Not sure? The plumber confirms before any work.</p>';
       els.estimate.value = "";
       return;
     }
@@ -357,6 +404,12 @@
         });
       }, "scope-pill");
       b.setAttribute("aria-label", (SCOPE_GUIDE[o.label] || o.label) + ". Starting estimate details below.");
+      if (SCOPE_HINT[o.label]) {
+        var hint = document.createElement("span");
+        hint.className = "scope-hint";
+        hint.textContent = SCOPE_HINT[o.label];
+        b.appendChild(hint);
+      }
       var small = document.createElement("small");
       small.textContent = price;
       b.appendChild(small);
