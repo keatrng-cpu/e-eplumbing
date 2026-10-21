@@ -365,19 +365,60 @@
     return b;
   }
 
+  // Accordion: the open category's sub-options (and its inline scene) sit in
+  // one full-width panel inside the card grid, right after the tapped card's
+  // row. Only one category is open at a time.
+  var jobPanel = null;
+  function ensurePanel() {
+    if (jobPanel || !els.scopeRow) return jobPanel;
+    jobPanel = document.createElement("div");
+    jobPanel.className = "job-panel";
+    jobPanel.id = "jobPanel";
+    jobPanel.setAttribute("role", "region");
+    els.scopeRow.parentNode.insertBefore(jobPanel, els.scopeRow);
+    jobPanel.appendChild(els.scopeRow);
+    var sc = $("jobScene");
+    if (sc) jobPanel.appendChild(sc);
+    return jobPanel;
+  }
+  function placePanel() {
+    var panel = ensurePanel();
+    if (!panel || !els.servicePills) return;
+    var pills = Array.prototype.slice.call(els.servicePills.querySelectorAll(".service-pill"));
+    var openPill = null;
+    pills.forEach(function (b) { if (b.getAttribute("data-svc") === state.service) openPill = b; });
+    if (!openPill) { panel.hidden = true; if (panel.parentNode === els.servicePills) els.servicePills.appendChild(panel); return; }
+    if (panel.parentNode === els.servicePills) els.servicePills.removeChild(panel);
+    var top = openPill.offsetTop, last = openPill;
+    pills.forEach(function (b) { if (Math.abs(b.offsetTop - top) < 4) last = b; });
+    els.servicePills.insertBefore(panel, last.nextSibling);
+    panel.hidden = false;
+    panel.setAttribute("aria-label", (openPill.getAttribute("data-label") || "Job") + " options");
+  }
+
   function renderServicePills() {
     if (!els.servicePills) return;
+    var ae = document.activeElement;
+    var focusSvc = ae && ae.classList && ae.classList.contains("service-pill") ? ae.getAttribute("data-svc") : null;
+    ensurePanel();
+    if (jobPanel && jobPanel.parentNode === els.servicePills) els.servicePills.removeChild(jobPanel);
     els.servicePills.innerHTML = "";
     SERVICE_ORDER.forEach(function (svc) {
       var guide = SERVICE_GUIDE[svc] || { label: svc, hint: "Tell us what you need" };
       var b = chip(guide.label, state.service === svc, function () { pickService(svc); }, "service-pill");
       b.setAttribute("aria-label", guide.label + ". " + guide.hint);
+      b.setAttribute("aria-expanded", state.service === svc ? "true" : "false");
+      b.setAttribute("aria-controls", "jobPanel");
+      b.setAttribute("data-svc", svc);
+      b.setAttribute("data-label", guide.label);
       b.title = guide.hint;
       var small = document.createElement("small");
       small.textContent = guide.hint;
       b.appendChild(small);
       els.servicePills.appendChild(b);
+      if (focusSvc === svc) b.focus({ preventScroll: true });
     });
+    if (jobPanel) els.servicePills.appendChild(jobPanel);
   }
 
   function renderScopePills() {
@@ -822,10 +863,14 @@
     }).catch(function () { host.hidden = true; });
   }
 
+  var placeTimer = null;
+  window.addEventListener("resize", function () { clearTimeout(placeTimer); placeTimer = setTimeout(placePanel, 120); });
+
   function render() {
     renderScenePreview();
     renderServicePills();
     renderScopePills();
+    placePanel();
     renderRail();
     renderDays();
     renderWindows();

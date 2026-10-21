@@ -180,6 +180,11 @@ footer .bottom{border-top:1px solid #22302A;padding:18px 0;display:flex;justify-
 .job-pills .service-pill:focus-visible{outline:3px solid var(--kelly);outline-offset:2px}
 .job-pills .service-pill.on,.job-pills .service-pill[aria-pressed="true"]{background:var(--kelly);border-color:var(--kelly);color:#fff}
 .job-pills .service-pill.on small,.job-pills .service-pill[aria-pressed="true"] small{color:#fff}
+.job-panel{flex:1 1 100%;width:100%;order:0;border-left:3px solid var(--kelly);padding:2px 0 8px 12px;margin:2px 0 6px;animation:jpIn .18s ease-out}
+.job-panel[hidden]{display:none}
+.job-panel .scope-row{margin:6px 0 4px}
+@keyframes jpIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.job-panel{animation:none}}
 .job-scene{max-width:300px;margin:12px auto 0;border:1.5px solid var(--kelly);border-radius:12px}
 .job-scene[hidden]{display:none}
 .fu-details[hidden]{display:none}
