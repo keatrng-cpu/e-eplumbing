@@ -1,17 +1,17 @@
 # Graph Report - e-eplumbing  (2026-10-21)
 
 ## Corpus Check
-- 76 files · ~1,191,666 words
+- 76 files · ~1,192,609 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 12 file(s) not represented in the graph (top: .css 3, .part 3, (none) 2)
+- Unclassified: 13 file(s) not represented in the graph (top: .css 3, .part 3, (none) 2)
 
 ## Summary
-- 386 nodes · 479 edges · 68 communities (26 shown, 42 thin omitted)
+- 388 nodes · 483 edges · 68 communities (26 shown, 42 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 42 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8aeec8da`
+- Built from commit: `8a6726c3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -54,8 +54,8 @@
 6. `The 10 improvements` - 11 edges
 7. `HELIX desk run — Ellingson Plumbing` - 9 edges
 8. `E&E Message Templates` - 9 edges
-9. `sh()` - 8 edges
-10. `post_commit()` - 8 edges
+9. `DECISIONS — e-eplumbing (append-only)` - 9 edges
+10. `sh()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Known facts / constraints` --references--> `validate()`  [INFERRED]
@@ -171,12 +171,12 @@ Cohesion: 0.67
 Nodes (3): handler(), json(), PLANS
 
 ### Community 64 - "DECISIONS — e-eplumbing (append-only)"
-Cohesion: 0.25
-Nodes (7): 2026-10-13 — auto-memory protocol adopted, 2026-10-18 — Analytics, Home Team Plan checkout, Supabase calendar; run through Forge Command and HELIX, 2026-10-19 — North Fork production identity, 2026-10-21 — Job hints and diagnostic-priced additions, 2026-10-21 — Multi-page site (nf-pages), 2026-10-21 — Scenes wired to jobs; shorter ticket, DECISIONS — e-eplumbing (append-only)
+Cohesion: 0.22
+Nodes (8): 2026-10-13 — auto-memory protocol adopted, 2026-10-18 — Analytics, Home Team Plan checkout, Supabase calendar; run through Forge Command and HELIX, 2026-10-19 — North Fork production identity, 2026-10-21 — Final polish (nf-final-polish), 2026-10-21 — Job hints and diagnostic-priced additions, 2026-10-21 — Multi-page site (nf-pages), 2026-10-21 — Scenes wired to jobs; shorter ticket, DECISIONS — e-eplumbing (append-only)
 
 ### Community 66 - "services.js"
-Cohesion: 0.53
-Nodes (4): esc(), loadScenes(), money(), show()
+Cohesion: 0.52
+Nodes (5): esc(), loadScenes(), money(), nudge(), show()
 
 ## Knowledge Gaps
 - **42 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
@@ -185,13 +185,13 @@ Nodes (4): esc(), loadScenes(), money(), show()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `DECISIONS — e-eplumbing (append-only)` connect `DECISIONS — e-eplumbing (append-only)` to `app.js`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+  _High betweenness centrality (0.054) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `play()` (e.g. with `scenes.js` and `tick()`) actually correct?**
   _`play()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `E&E Plumbing — Business Launch Plan` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Why does `2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake` connect `app.js` to `DECISIONS — e-eplumbing (append-only)`?**
-  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.10931174089068826 - nodes in this community are weakly interconnected._
 - **Why does `renderQuote()` connect `app.js` to `The 10 improvements`?**
