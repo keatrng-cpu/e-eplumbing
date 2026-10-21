@@ -423,3 +423,25 @@ a.svc-link{display:block;color:var(--ink)} a.svc-link:hover{border-color:var(--k
 .od-btns{display:flex;flex-wrap:wrap;gap:8px}.od-btns .btn{font-size:15px;padding:10px 16px}
 .btn-sm{font-size:15px;padding:9px 16px}
 @media(max-width:720px){.opt-detail{grid-template-columns:1fr}.od-btns .btn{flex:1 1 100%}}
+/* final polish */
+.next-steps{background:var(--mist);border-top:1px solid var(--line)}
+.next-steps .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:22px 24px}
+.ns-item{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink);transition:border-color .15s,transform .15s}
+.ns-item:hover{border-color:var(--kelly);transform:translateY(-2px)}
+.ns-item b{display:block;font-family:var(--display);font-size:18px;text-transform:uppercase}.ns-item span{color:var(--kelly-text);font-weight:700;font-size:14px}
+.season-tip{display:flex;align-items:center;gap:12px;max-width:1132px;margin:-22px auto 0;position:relative;z-index:2;background:#fff;border:1px solid var(--line);border-left:5px solid var(--kelly);border-radius:12px;box-shadow:var(--shadow);padding:12px 16px;color:var(--ink);font-size:15px;line-height:1.4}
+.season-tip b{color:var(--kelly-text)} .st-ico{font-size:22px;color:var(--kelly);flex:none} .st-go{margin-left:auto;font-weight:800;color:var(--kelly-text)}
+@media(prefers-reduced-motion:no-preference){.st-ico{animation:stbob 3.2s ease-in-out infinite}@keyframes stbob{50%{transform:translateY(-2px) rotate(-8deg)}}}
+.od-plan{background:#E9F7EF;border:1px dashed var(--kelly);border-radius:10px;padding:8px 12px;font-size:14px!important}
+.od-plan a{font-weight:700;white-space:nowrap}
+/* tap targets >= 44px */
+.topbar a{display:inline-block;padding:12px 0;margin:-12px 0}
+footer .top a{display:block;padding:10px 0}
+.cardc a.big{display:inline-block;padding:9px 0}
+.day-chip{min-height:44px}
+.lead a.lead-call{display:inline-block;padding:10px 0;margin:-10px 0}
+@media(max-width:920px){.next-steps .wrap{grid-template-columns:1fr;gap:8px;padding:16px 20px}.ns-item{padding:12px 14px}.season-tip{margin:-14px 16px 0;font-size:14px}}
+/* mobile: the floating chat bubble covered in-page CTAs; chat now opens from More */
+@media(max-width:920px){.ee-chat-btn{display:none!important}.ee-chat-panel{bottom:calc(72px + env(safe-area-inset-bottom))!important}}
+.tab-sheet .sheet-chat{padding:12px 14px;border-radius:10px;font:700 16px var(--body);color:var(--ink);background:none;border:0;text-align:left;cursor:pointer}
+.tab-sheet .sheet-chat:hover{background:var(--mist)}

@@ -25,6 +25,13 @@
     if (o.diagnostic) return "$" + pb.DIAGNOSTIC_FEE.low + "–$" + pb.DIAGNOSTIC_FEE.high + " diagnostic";
     return "Quoted on site";
   }
+  /* Home Team Plan nudge, only where the plan's published benefits apply. */
+  var INCL = { "Water heater|2": "A water-heater flush is included in the Home Team Plan.", "Sump pump / flooding|3": "The pre-melt sump test is included in the Home Team Plan." };
+  var REPAIR = { "Emergency repair": 1, "Drain / sewer": 1, "Frozen or burst pipe": 1, "Sump pump / flooding": 1, "Water heater": 1, "Fixture install": 1, "Something else": 1 };
+  function nudge(svc, i) {
+    var t = INCL[svc + "|" + i] || (REPAIR[svc] ? "Home Team members get priority scheduling and 10% off repairs." : "");
+    return t ? '<p class="od-plan">' + esc(t) + ' <a href="/plans.html">See the plan ($29/mo) →</a></p>' : "";
+  }
   function close(focus) {
     if (!open) return;
     open.setAttribute("aria-expanded", "false");
@@ -48,6 +55,7 @@
       (info[1] ? "<p><b>What the plumber does:</b> " + esc(info[1]) + "</p>" : "") +
       (tips.length ? '<div class="od-tips" aria-live="polite"><p class="sl-tips-h">In the meantime</p><ul>' +
         tips.slice(0, 3).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div>" : "") +
+      nudge(svc, i) +
       '<div class="od-btns"><a class="btn btn-line" href="/book.html?' + q + '">Book this job</a>' +
       '<a class="btn btn-green" href="tel:+12187792553">Call (218) 779-2553</a></div>';
     panel.hidden = false;

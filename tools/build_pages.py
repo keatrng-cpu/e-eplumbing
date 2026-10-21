@@ -84,9 +84,15 @@ def chrome_bottom(active, scripts):
              f'>{icon("more")}<span>More</span></summary><div class="tab-sheet" role="menu">'
              '<a role="menuitem" href="/reviews.html">Reviews</a><a role="menuitem" href="/about.html">About &amp; Contact</a>'
              '<a role="menuitem" href="/about.html#area">Service area</a><a role="menuitem" href="/about.html#faq">FAQ</a>'
+             '<button type="button" role="menuitem" class="sheet-chat">Chat with us</button>'
              '<a role="menuitem" class="sheet-call" href="tel:+12187792553">Call (218) 779-2553</a></div></details>')
     foot_links = "".join(f'<a href="{h}">{t}</a>' for h, t, _ in NAV)
-    return f'''
+    nxt = []
+    if active != "/book.html": nxt.append('<a class="ns-item" href="/book.html"><b>Got a problem now?</b><span>See your price and book →</span></a>')
+    if active != "/plans.html": nxt.append('<a class="ns-item" href="/plans.html"><b>Never think about it again</b><span>Home Team Plan, $29/mo →</span></a>')
+    nxt.append('<a class="ns-item" href="/north-fork-plumbing.vcf" download><b>Save our number</b><span>Add (218) 779-2553 to contacts →</span></a>')
+    band = '<aside class="next-steps" aria-label="Next steps"><div class="wrap">' + "".join(nxt[:3]) + '</div></aside>'
+    return band + f'''
 <div class="trust"><div class="wrap">
   <div><b>ND + MN</b>Both sides of the river</div>
   <div><b>Flat-rate</b>Approved before work starts</div>
@@ -102,7 +108,7 @@ def chrome_bottom(active, scripts):
       <p>Hometown plumbing for Greater Grand Forks, Eastern North Dakota, and Western Minnesota. One name on the truck. One standard of work.</p>
     </div>
     <div><h4>Pages</h4>{foot_links}</div>
-    <div><h4>Reach us</h4><a href="tel:+12187792553">(218) 779-2553</a><a href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a><a href="/about.html#area">Service area</a><a href="/about.html#faq">FAQ</a></div>
+    <div><h4>Reach us</h4><a href="tel:+12187792553">(218) 779-2553</a><a href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a><a href="/north-fork-plumbing.vcf" download>Save our number</a><a href="/about.html#area">Service area</a><a href="/about.html#faq">FAQ</a></div>
   </div>
   <div class="bottom">
     <span>© <span id="yr">2026</span> North Fork Plumbing Co. All rights reserved.</span>
@@ -177,6 +183,7 @@ home = f'''<div class="hero hero-home"><div class="wrap">
   </div>
   <div class="hero-stage" id="heroLane" aria-hidden="true"><noscript><img src="assets/hero-still.svg" alt="" width="1000" height="552"></noscript></div>
 </div></div>
+<a class="season-tip" id="seasonTip" href="/plans.html#season"><span class="st-ico" aria-hidden="true">❄</span><span><b id="seasonLabel">Valley season</b> <span id="seasonCopy">Freeze, melt and hard water each have a season. Here’s what to do now.</span></span><span class="st-go" aria-hidden="true">→</span></a>
 <section class="sec-tight"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Most-booked</div><h2>Top services</h2></div>
   <div class="svc-grid svc-grid-4">{home_cards}</div>
@@ -252,7 +259,9 @@ reviews = f'''<section class="page-head"><div class="wrap">
 <section class="sec-tight"><div class="wrap two-col">
   <div class="cardc reveal"><h2 class="h3">Leave a review</h2>
     <p>After each completed job we text you a review link. Our Google Business profile is still being set up; until it’s live, reply to that text or email <a href="mailto:nateplumb97@icloud.com">nateplumb97@icloud.com</a> and tell us how we did — good or bad.</p>
-    <p>Want to check us out first? Call {TEL} and ask about recent jobs.</p></div>
+    <p>Want to check us out first? Call {TEL} and ask about recent jobs.</p>
+    <p><a class="btn btn-green btn-sm" href="mailto:nateplumb97@icloud.com?subject=How%20North%20Fork%20did&amp;body=Town%3A%20%0AJob%3A%20%0AHow%20did%20we%20do%3F%20">Had us out? Tell us how we did</a></p>
+    <p class="fine">We read every one. Honest beats five stars — if something wasn’t right, we want the chance to fix it.</p></div>
   <div class="standard reveal"><h2 class="h3">Our guarantee: the North Fork Standard</h2>
     <ul>
       <li>Flat-rate price from the pricebook, approved by you before work starts</li>
