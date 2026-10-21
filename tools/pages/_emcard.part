@@ -1,0 +1,10 @@
+    <aside class="emcard" aria-label="Emergency steps" style="margin-top:14px;box-shadow:none;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff">
+      <div class="head">Water where it shouldn’t be?</div>
+      <div class="bodyc">
+        <ol>
+          <li><span><b>Shut off the main valve</b> — usually by the meter, basement front wall.</span></li>
+          <li><span><b>Keep power away</b> from standing water.</span></li>
+          <li><span><b>Call us.</b> For active water, calling is faster than any form.</span></li>
+        </ol>
+      </div>
+    </aside>

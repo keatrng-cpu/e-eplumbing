@@ -10,6 +10,61 @@
   to = "/"
   status = 301
 
+[[redirects]]
+  from = "/book"
+  to = "/book.html"
+  status = 301
+
+[[redirects]]
+  from = "/get-a-price"
+  to = "/book.html"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/plan"
+  to = "/plans.html"
+  status = 301
+
+[[redirects]]
+  from = "/plans"
+  to = "/plans.html"
+  status = 301
+
+[[redirects]]
+  from = "/home-team-plan"
+  to = "/plans.html"
+  status = 301
+
+[[redirects]]
+  from = "/reviews"
+  to = "/reviews.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/about.html#contact"
+  status = 301
+
+[[redirects]]
+  from = "/faq"
+  to = "/about.html#faq"
+  status = 301
+
+[[redirects]]
+  from = "/service-area"
+  to = "/about.html#area"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
