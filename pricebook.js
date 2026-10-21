@@ -40,6 +40,7 @@
         { label: "Burst pipe repair (accessible copper/PEX)", low: 549, high: 995 },
         { label: "Freeze-thaw + minor repair", low: 379, high: 749 },
         { label: "Not sure — just need a plumber", diagnostic: true },
+        { label: "Hidden leak — wall, ceiling, or water line (find it)", diagnostic: true, note: "Diagnostic to find the leak; repair quoted before work" },
       ],
     },
     "Drain / sewer": {
@@ -51,6 +52,7 @@
         { label: "Cleanout install", low: 395, high: 745 },
         { label: "Camera inspection (main line)", low: 219, high: 349, note: "Video + findings" },
         { label: "Camera inspection (branch)", low: 189, high: 295 },
+        { label: "Sewer smell — find the source", diagnostic: true },
       ],
     },
     "Water heater": {
@@ -61,6 +63,7 @@
         { label: "Flush / maintenance", low: 149, high: 219 },
         { label: "T and P valve, anode, or element service", low: 219, high: 429 },
         { label: "Tankless install", custom: true },
+        { label: "Tank is leaking — check it first", diagnostic: true },
       ],
     },
     "Sump pump / flooding": {
@@ -109,7 +112,10 @@
     },
     "Something else": {
       slots: 2,
-      options: [{ label: "Tell us what's going on below", custom: true }],
+      options: [
+        { label: "Tell us what's going on below", custom: true },
+        { label: "Low water pressure — find the cause", diagnostic: true },
+      ],
     },
   };
 

@@ -104,14 +104,16 @@
     <p style="display:none"><label>Don’t fill this <input name="bot-field"></label></p>
     <p class="eyebrow">Get a price · pick a day</p>
     <h2>What’s going on?</h2>
-    <p class="lead-sm">You don't need to know the plumbing term. Pick the description that sounds closest — if you're not sure, we'll help.</p>
+    <p class="lead-sm">Pick the closest match. Not sure? Pick “I'm not sure.”</p>
 
     <div class="job-pills" id="jobPills"></div>
 
     <div class="scope-row" id="scopeRow" hidden>
-      <span class="scope-head">A little more detail (optional)</span>
+      <span class="scope-head">Closest match</span>
       <div class="scope-pills" id="scopePills"></div>
     </div>
+
+    <div class="scene scene-kf job-scene" id="jobScene" hidden aria-hidden="true"></div>
 
     <div class="quote-box" id="quoteBox" aria-live="polite">
       <p class="quote-prompt">Tap what’s going on above — your number appears here. No dash. No guessing.</p>
@@ -129,10 +131,13 @@
     <p class="day-note" id="dayNote"></p>
     <p class="now-note" id="nowNote" hidden>Dispatching now. Target: 60–120 minutes. Emergencies skip the calendar — or just call.</p>
 
-    <div class="followup" id="followupBox" hidden></div>
+    <details class="optional-fields fu-details" id="fuDetails" hidden>
+      <summary><span>Add job details<small>Optional — helps us bring the right parts</small></span></summary>
+      <div class="followup" id="followupBox" hidden></div>
+    </details>
 
     <fieldset class="fs">
-      <legend>Where are we going?</legend>
+      <legend>Address</legend>
       <div class="field"><label for="fstreet">Street address</label>
         <input id="fstreet" name="street" required autocomplete="street-address" placeholder="1420 Demers Ave"></div>
       <div class="row">
@@ -154,23 +159,13 @@
     </fieldset>
 
     <fieldset class="fs">
-      <legend>How do we reach you?</legend>
+      <legend>Contact</legend>
       <div class="row">
         <div class="field"><label for="fname">Name</label>
           <input id="fname" name="name" required autocomplete="name"></div>
         <div class="field"><label for="fphone">Phone</label>
           <input id="fphone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="218-555-0100"></div>
       </div>
-      <div class="row">
-        <div class="field"><label for="femail">Email <span class="opt">for photos &amp; invoice</span></label>
-          <input id="femail" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-        <div class="field"><label for="fcontact">Best way to reach you</label>
-          <select id="fcontact" name="contactPref">
-            <option>Call me</option><option>Text me</option><option>Either</option>
-          </select></div>
-      </div>
-      <label class="check"><input type="checkbox" name="smsConsent" value="Yes — OK to text">
-        <span>OK to text me arrival updates and the invoice. Message rates apply; reply STOP to opt out.</span></label>
       <div class="field canonical-service-fallback">
         <label for="fservice">What is happening?</label>
         <select id="fservice" name="service" required>
@@ -189,7 +184,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="fs">
+    <fieldset class="fs" id="urgencyFs">
       <legend>How urgent is it?</legend>
       <div class="urgency" role="radiogroup" aria-label="Urgency">
         <label><input type="radio" name="urgency" id="urgNow" value="Emergency — now"><span>Right now</span></label>
@@ -199,7 +194,20 @@
     </fieldset>
 
     <details class="optional-fields">
-      <summary><span>Property, access &amp; photos<small>Optional details that help us arrive prepared</small></span></summary>
+      <summary><span>More options<small>Optional — email, texting, access, photos</small></span></summary>
+      <fieldset class="fs">
+        <legend>Email &amp; texts</legend>
+      <div class="row">
+        <div class="field"><label for="femail">Email <span class="opt">for photos &amp; invoice</span></label>
+          <input id="femail" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="fcontact">Best way to reach you</label>
+          <select id="fcontact" name="contactPref">
+            <option>Call me</option><option>Text me</option><option>Either</option>
+          </select></div>
+      </div>
+      <label class="check"><input type="checkbox" name="smsConsent" value="Yes — OK to text">
+        <span>OK to text me arrival updates and the invoice. Message rates apply; reply STOP to opt out.</span></label>
+      </fieldset>
       <fieldset class="fs">
         <legend>Getting in the door</legend>
       <div class="row">

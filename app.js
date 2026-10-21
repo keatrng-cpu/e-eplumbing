@@ -44,7 +44,7 @@
     "Fixture install": { label: "Toilet, faucet, shower, or disposal", hint: "Repair or install a kitchen or bathroom fixture" },
     "Remodel / rough-in": { label: "New bathroom, kitchen, or remodel", hint: "Planning, opening walls, or adding new plumbing" },
     Commercial: { label: "Business or commercial plumbing", hint: "A restaurant, shop, office, rental, or multi-unit building" },
-    "Something else": { label: "I'm not sure", hint: "Tell us what you see and we'll help" },
+    "Something else": { label: "I'm not sure", hint: "Low pressure, a smell, a noise — describe it and we'll sort it" },
   };
 
   // The pricebook keeps the precise scope names for the plumber; customers see
@@ -84,6 +84,53 @@
     "Basement bath, re-pipe, or fixture package": "Bathroom, kitchen, addition, or re-pipe",
     "Backflow test, service contract, or build-out": "Repair, backflow, or ongoing service",
     "Tell us what's going on below": "Tell us what you're seeing",
+    "Hidden leak — wall, ceiling, or water line (find it)": "Leak I can't see (wall, ceiling, line)",
+    "Sewer smell — find the source": "Sewer smell in the house",
+    "Tank is leaking — check it first": "Water heater is leaking",
+    "Low water pressure — find the cause": "Low water pressure",
+  };
+
+  // One-line "pick this if..." hint under each choice, for customers who
+  // don't know the trade name for what's wrong. Keyed by pricebook label.
+  var SCOPE_HINT = {
+    "Shut off / isolate a leak": "Dripping or spraying and you can't stop it",
+    "Burst pipe repair (accessible copper/PEX)": "A pipe split or popped and water is out",
+    "Freeze-thaw + minor repair": "No water after a cold snap, small leak",
+    "Not sure — just need a plumber": "We look, find it, then quote the fix",
+    "Hidden leak — wall, ceiling, or water line (find it)": "Stain, drip from above, or the meter spins with taps off",
+    "Clear a sink, tub, or toilet (auger)": "One drain slow or stopped",
+    "Main line clear (auger)": "Several drains slow, gurgling, or backing up",
+    "Hydro jet the main line": "Main keeps clogging (roots, grease)",
+    "Cleanout install": "No easy access point to clear the main",
+    "Camera inspection (main line)": "See why the main keeps backing up",
+    "Camera inspection (branch)": "See inside one problem drain",
+    "Sewer smell — find the source": "Rotten-egg or sewer odor indoors",
+    "Tank replace — standard (like-for-like)": "Old tank, no hot water, same spot",
+    "Tank replace — w/ code upgrades": "Needs expansion tank, pan, or venting",
+    "Flush / maintenance": "Popping or rumbling, yearly upkeep",
+    "T and P valve, anode, or element service": "Lukewarm, smelly, or a valve dripping",
+    "Tankless install": "Switch to on-demand hot water",
+    "Tank is leaking — check it first": "Water under or around the heater",
+    "Primary pump replace": "Pump hums, won't run, or runs nonstop",
+    "Battery backup add-on": "Keep pumping when the power's out",
+    "Check valve / discharge repair": "Water falls back into the pit, or a pipe leaks",
+    "Seasonal test + service": "Spring check before the thaw",
+    "Safe electric thaw + minor repair": "A line froze, little or no water",
+    "Burst pipe repair (accessible)": "Frozen pipe split, water escaping",
+    "Difficult access / slab approach": "Under the floor or behind finished walls",
+    "Softener service / resin check": "Hard water is back, salt not dropping",
+    "Softener install": "Spots, scale, or no softener yet",
+    "Iron filter / RO under-sink": "Orange stains, odor, or drinking water",
+    "Toilet replace (standard)": "Cracked, rocking, or old toilet",
+    "Faucet replace (kitchen/bath)": "Drips or leaks at the base",
+    "Shower install": "New or rebuilt shower",
+    "Bath / tub install": "New or replacement tub",
+    "Garbage disposal replace": "Hums, leaks, or won't spin",
+    "Shower valve cartridge": "Shower drips or won't get hot/cold",
+    "Basement bath, re-pipe, or fixture package": "Planning a project",
+    "Backflow test, service contract, or build-out": "Business, rental, or yearly test",
+    "Tell us what's going on below": "Not listed? Describe it, we'll call",
+    "Low water pressure — find the cause": "Weak flow at one tap or the whole house",
   };
 
   // Services that should default to "now" dispatch rather than the calendar.
@@ -191,6 +238,14 @@
   var $ = function (id) { return document.getElementById(id); };
   var form = $("book");
   if (!form) return;
+  // validate() below gives inline, labelled errors. Without this, the browser's
+  // native check fires first on the visually hidden <select name="service">
+  // and blocks submit with a bubble the customer cannot see.
+  form.noValidate = true;
+  // The Now / Pick-a-day rail sets urgency (and "This week" and "Planning
+  // ahead" price the same), so the duplicate radio question is hidden when JS
+  // runs. The radios still submit; without JS the fieldset stays visible.
+  if ($("urgencyFs")) $("urgencyFs").hidden = true;
 
   var els = {
     servicePills: $("jobPills"),
@@ -257,7 +312,7 @@
     if (state.optionIndex == null) {
       box.innerHTML =
         '<p class="quote-kicker">' + esc(state.service) + "</p>" +
-        '<p class="quote-prompt">Choose the closest description for a starting estimate. Not sure? We can help on the call.</p>';
+        '<p class="quote-prompt">Pick the one that sounds closest. Not sure? The plumber confirms before any work.</p>';
       els.estimate.value = "";
       return;
     }
@@ -310,19 +365,60 @@
     return b;
   }
 
+  // Accordion: the open category's sub-options (and its inline scene) sit in
+  // one full-width panel inside the card grid, right after the tapped card's
+  // row. Only one category is open at a time.
+  var jobPanel = null;
+  function ensurePanel() {
+    if (jobPanel || !els.scopeRow) return jobPanel;
+    jobPanel = document.createElement("div");
+    jobPanel.className = "job-panel";
+    jobPanel.id = "jobPanel";
+    jobPanel.setAttribute("role", "region");
+    els.scopeRow.parentNode.insertBefore(jobPanel, els.scopeRow);
+    jobPanel.appendChild(els.scopeRow);
+    var sc = $("jobScene");
+    if (sc) jobPanel.appendChild(sc);
+    return jobPanel;
+  }
+  function placePanel() {
+    var panel = ensurePanel();
+    if (!panel || !els.servicePills) return;
+    var pills = Array.prototype.slice.call(els.servicePills.querySelectorAll(".service-pill"));
+    var openPill = null;
+    pills.forEach(function (b) { if (b.getAttribute("data-svc") === state.service) openPill = b; });
+    if (!openPill) { panel.hidden = true; if (panel.parentNode === els.servicePills) els.servicePills.appendChild(panel); return; }
+    if (panel.parentNode === els.servicePills) els.servicePills.removeChild(panel);
+    var top = openPill.offsetTop, last = openPill;
+    pills.forEach(function (b) { if (Math.abs(b.offsetTop - top) < 4) last = b; });
+    els.servicePills.insertBefore(panel, last.nextSibling);
+    panel.hidden = false;
+    panel.setAttribute("aria-label", (openPill.getAttribute("data-label") || "Job") + " options");
+  }
+
   function renderServicePills() {
     if (!els.servicePills) return;
+    var ae = document.activeElement;
+    var focusSvc = ae && ae.classList && ae.classList.contains("service-pill") ? ae.getAttribute("data-svc") : null;
+    ensurePanel();
+    if (jobPanel && jobPanel.parentNode === els.servicePills) els.servicePills.removeChild(jobPanel);
     els.servicePills.innerHTML = "";
     SERVICE_ORDER.forEach(function (svc) {
       var guide = SERVICE_GUIDE[svc] || { label: svc, hint: "Tell us what you need" };
       var b = chip(guide.label, state.service === svc, function () { pickService(svc); }, "service-pill");
       b.setAttribute("aria-label", guide.label + ". " + guide.hint);
+      b.setAttribute("aria-expanded", state.service === svc ? "true" : "false");
+      b.setAttribute("aria-controls", "jobPanel");
+      b.setAttribute("data-svc", svc);
+      b.setAttribute("data-label", guide.label);
       b.title = guide.hint;
       var small = document.createElement("small");
       small.textContent = guide.hint;
       b.appendChild(small);
       els.servicePills.appendChild(b);
+      if (focusSvc === svc) b.focus({ preventScroll: true });
     });
+    if (jobPanel) els.servicePills.appendChild(jobPanel);
   }
 
   function renderScopePills() {
@@ -349,6 +445,12 @@
         });
       }, "scope-pill");
       b.setAttribute("aria-label", (SCOPE_GUIDE[o.label] || o.label) + ". Starting estimate details below.");
+      if (SCOPE_HINT[o.label]) {
+        var hint = document.createElement("span");
+        hint.className = "scope-hint";
+        hint.textContent = SCOPE_HINT[o.label];
+        b.appendChild(hint);
+      }
       var small = document.createElement("small");
       small.textContent = price;
       b.appendChild(small);
@@ -410,7 +512,7 @@
     // or "full" language gives away the truck board.
     var days = sked.dayOptions(state.fill, need).filter(function (d) { return d.open; });
     els.dayGrid.innerHTML = "";
-    days.slice(0, 10).forEach(function (d) {
+    days.slice(0, 6).forEach(function (d) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "day-chip" + (state.day === d.day ? " on" : "");
@@ -449,6 +551,7 @@
   function renderFollowup() {
     var qs = (state.service && FOLLOWUP[state.service]) || [];
     els.followup.hidden = qs.length === 0;
+    if ($("fuDetails")) $("fuDetails").hidden = qs.length === 0;
     if (!qs.length) { els.details.value = ""; return; }
 
     // Only rebuild when the service changed, so typing isn't interrupted.
@@ -644,7 +747,10 @@
     var summary = {
       ref: els.fRef.value,
       service: state.service,
+      optionIndex: state.optionIndex == null ? 0 : state.optionIndex,
       scope: els.fScope.value,
+      job: SCOPE_GUIDE[els.fScope.value] || (SERVICE_GUIDE[state.service] || {}).label || state.service,
+      note: (function () { var o = options()[state.optionIndex == null ? 0 : state.optionIndex]; return (o && o.note) || ""; })(),
       estimate: els.estimate.value,
       rawDay: state.rail === "day" ? state.day : null,
       when: state.rail === "now" ? "Dispatch now" : (state.day ? sked.formatDay(state.day) : "First opening"),
@@ -727,9 +833,44 @@
     });
   }
 
+  // ------------------------------------------------- inline scene preview
+  // The job's confirmation scene, shown small as soon as a job is tapped.
+  // scenes.js and the scene file load only on that first tap (the homepage
+  // makes no scene requests before it). Never blocks the form; reduced motion
+  // gets the end frame only (handled inside scenes.js).
+  var sceneKey = null, scenesLoading = null;
+  function loadScenes() {
+    if (window.EEScenes) return Promise.resolve(window.EEScenes);
+    if (!scenesLoading) scenesLoading = new Promise(function (res, rej) {
+      var s = document.createElement("script");
+      s.src = "scenes.js"; s.async = true;
+      s.onload = function () { window.EEScenes ? res(window.EEScenes) : rej(); };
+      s.onerror = function () { scenesLoading = null; rej(); };
+      document.head.appendChild(s);
+    });
+    return scenesLoading;
+  }
+  function renderScenePreview() {
+    var host = $("jobScene");
+    if (!host || !state.service) return;
+    loadScenes().then(function (S) {
+      var key = S.resolve({ service: state.service, optionIndex: state.optionIndex == null ? 0 : state.optionIndex });
+      if (key === sceneKey) return;
+      sceneKey = key;
+      host.hidden = false;
+      host.setAttribute("data-scene", key);
+      S.play(host, key);
+    }).catch(function () { host.hidden = true; });
+  }
+
+  var placeTimer = null;
+  window.addEventListener("resize", function () { clearTimeout(placeTimer); placeTimer = setTimeout(placePanel, 120); });
+
   function render() {
+    renderScenePreview();
     renderServicePills();
     renderScopePills();
+    placePanel();
     renderRail();
     renderDays();
     renderWindows();
@@ -756,6 +897,12 @@
   });
 
   // The <select> is canonical and works without JS; keep state in step with it.
+  // With JS on it is visually hidden (the pills replace it), so keep it out of
+  // the tab order and the accessibility tree to avoid a duplicate question.
+  els.service.tabIndex = -1;
+  if (els.service.closest(".canonical-service-fallback")) {
+    els.service.closest(".canonical-service-fallback").setAttribute("aria-hidden", "true");
+  }
   els.service.addEventListener("change", function () {
     if (els.service.value !== state.service) pickService(els.service.value);
   });
@@ -783,12 +930,8 @@
   renderTruck();
   loadAvailability();
 
-  /* Dev-only preview: ?scene=<key> (or ?scene=<job id>) plays a confirmation scene without submitting
-     or calling the booking function. Nothing is written to the truck board. */
+  /* Dev-only preview: /?scene=<key> forwards to the thanks page, which plays
+     scenes. Nothing is booked or written to the truck board. */
   var devScene = new URLSearchParams(location.search).get("scene");
-  if (devScene) {
-    var j = JOBS.filter(function (x) { return x.id === devScene; })[0];
-    showConfirm(j ? { job: j.id, service: j.service, optionIndex: j.optionIndex } : { scene: devScene }, true);
-    if (confirmEl) confirmEl.scrollIntoView({ block: "center" });
-  }
+  if (devScene) location.replace("/thanks.html?scene=" + encodeURIComponent(devScene));
 })();

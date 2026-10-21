@@ -43,6 +43,8 @@ Sources used for the gauge: Grand Forks plumber-cost 2026 (call $70–$200, emer
 | DIAG-02 | Camera inspection (main line) | Video + findings | $219–$349 |
 | DIAG-03 | Camera inspection (branch) | | $189–$295 |
 
+DIAG-01 also prices these booking-picker jobs (diagnostic first, repair quoted on site before work; appended in `pricebook.js`, Oct 2026): hidden leak in a wall/ceiling/water line (Emergency repair), sewer smell (Drain / sewer), leaking water-heater tank (Water heater), low water pressure (Something else).
+
 ---
 
 ## Emergency / leaks
