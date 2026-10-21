@@ -199,25 +199,26 @@ cats = ""
 for s in ORDER:
     g = D["guide"][s]; opts = D["services"][s]["options"]
     rows = "".join(
-        f'<li><a href="{book_link(s, i)}"><span class="o-name">{e(D["scope"].get(o["label"], o["label"]))}</span>'
+        f'<li><button type="button" class="opt-btn" aria-expanded="false" aria-controls="optDetail" data-svc="{e(s)}" data-idx="{i}"><span class="o-name">{e(D["scope"].get(o["label"], o["label"]))}</span>'
         + (f'<span class="o-hint">{e(D["hint"][o["label"]])}</span>' if o["label"] in D["hint"] else "")
-        + f'<span class="o-price">{money(o)}</span></a></li>' for i, o in enumerate(opts))
+        + f'<span class="o-price">{money(o)}</span></button></li>' for i, o in enumerate(opts))
     cats += (f'<details class="svc-cat" id="{quote(s.split(" ")[0].lower())}">'
              f'<summary><span class="sc-h"><b>{e(g["label"])}</b>' + (f'<span class="tag">{TAG[s]}</span>' if s in TAG else "") +
              f'<small>{e(g["hint"])}</small></span><span class="sc-from">{from_price(s)}</span></summary>'
              f'<div class="sc-body"><p>{e(DESC[s])}</p><ul class="opt-list">{rows}</ul>'
-             f'<a class="btn btn-green" href="{book_link(s)}">Book {e(g["label"].lower())}</a></div></details>')
+             f'<a class="btn btn-line btn-sm" href="{book_link(s)}">Book {e(g["label"].lower())} →</a></div></details>')
 services = f'''<section class="page-head"><div class="wrap">
   <div class="eyebrow">What we do</div><h1>Services &amp; starting prices</h1>
-  <p>Tap what’s going on to see each job, its starting price, and book it. Flat-rate before we start; after-hours is 1.5× the shop book and still quoted first. Active water? Call {TEL}.</p>
+  <p>Tap what’s going on, then tap a job to see what it means, what we do, and its starting price. Flat-rate before we start; after-hours is 1.5× the shop book and still quoted first. Active water? Call {TEL}.</p>
 </div></section>
 <section class="sec-tight"><div class="wrap svc-cats">{cats}
+  <div class="opt-detail" id="optDetail" role="region" hidden><div class="od-scene scene"></div><div class="od-body"></div></div>
   <p class="fine">Starting estimates from our pricebook. Diagnostic (${D["diag"]["low"]}–${D["diag"]["high"]}) is credited toward the repair if you approve the work.</p>
 </div></section>
 '''
 page("services.html", "/services.html", "Plumbing Services & Starting Prices | North Fork Plumbing Co.",
      "Every North Fork Plumbing service with plain-language descriptions and flat-rate starting prices: emergency leaks, drains and sewer, water heaters, sump pumps, frozen pipes, softeners, fixtures, remodels and commercial.",
-     services)
+     services, '<script src="pricebook.js"></script>\n<script src="tips.js" defer></script>\n<script src="jobinfo.js" defer></script>\n<script src="services.js" defer></script>\n')
 
 # ------------------------------------------------------------------ Book
 book = f'''<div class="hero hero-book"><div class="wrap">
