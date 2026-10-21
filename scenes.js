@@ -129,7 +129,9 @@
   function playKF(host, d, opt, tok) {
     var N = d.frames.length, only = opt.frame != null ? (opt.frame === "mid" ? Math.floor(N * 0.42) : Math.min(N - 1, +opt.frame)) : rm() ? N - 1 : -1;
     /* still render (reduced motion or ?frame=): fetch only the frame shown */
-    var imgs = d.frames.map(function (f, i) { if (only >= 0 && i !== only) return null; var im = new Image(); im.decoding = "async"; im.src = BASE + f.src; return im; });
+    var dec = [];   /* dec[i]: frame i is fetched AND decoded (WebKit decodes lazily; a swap to an undecoded frame paints empty) */
+    var imgs = d.frames.map(function (f, i) { if (only >= 0 && i !== only) return null; var im = new Image(); im.decoding = "async"; im.src = BASE + f.src;
+      (im.decode ? im.decode() : new Promise(function (r, j) { im.onload = r; im.onerror = j; })).then(function () { dec[i] = 1; }, function () { dec[i] = 1; }); return im; });
     /* start as soon as the first frame shown is decoded; later frames keep loading and the timeline waits for any frame not yet in */
     var first = imgs[only >= 0 ? only : 0];
     function dropLoads() { imgs.forEach(function (im) { if (im && !im.complete) im.src = ""; }); }
@@ -144,12 +146,16 @@
       var svg = el("svg", { viewBox: "0 0 " + W + " " + H, preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": d.alt, style: "color:#0B0F0D" }, [
         el("defs", {}, [el("filter", { id: p + "b", x: "-2%", y: "-2%", width: "104%", height: "104%" }, [turb, el("feDisplacementMap", { "in": "SourceGraphic", scale: d.boil || 2.4 })])]),
         el("rect", { width: W, height: H, fill: "#F1F6F2" })]);
-      var stage = el("g", { "class": "kfs", filter: "url(#" + p + "b)" }), img = el("image", { width: W, height: H, preserveAspectRatio: "xMidYMid slice" }), ov = el("g");
-      stage.appendChild(img); svg.appendChild(stage); svg.appendChild(ov); host.insertBefore(svg, host.firstChild);
-      var last = -1;
+      var stage = el("g", { "class": "kfs", filter: "url(#" + p + "b)" }), img = el("image", { width: W, height: H, preserveAspectRatio: "xMidYMid slice" }), img2 = el("image", { width: W, height: H, preserveAspectRatio: "xMidYMid slice", style: "opacity:0" }), ov = el("g");
+      stage.appendChild(img2); stage.appendChild(img); svg.appendChild(stage); svg.appendChild(ov); host.insertBefore(svg, host.firstChild);
+      var last = -1, swapA = img, swapB = img2, swapTok = 0;
       function show(n, still) {
         if (n === last) return; last = n; var f = d.frames[n];
-        img.setAttribute("href", imgs[n].src);
+        /* double buffer: draw the new frame on the back image, raise it, and hide the old one only after the new one has painted */
+        var back = img === swapA ? swapB : swapA, front = img; img = back;
+        back.setAttribute("href", imgs[n].src); back.style.opacity = "1"; stage.appendChild(back);
+        var bt = ++swapTok, hide = function () { if (bt === swapTok) requestAnimationFrame(function () { requestAnimationFrame(function () { if (bt === swapTok) front.style.opacity = "0"; }); }); };
+        if (back.decode) back.decode().then(hide, hide); else hide();
         while (ov.firstChild) ov.removeChild(ov.firstChild);
         (f.o || []).forEach(function (o) { ov.appendChild(overlay(o, still)); });
         if (!still && f.tw && stage.animate) {         /* small eased tween into the key pose: nudge / squash / lean */
@@ -181,7 +187,7 @@
         function tick(now) {
           raf = 0;
           var e = Math.max(0, now - t0), n = 0; while (n < N - 1 && e >= ends[n]) n++;
-          if (n > last && imgs[n] && !(imgs[n].complete && imgs[n].naturalWidth)) { t0 += now - prev; prev = now; schedule(); return; }   /* hold until that frame arrives */
+          if (n > last && imgs[n] && !dec[n]) { t0 += now - prev; prev = now; schedule(); return; }   /* hold until that frame arrives */
           prev = now;
           var b = Math.floor(e * BOIL / 1000) % 3; if (b !== lb) { lb = b; turb.setAttribute("seed", b + 1); }
           show(n);

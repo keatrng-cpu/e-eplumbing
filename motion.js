@@ -17,20 +17,42 @@
   }
   function build() {
     var D = window.EEHeroData; if (!D) return;
-    var defs = "", k;
-    for (k in D.f) if (!reduce || k === "r") defs += '<g id="hm-' + k + '">' + D.f[k] + "</g>";   /* reduced motion: only the settled frame is fetched */
+    /* v7.3 flash fix: every frame is a live layer in the figure (not <defs>+<use>, which WebKit leaves unfetched/undecoded
+       until first shown, so the figure painted empty at the walk->set-down swap). All frame files are decoded before the
+       intro starts; a swap shows the new layer first and hides the old one a frame later, so the stage is never empty. */
+    var keys = reduce ? ["r"] : Object.keys(D.f), layers = "", k;
+    keys.forEach(function (k) { layers += '<g class="hm-f" data-k="' + k + '" style="opacity:0">' + D.f[k] + "</g>"; });
     var vb = narrow && narrow.matches ? "250 16 750 552" : D.vb;
-    stage.insertAdjacentHTML("beforeend", '<svg viewBox="' + vb + '" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><defs>' + defs +
+    stage.insertAdjacentHTML("beforeend", '<svg viewBox="' + vb + '" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><defs>' +
       '<mask id="hmMask" maskUnits="userSpaceOnUse" x="-80" y="-40" width="860" height="680"><path class="hm-scrib" d="' + D.scrib +
       '" fill="none" stroke="#fff" stroke-width="84" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></mask></defs>' +
-      D.stage + '<g class="hm-walker"><g class="hm-board" style="display:none">' + D.board + '</g><g class="hm-fig"><use href="#hm-wA"/></g></g></svg>');
-    var svg = stage.querySelector("svg"), wk = svg.querySelector(".hm-walker"), fig = svg.querySelector(".hm-fig"), use = fig.firstChild,
-        brd = svg.querySelector(".hm-board"), cur = "wA";
+      D.stage + '<g class="hm-walker"><g class="hm-board" style="display:none">' + D.board + '</g><g class="hm-fig">' + layers + '</g></g></svg>');
+    var svg = stage.querySelector("svg"), wk = svg.querySelector(".hm-walker"), fig = svg.querySelector(".hm-fig"),
+        brd = svg.querySelector(".hm-board"), cur = null, L = {}, hideT = 0;
+    Array.prototype.forEach.call(fig.children, function (g) { L[g.getAttribute("data-k")] = g; });
     if (narrow) narrow.addEventListener && narrow.addEventListener("change", function (e) { svg.setAttribute("viewBox", e.matches ? "250 16 750 552" : D.vb); });
-    function show(f) { if (f !== cur) { use.setAttribute("href", "#hm-" + f); cur = f; } }
+    /* decode every distinct frame file up front (HTMLImageElement.decode fills the same cache the SVG images read) */
+    var urls = {}; keys.forEach(function (k) { var m = /href="([^"]+)"/.exec(D.f[k]); if (m) urls[m[1]] = 1; });
+    var ready = Promise.all(Object.keys(urls).map(function (u) {
+      var im = new Image(); im.src = u;
+      return (im.decode ? im.decode() : new Promise(function (r) { im.onload = im.onerror = r; })).catch(function () {});
+    }));
+    function show(f, fade) {
+      if (f === cur || !L[f]) return;
+      var old = cur ? L[cur] : null, nu = L[f]; cur = f;
+      if (old && old !== nu) fig.appendChild(nu);               /* new layer on top */
+      nu.style.transition = fade ? "opacity " + fade + "ms ease" : "";
+      nu.style.opacity = "1";
+      if (old) {
+        clearTimeout(hideT);
+        var drop = function () { Array.prototype.forEach.call(fig.children, function (g) { if (g !== L[cur]) { g.style.transition = ""; g.style.opacity = "0"; } }); };
+        if (fade) hideT = setTimeout(drop, fade + 30);           /* old stays under the fade, removed after */
+        else requestAnimationFrame(function () { requestAnimationFrame(drop); });   /* hide the old one only after the new one has painted */
+      }
+    }
     function at(x) { wk.setAttribute("transform", "translate(" + x.toFixed(1) + " 0)"); }
     if (reduce) { at(D.xf); brd.style.display = ""; show("r"); return; }
-    at(D.x0); fig.setAttribute("mask", "url(#hmMask)");
+    at(D.x0); show("wA"); fig.setAttribute("mask", "url(#hmMask)");
     var state = 0, raf = 0;   /* 0 idle, 1 running, 2 settled */
     function play(seq, done) {
       cancelAnimationFrame(raf);
@@ -48,12 +70,13 @@
       }
       at(D.xf);
       if (t >= 3700) brd.style.display = "";
+      if (t >= 3700 && t < 4100) { show("s2", 220); return true; }   /* plank set-down: short crossfade s1 -> plank on floor */
       show(t < 3700 ? "s1" : t < 4100 ? "s2" : t < 4500 ? "r" : t < 4700 ? "t1" : t < 5300 ? "t2" : t < 5500 ? "t1" : "r");
       return t < 5600;
     }
     function tipAgain(t) { show(t < 200 ? "t1" : t < 800 ? "t2" : t < 1000 ? "t1" : "r"); return t < 1100; }
     function enter() {
-      if (state === 0) { state = 1; stage.classList.add("draw"); play(intro, function () { state = 2; }); }
+      if (state === 0) { state = 1; ready.then(function () { stage.classList.add("draw"); play(intro, function () { state = 2; }); }); }
       else if (state === 2) { state = 1; play(tipAgain, function () { state = 2; }); }
     }
     if ("IntersectionObserver" in window) {
