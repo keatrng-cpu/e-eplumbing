@@ -110,7 +110,7 @@ def chrome_bottom(active, scripts):
   </div>
 </div></footer>
 <nav class="tabbar" aria-label="Sections">{tabs}</nav>
-{P("_chat.html")}<a class="float-call" href="tel:+12187792553" aria-label="Call North Fork Plumbing Co. now">Call Now</a>
+{P("_chat.part")}<a class="float-call" href="tel:+12187792553" aria-label="Call North Fork Plumbing Co. now">Call Now</a>
 <script src="site.js" defer></script>
 <script src="analytics.js" defer></script>
 {scripts}<script src="ee-chat.js" defer></script>
@@ -229,8 +229,8 @@ book = f'''<div class="hero hero-book"><div class="wrap">
       <div class="sl-stage"><div class="sl-layer scene"></div><div class="sl-layer scene"></div></div>
       <div class="sl-tips" id="sceneTips" aria-live="polite"></div>
     </div>
-{P("_emcard.html")}  </div>
-{P("_form.html")}</div></div>
+{P("_emcard.part")}  </div>
+{P("_form.part")}</div></div>
 <section id="truck" class="truck-board"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">On the truck</div>
     <h2>Jobs this browser has booked</h2>
