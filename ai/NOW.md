@@ -18,8 +18,8 @@ that the plumber can load the truck and drive without a diagnostic phone call.
 - `nf-flow-scenes` (draft PR): scenes wired to every pricebook job (inline
   preview on job tap + full scene on thanks.html), shorter booking ticket, booking
   validation fix, service-card contrast fix. Awaiting review.
-  - v7 hand-inked scenes: 18 of 34 done (16 earlier + battery, checkvalve).
-    Still v6: cleanout, hydrojet, thaw, frozenburst, freezethaw, slab, softinstall,
+  - v7 hand-inked scenes: 20 of 34 done (16 earlier + battery, checkvalve, cleanout,
+    hydrojet). Still v6: thaw, frozenburst, freezethaw, slab, softinstall,
     softservice, ironro, disposal, shower, cartridge, diagnose, remodel, commercial,
     other. Pipeline: `assets/kf6/` (kf6.py SPEC7, `<scene>build.py` plates,
     `dmask.py` diff-mask compositor, sheet7.py, check7.py).
