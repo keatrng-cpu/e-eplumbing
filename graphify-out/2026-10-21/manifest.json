@@ -1,2108 +1,2264 @@
 {
   ".claude/settings.json": {
-    "mtime": 1792501774.588468,
-    "seen": 1792501783.5351932,
+    "mtime": 1792598532.6106827,
+    "seen": 1792598542.5324447,
     "ast_hash": "8a11bd3c471cdac14a4a288d79f86fc9",
     "semantic_hash": ""
   },
   "ai/memory/mem.py": {
-    "mtime": 1792501774.5897539,
-    "seen": 1792501783.5351996,
+    "mtime": 1792598532.6126108,
+    "seen": 1792598542.532452,
     "ast_hash": "f1adeb6954a832c8b6db344c7f8fd67a",
     "semantic_hash": ""
   },
   "app.js": {
-    "mtime": 1792501774.5897539,
-    "seen": 1792501783.5352046,
-    "ast_hash": "e47cec869f82908b2bc88861732b4992",
+    "mtime": 1792598532.6126108,
+    "seen": 1792598542.5324593,
+    "ast_hash": "35b60372fa6b6feb9f518d0133a7879f",
     "semantic_hash": ""
   },
   "ee-chat.js": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.5352092,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.5324667,
     "ast_hash": "44f3977c458982e5d9d06d9ea9688466",
     "semantic_hash": ""
   },
   "netlify/functions/availability.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535213,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.532473,
     "ast_hash": "5f5a4ff961b046f0abc2ac689c6ac64d",
     "semantic_hash": ""
   },
   "netlify/functions/book.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5352147,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324755,
     "ast_hash": "2f1e64848d0d27247c4ae6d193489153",
     "semantic_hash": ""
   },
   "netlify/functions/submission-created.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5352168,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324802,
     "ast_hash": "cfaa332c64a9e5a7b3d3c4d02250d54e",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5352185,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.532483,
     "ast_hash": "33839f096e44b0a94847055286bc939b",
     "semantic_hash": ""
   },
   "pricebook.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535221,
-    "ast_hash": "3f98f2b73f518f2903719a083c83c478",
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324867,
+    "ast_hash": "16b1a89c37b63cf724d1b4536feeca3e",
     "semantic_hash": ""
   },
   "schedule.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352652,
+    "mtime": 1792598532.7396834,
+    "seen": 1792598542.5325625,
     "ast_hash": "f224aa61ae4c050e2cac6116df38782f",
     "semantic_hash": ""
   },
   ".github/workflows/graphify-refresh.yml": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352664,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325642,
     "ast_hash": "b7464fc7fd063a2bab8d700e8bdfd9b4",
     "semantic_hash": ""
   },
   ".grok/GROK.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352678,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.532566,
     "ast_hash": "1b111196354e6be6ce61937738488acf",
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352688,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325677,
     "ast_hash": "e40684d6e279cad275260284614e4344",
     "semantic_hash": ""
   },
   "BUSINESS-PLAN.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.53527,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325696,
     "ast_hash": "08b545c5ad78112e563dec507e67a02d",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352707,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.532571,
     "ast_hash": "eeb98878461aec6a6a3ce7258464deb0",
     "semantic_hash": ""
   },
   "GBP-CONTENT.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.535273,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.532575,
     "ast_hash": "f46569bb5a696dc84dfb72f6e57d2848",
     "semantic_hash": ""
   },
   "JOBBER-SETUP.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352752,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325792,
     "ast_hash": "1013e0950678e838305e9fab3d406565",
     "semantic_hash": ""
   },
   "LAUNCH.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352767,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325809,
     "ast_hash": "fe8fda8a04314965ef8465ad305e46ba",
     "semantic_hash": ""
   },
   "MARKETING-KIT.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352778,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325823,
     "ast_hash": "a792bbcce581abe4cc24904704a63994",
     "semantic_hash": ""
   },
   "OPERATIONS.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.535279,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325847,
     "ast_hash": "aba0a20f4c961ce057b1cddaca17e75d",
     "semantic_hash": ""
   },
   "PRICEBOOK.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352814,
-    "ast_hash": "2e26a657cc7ddb52d9bd92f8663d6d4d",
+    "mtime": 1792598532.6116827,
+    "seen": 1792598542.532588,
+    "ast_hash": "f76fb9e63bbe302805224850e9d8b839",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352824,
+    "mtime": 1792598532.6116827,
+    "seen": 1792598542.5325897,
     "ast_hash": "0422bf5cd4009631590b95c00a57503c",
     "semantic_hash": ""
   },
   "TEMPLATES.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352836,
+    "mtime": 1792598532.6116827,
+    "seen": 1792598542.5325913,
     "ast_hash": "6a0194f934d082517dba6a76ed0a654b",
     "semantic_hash": ""
   },
   "ai/DECISIONS.md": {
-    "mtime": 1792501774.589468,
-    "seen": 1792501783.5352845,
-    "ast_hash": "dd721fea43cb2c01096693b8ea6b81ad",
+    "mtime": 1792598532.6116827,
+    "seen": 1792598542.5325933,
+    "ast_hash": "455e4384bd494463f482f060d90658c5",
     "semantic_hash": ""
   },
   "ai/NOW.md": {
-    "mtime": 1792501774.5897539,
-    "seen": 1792501783.5352855,
-    "ast_hash": "e30175ef4886bf7704a7be66fce31f44",
+    "mtime": 1792598532.6126108,
+    "seen": 1792598542.5325954,
+    "ast_hash": "4380a39132a65025dd98d1c8b88196ba",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.5352871,
-    "ast_hash": "9e457c4b76a33901a67c7a6f8ca32b65",
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.5325973,
+    "ast_hash": "98cbd273c72d6fac287b13190280451d",
     "semantic_hash": ""
   },
   "robots.txt": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535288,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5325987,
     "ast_hash": "8c6eed8dd1116731ae8fd7dad002bbcc",
     "semantic_hash": ""
   },
   "thanks.html": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352905,
-    "ast_hash": "20c43e64cbc055be834fb67af9e5ee21",
+    "mtime": 1792598532.7396834,
+    "seen": 1792598542.5326025,
+    "ast_hash": "d0d3ec26842483b8ebefe89f39747be2",
     "semantic_hash": ""
   },
   "badge.svg": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.5353,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326211,
     "ast_hash": "aa7b397fb2f1405d001c92da4b07f759",
     "semantic_hash": ""
   },
   "badge.webp": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.535301,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.532623,
     "ast_hash": "de8408d225464e6dd7f8e4a66b895357",
     "semantic_hash": ""
   },
   "favicon.svg": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.5353553,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.5327256,
     "ast_hash": "44d5e7722be8c426ed31fb652749e490",
     "semantic_hash": ""
   },
   "lockup.svg": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.535356,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.532727,
     "ast_hash": "120e5357809a081c81d8f64185fae0aa",
     "semantic_hash": ""
   },
   "lockup.webp": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.535357,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.5327284,
     "ast_hash": "c0f261f9682d579fe1ae4de17c0816c8",
     "semantic_hash": ""
   },
   "og.svg": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5353577,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5327296,
     "ast_hash": "882c568a430df090fb267f5b60fdf795",
     "semantic_hash": ""
   },
   "analytics.js": {
-    "mtime": 1792501774.5897539,
-    "seen": 1792501783.5352025,
+    "mtime": 1792598532.6126108,
+    "seen": 1792598542.532456,
     "ast_hash": "b0b8678b1e37cf8a8b5db18b043bc0dc",
     "semantic_hash": ""
   },
   "assets/hero-mascot.js": {
-    "mtime": 1792501774.5897539,
-    "seen": 1792501783.5352066,
+    "mtime": 1792598532.6126108,
+    "seen": 1792598542.5324624,
     "ast_hash": "ed48e3a5c4827fb4daf0a8ed420a8d38",
     "semantic_hash": ""
   },
   "assets/mascot.js": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.535208,
-    "ast_hash": "16095071d53b15b2463886543a4d5f9f",
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5324643,
+    "ast_hash": "ac02017a06868c5165d4a3d16aa8d13e",
     "semantic_hash": ""
   },
   "motion.js": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.5352106,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.532469,
     "ast_hash": "922de2cc9a6ce1787b194e33e32b9aba",
     "semantic_hash": ""
   },
   "netlify/functions/_schedule-store.js": {
-    "mtime": 1792501774.676568,
-    "seen": 1792501783.5352118,
+    "mtime": 1792598532.7203462,
+    "seen": 1792598542.532471,
     "ast_hash": "f4c77833fb0871d45b498a754160c5e3",
     "semantic_hash": ""
   },
   "netlify/functions/checkout.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5352159,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324779,
     "ast_hash": "141f245cb410adc9077b153e8b128ec5",
     "semantic_hash": ""
   },
   "plan.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.5352197,
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.532485,
     "ast_hash": "7a09045d70bf6dd57249d93db7e1c627",
     "semantic_hash": ""
   },
   "scenes.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535222,
-    "ast_hash": "dd67019f6d9892da02241fb165f84487",
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324883,
+    "ast_hash": "ad3828b615e78cfd62d31f74c1058c76",
     "semantic_hash": ""
   },
   "scenes/battery.js": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535223,
-    "ast_hash": "293746d700dedfbacc812ee57b9ce790",
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5324903,
+    "ast_hash": "4caac0dc031edca9d901e9fe61dbee65",
     "semantic_hash": ""
   },
   "scenes/burst.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352247,
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5324926,
     "ast_hash": "bfbe60066ff07d7e67f2a658dd2a64ed",
     "semantic_hash": ""
   },
   "scenes/cambranch.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352259,
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5324945,
     "ast_hash": "8a6e019084958fabe3530af2f1e4a798",
     "semantic_hash": ""
   },
   "scenes/cammain.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.535227,
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.532497,
     "ast_hash": "b9c3393ce542466dffda28f100996035",
     "semantic_hash": ""
   },
   "scenes/cartridge.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352283,
-    "ast_hash": "cf1c572e74a4586d5786a09ddfa4ae3b",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5324986,
+    "ast_hash": "da2a3671cdd5bda39d28ba5753d5dbde",
     "semantic_hash": ""
   },
   "scenes/checkvalve.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352294,
-    "ast_hash": "a98bb79a1ab0a18bf87fa8642d4cf319",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325012,
+    "ast_hash": "d147121d59722326c23a43812dad0d0d",
     "semantic_hash": ""
   },
   "scenes/cleanout.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352306,
-    "ast_hash": "11f7064703b5a761d03d2440bb00356d",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325036,
+    "ast_hash": "280427a805d5625a7ed04c5764087218",
     "semantic_hash": ""
   },
   "scenes/clog.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.535232,
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325062,
     "ast_hash": "944aa97ae42e5b1bcb163b46f0108934",
     "semantic_hash": ""
   },
   "scenes/commercial.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352335,
-    "ast_hash": "aa360cedf12735321b5145a681f3797e",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325081,
+    "ast_hash": "0e01a03ba76c84ac942d7f51e54251e2",
     "semantic_hash": ""
   },
   "scenes/diagnose.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352354,
-    "ast_hash": "b7210c5706269f9633c069f818d36390",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325103,
+    "ast_hash": "a824ce2568cd8897aa542b0917bf0c5d",
     "semantic_hash": ""
   },
   "scenes/disposal.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352376,
-    "ast_hash": "ed78c47dfa969306bc2acff42f49ffa8",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325131,
+    "ast_hash": "6212f0875505da47fcb969ff871ded18",
     "semantic_hash": ""
   },
   "scenes/flush.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.535239,
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325155,
     "ast_hash": "5504b0b92cd492f13acaf2533dddd237",
     "semantic_hash": ""
   },
   "scenes/freezethaw.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352402,
-    "ast_hash": "b632bf4e6358058268e372f43d31c577",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325177,
+    "ast_hash": "57907e85fc6f849c512fc3b518cfa842",
     "semantic_hash": ""
   },
   "scenes/frozenburst.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352414,
-    "ast_hash": "9774841af8d8deefd6bc9e70cfab25ab",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325193,
+    "ast_hash": "ce57ec783e14947ed725597f8f6f21e7",
     "semantic_hash": ""
   },
   "scenes/hydrojet.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.535243,
-    "ast_hash": "ac85f12fa02960eeeef9d23910b8ae42",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325217,
+    "ast_hash": "99bd8202767e75b9d6557abfeb592be7",
     "semantic_hash": ""
   },
   "scenes/ironro.js": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.5352442,
-    "ast_hash": "73a7dbc8c7f2afc05295bad049a00d93",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5325236,
+    "ast_hash": "a134f2250764cab5742a165996ba310c",
     "semantic_hash": ""
   },
   "scenes/mainline.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352454,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.532526,
     "ast_hash": "f9e4478abf812b6a4c4b5c94e05bafb2",
     "semantic_hash": ""
   },
   "scenes/nohot.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352466,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325282,
     "ast_hash": "71082129be61af74bc408bc8870aa754",
     "semantic_hash": ""
   },
   "scenes/other.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352478,
-    "ast_hash": "659de6652660e1235329627d75bbf513",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325296,
+    "ast_hash": "7b73fa2a8c512ab9055325c0b2a24169",
     "semantic_hash": ""
   },
   "scenes/remodel.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.535249,
-    "ast_hash": "6903c40f61f23fbd7f62223a4fe6b2c3",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325315,
+    "ast_hash": "4b3f7d6079a6be29e54a23cf9ea75288",
     "semantic_hash": ""
   },
   "scenes/shower.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352502,
-    "ast_hash": "3db8c3b560c5735e97700f7082c8f10e",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325334,
+    "ast_hash": "656d7ea96a2c6d47609774de96c08c6d",
     "semantic_hash": ""
   },
   "scenes/shutoff.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352511,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325358,
     "ast_hash": "a12e31edda51d09589c2528c8fcc1acd",
     "semantic_hash": ""
   },
   "scenes/sink.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352526,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325377,
     "ast_hash": "7d25b885c4337d7680c14994154fdf7f",
     "semantic_hash": ""
   },
   "scenes/slab.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352533,
-    "ast_hash": "bddaba6dddb92d5e9f55c0c773f2a2af",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325398,
+    "ast_hash": "4e9a445a70461161dd1208b987fde38a",
     "semantic_hash": ""
   },
   "scenes/softinstall.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352547,
-    "ast_hash": "fafa7d4fca151e1c92eb570ed384f174",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.532542,
+    "ast_hash": "205e176c568cfc6a3d8d571f32f09d7c",
     "semantic_hash": ""
   },
   "scenes/softservice.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.535256,
-    "ast_hash": "22dcaea152b35d1c82a6162e464f699b",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325444,
+    "ast_hash": "6d0b9f54e1b4ae427ce0b8716d50fbc1",
     "semantic_hash": ""
   },
   "scenes/sumpswap.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.535257,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325463,
     "ast_hash": "a55cc5a81ad602ad087c705e8e861d53",
     "semantic_hash": ""
   },
   "scenes/sumptest.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.535258,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325484,
     "ast_hash": "3a2fb7f83a8e59ef3b440e1a794e0696",
     "semantic_hash": ""
   },
   "scenes/tankcode.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352588,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.53255,
     "ast_hash": "d0cc70e7134bb3933ecaaf3990834e40",
     "semantic_hash": ""
   },
   "scenes/tankless.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.53526,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325525,
     "ast_hash": "0fcef68ea63b6c45d5228f62fe90ba1a",
     "semantic_hash": ""
   },
   "scenes/tankswap.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352612,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325544,
     "ast_hash": "54466af7bb9c38501907818580c714f2",
     "semantic_hash": ""
   },
   "scenes/thaw.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.535262,
-    "ast_hash": "a6df94dd1cacb0a561b8b180c7470330",
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5325563,
+    "ast_hash": "9f7893452e81d26c7860314ed7b894df",
     "semantic_hash": ""
   },
   "scenes/toilet.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352633,
+    "mtime": 1792598532.7396834,
+    "seen": 1792598542.5325584,
     "ast_hash": "b02d85ad202ef480a2f93773c4e58e85",
     "semantic_hash": ""
   },
   "scenes/tub.js": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5352643,
+    "mtime": 1792598532.7396834,
+    "seen": 1792598542.5325606,
     "ast_hash": "60ab56a80fa2bfc54e51f0f8a2732906",
     "semantic_hash": ""
   },
   "FORGE-ATLAS.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352716,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325732,
     "ast_hash": "c521db70fa6eff72931ac66dd54291cd",
     "semantic_hash": ""
   },
   "HELIX-ASSESSMENT.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352743,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325768,
     "ast_hash": "98c9a13173c9cc4391fb35ae28476524",
     "semantic_hash": ""
   },
   "ORDER-FLOW-AUDIT.md": {
-    "mtime": 1792501774.5889084,
-    "seen": 1792501783.5352802,
+    "mtime": 1792598532.6116433,
+    "seen": 1792598542.5325863,
     "ast_hash": "9ab33fd245a3b84d5b428ddaed97441b",
     "semantic_hash": ""
   },
   "scenes.html": {
-    "mtime": 1792501774.6766286,
-    "seen": 1792501783.535289,
-    "ast_hash": "d77d4e97b7338a14d12676999d5b754d",
+    "mtime": 1792598532.7204342,
+    "seen": 1792598542.5326009,
+    "ast_hash": "9b5799496acb2b959f86b2ba9d7fe1a1",
     "semantic_hash": ""
   },
   "assets/hero-still.svg": {
-    "mtime": 1792501774.590121,
-    "seen": 1792501783.5352917,
+    "mtime": 1792598532.6130617,
+    "seen": 1792598542.5326047,
     "ast_hash": "dca0583f1601c6cf9facf0d05aa6b868",
     "semantic_hash": ""
   },
   "assets/hero7/r.webp": {
-    "mtime": 1792501774.590121,
-    "seen": 1792501783.5352924,
+    "mtime": 1792598532.6130617,
+    "seen": 1792598542.5326066,
     "ast_hash": "23c17ed5d30e6f9bdc3296bd1c25982e",
     "semantic_hash": ""
   },
   "assets/hero7/s1.webp": {
-    "mtime": 1792501774.5904014,
-    "seen": 1792501783.5352936,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326087,
     "ast_hash": "a74b991082f717439aff6c8df473167a",
     "semantic_hash": ""
   },
   "assets/hero7/t2.webp": {
-    "mtime": 1792501774.5904014,
-    "seen": 1792501783.535295,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.532611,
     "ast_hash": "c62857f022441122b9b888fa61038d79",
     "semantic_hash": ""
   },
   "assets/hero7/wA.webp": {
-    "mtime": 1792501774.5904014,
-    "seen": 1792501783.5352962,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326128,
     "ast_hash": "790e4997249cdef8bd8c443e1942892f",
     "semantic_hash": ""
   },
   "assets/hero7/wB.webp": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.5352974,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326147,
     "ast_hash": "39c5a22c22c7119e968ebe8b545a3c28",
     "semantic_hash": ""
   },
   "assets/hero7/wC.webp": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.535298,
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326169,
     "ast_hash": "be87406db3530c4e175077d0f0729ac7",
     "semantic_hash": ""
   },
   "assets/mascot.svg": {
-    "mtime": 1792501774.5904682,
-    "seen": 1792501783.535299,
-    "ast_hash": "9addc268ff658a4f96280286076e1554",
+    "mtime": 1792598532.6134002,
+    "seen": 1792598542.5326195,
+    "ast_hash": "9bb4505a1d335a7a557a21cd7a43e355",
     "semantic_hash": ""
   },
   "docs/preview/hero-before-desktop.png": {
-    "mtime": 1792501774.591468,
-    "seen": 1792501783.5353022,
+    "mtime": 1792598532.6146827,
+    "seen": 1792598542.5326254,
     "ast_hash": "d3abb4606f65c787d2f548ba7c2a701f",
     "semantic_hash": ""
   },
   "docs/preview/hero-before-mobile.png": {
-    "mtime": 1792501774.592468,
-    "seen": 1792501783.5353029,
+    "mtime": 1792598532.6156828,
+    "seen": 1792598542.5326273,
     "ast_hash": "9f3f1ccc75bb741d68b8244a6670c02d",
     "semantic_hash": ""
   },
   "docs/preview/hero-drawon-desktop.png": {
-    "mtime": 1792501774.594468,
-    "seen": 1792501783.5353036,
+    "mtime": 1792598532.6176827,
+    "seen": 1792598542.5326295,
     "ast_hash": "3574a00781e02f182757e19fb28340c5",
     "semantic_hash": ""
   },
   "docs/preview/hero-drawon-mobile.png": {
-    "mtime": 1792501774.594468,
-    "seen": 1792501783.5353048,
+    "mtime": 1792598532.6176827,
+    "seen": 1792598542.5326319,
     "ast_hash": "625c986e66cc28e05ea777c863cf1e95",
     "semantic_hash": ""
   },
   "docs/preview/hero-hattip-desktop.png": {
-    "mtime": 1792501774.595468,
-    "seen": 1792501783.535306,
+    "mtime": 1792598532.6186829,
+    "seen": 1792598542.5326333,
     "ast_hash": "37e94150c5027ae5fbdfc02217693854",
     "semantic_hash": ""
   },
   "docs/preview/hero-hattip-mobile.png": {
-    "mtime": 1792501774.595468,
-    "seen": 1792501783.535307,
+    "mtime": 1792598532.6196828,
+    "seen": 1792598542.5326352,
     "ast_hash": "0d32afe84615ad92f0cce77e01e51843",
     "semantic_hash": ""
   },
   "docs/preview/hero-midwalk-desktop.png": {
-    "mtime": 1792501774.5964682,
-    "seen": 1792501783.5353081,
+    "mtime": 1792598532.6206827,
+    "seen": 1792598542.5326371,
     "ast_hash": "3a60e595ca071da5696ec533c19a0ddf",
     "semantic_hash": ""
   },
   "docs/preview/hero-midwalk-mobile.png": {
-    "mtime": 1792501774.5974681,
-    "seen": 1792501783.535309,
+    "mtime": 1792598532.6216826,
+    "seen": 1792598542.532639,
     "ast_hash": "2e292c9187f6188d04462012ce725773",
     "semantic_hash": ""
   },
   "docs/preview/sheet_0.png": {
-    "mtime": 1792501774.5984683,
-    "seen": 1792501783.5353098,
+    "mtime": 1792598532.6226828,
+    "seen": 1792598542.5326407,
     "ast_hash": "c1ed7a9b6d4927eed19277e720029d9e",
     "semantic_hash": ""
   },
   "docs/preview/sheet_1.png": {
-    "mtime": 1792501774.5994682,
-    "seen": 1792501783.5353107,
+    "mtime": 1792598532.6236827,
+    "seen": 1792598542.5326426,
     "ast_hash": "f4cbf3afc9c505354a9fce4ca285a183",
     "semantic_hash": ""
   },
   "docs/preview/sheet_2.png": {
-    "mtime": 1792501774.6004682,
-    "seen": 1792501783.535312,
+    "mtime": 1792598532.6246827,
+    "seen": 1792598542.5326445,
     "ast_hash": "3185a34b7f8c5a4e459205b5b0e2e362",
     "semantic_hash": ""
   },
   "docs/preview/v4/confirm-clog-end.png": {
-    "mtime": 1792501774.6004682,
-    "seen": 1792501783.5353127,
+    "mtime": 1792598532.6256828,
+    "seen": 1792598542.5326467,
     "ast_hash": "c8edcba3ea13aec6cbb04cd2b024981d",
     "semantic_hash": ""
   },
   "docs/preview/v4/contact-mid-all.png": {
-    "mtime": 1792501774.6024683,
-    "seen": 1792501783.5353138,
+    "mtime": 1792598532.6276827,
+    "seen": 1792598542.532649,
     "ast_hash": "ec27c03b36a4311b71f0a6b3f6eadec9",
     "semantic_hash": ""
   },
   "docs/preview/v4/contact-strips-1.png": {
-    "mtime": 1792501774.6044683,
-    "seen": 1792501783.5353153,
+    "mtime": 1792598532.6296828,
+    "seen": 1792598542.5326507,
     "ast_hash": "6fd97ad1f3f140ed4d1b1d0f6b88f038",
     "semantic_hash": ""
   },
   "docs/preview/v4/contact-strips-2.png": {
-    "mtime": 1792501774.6054683,
-    "seen": 1792501783.535316,
+    "mtime": 1792598532.6316829,
+    "seen": 1792598542.5326526,
     "ast_hash": "a69334aa61b7a42250c69fec1a9b91b0",
     "semantic_hash": ""
   },
   "docs/preview/v4/contact-strips-3.png": {
-    "mtime": 1792501774.6074684,
-    "seen": 1792501783.535317,
+    "mtime": 1792598532.6336827,
+    "seen": 1792598542.5326543,
     "ast_hash": "bcc2ed79b70f7ede045e029c9ef0a140",
     "semantic_hash": ""
   },
   "docs/preview/v4/contact-strips-4.png": {
-    "mtime": 1792501774.6084683,
-    "seen": 1792501783.5353184,
+    "mtime": 1792598532.634683,
+    "seen": 1792598542.5326567,
     "ast_hash": "d9db287fe92f06808d5862e85e31469e",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-1-drawon-desktop.png": {
-    "mtime": 1792501774.6094685,
-    "seen": 1792501783.5353193,
+    "mtime": 1792598532.6356828,
+    "seen": 1792598542.532659,
     "ast_hash": "d7f4e3315eb709067b6f0d2f9bc2ba52",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-1-drawon-mobile.png": {
-    "mtime": 1792501774.6104684,
-    "seen": 1792501783.5353203,
+    "mtime": 1792598532.6366827,
+    "seen": 1792598542.5326612,
     "ast_hash": "185b39ffa447d718ef6af62889c9454b",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-2-midwalk-desktop.png": {
-    "mtime": 1792501774.6104684,
-    "seen": 1792501783.535321,
+    "mtime": 1792598532.637683,
+    "seen": 1792598542.5326633,
     "ast_hash": "acd6e87702de2c38767789f2b8d2a152",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-2-midwalk-mobile.png": {
-    "mtime": 1792501774.6114686,
-    "seen": 1792501783.535322,
+    "mtime": 1792598532.637683,
+    "seen": 1792598542.5326655,
     "ast_hash": "6be4abb2d8c421ec0c6baf513439e36e",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-3-setdown-desktop.png": {
-    "mtime": 1792501774.6124685,
-    "seen": 1792501783.5353227,
+    "mtime": 1792598532.6386828,
+    "seen": 1792598542.5326672,
     "ast_hash": "469b1c4835759192e3a10df71d8f20ef",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-3-setdown-mobile.png": {
-    "mtime": 1792501774.6124685,
-    "seen": 1792501783.5353236,
+    "mtime": 1792598532.6396828,
+    "seen": 1792598542.532669,
     "ast_hash": "c294c94e27010c985c3e8a94c5a1fbcf",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-4-hattip-desktop.png": {
-    "mtime": 1792501774.6134684,
-    "seen": 1792501783.5353248,
+    "mtime": 1792598532.640683,
+    "seen": 1792598542.5326712,
     "ast_hash": "168a8db3f22175fa93ebb01ab7806df6",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-4-hattip-mobile.png": {
-    "mtime": 1792501774.6134684,
-    "seen": 1792501783.5353258,
+    "mtime": 1792598532.640683,
+    "seen": 1792598542.5326731,
     "ast_hash": "c98de86d02214bce7aebb6855ddd82c9",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-reduced-desktop.png": {
-    "mtime": 1792501774.6144686,
-    "seen": 1792501783.5353267,
+    "mtime": 1792598532.6416829,
+    "seen": 1792598542.5326753,
     "ast_hash": "1591229578219c498719d714082d761c",
     "semantic_hash": ""
   },
   "docs/preview/v4/hero-strip-sequence.png": {
-    "mtime": 1792501774.6154685,
-    "seen": 1792501783.5353274,
+    "mtime": 1792598532.6426828,
+    "seen": 1792598542.5326772,
     "ast_hash": "3254852aa7aff748d0e8cc610e1fd454",
     "semantic_hash": ""
   },
   "docs/preview/v4/side-by-side.png": {
-    "mtime": 1792501774.6164684,
-    "seen": 1792501783.5353286,
+    "mtime": 1792598532.644683,
+    "seen": 1792598542.5326793,
     "ast_hash": "41f2c228c541d81341001bac443131d5",
     "semantic_hash": ""
   },
   "docs/preview/v5/before-after-desktop.png": {
-    "mtime": 1792501774.6184685,
-    "seen": 1792501783.5353298,
+    "mtime": 1792598532.6456828,
+    "seen": 1792598542.5326817,
     "ast_hash": "ec54dc38112085088071f2ccd96da251",
     "semantic_hash": ""
   },
   "docs/preview/v5/before-after-mobile.png": {
-    "mtime": 1792501774.6194687,
-    "seen": 1792501783.535331,
+    "mtime": 1792598532.646683,
+    "seen": 1792598542.5326836,
     "ast_hash": "0be5bd36050790b73d574816219c3d65",
     "semantic_hash": ""
   },
   "docs/preview/v5/contact-mid-all.png": {
-    "mtime": 1792501774.6214685,
-    "seen": 1792501783.5353322,
+    "mtime": 1792598532.650683,
+    "seen": 1792598542.5326855,
     "ast_hash": "e7deca4e90543dacea4eba3397b93faa",
     "semantic_hash": ""
   },
   "docs/preview/v5/desktop-2-midwalk.png": {
-    "mtime": 1792501774.6234686,
-    "seen": 1792501783.5353332,
+    "mtime": 1792598532.652683,
+    "seen": 1792598542.5326877,
     "ast_hash": "f72d5940477f2dd9207f91643fb6e606",
     "semantic_hash": ""
   },
   "docs/preview/v5/desktop-4-hattip.png": {
-    "mtime": 1792501774.6244688,
-    "seen": 1792501783.535334,
+    "mtime": 1792598532.6546829,
+    "seen": 1792598542.5326893,
     "ast_hash": "046c4e9f361b2db485c336052c71742f",
     "semantic_hash": ""
   },
   "docs/preview/v5/desktop-reduced.png": {
-    "mtime": 1792501774.6264687,
-    "seen": 1792501783.5353348,
+    "mtime": 1792598532.656683,
+    "seen": 1792598542.5326912,
     "ast_hash": "2e445b9a3521b7b5e899a75c5df3e8e3",
     "semantic_hash": ""
   },
   "docs/preview/v5/mobile-5-end.png": {
-    "mtime": 1792501774.6274688,
-    "seen": 1792501783.535336,
+    "mtime": 1792598532.657683,
+    "seen": 1792598542.532693,
     "ast_hash": "87c9d3f2b3dd080ca3be5f9558ee2d3c",
     "semantic_hash": ""
   },
   "docs/preview/v5/sheet-cammain.png": {
-    "mtime": 1792501774.6284688,
-    "seen": 1792501783.535337,
+    "mtime": 1792598532.659683,
+    "seen": 1792598542.5326948,
     "ast_hash": "f25481960db73fac9ef1ba04d40a9f34",
     "semantic_hash": ""
   },
   "docs/preview/v5/sheet-clog.png": {
-    "mtime": 1792501774.6314688,
-    "seen": 1792501783.5353377,
+    "mtime": 1792598532.662683,
+    "seen": 1792598542.5326967,
     "ast_hash": "2c2d4a26b2cdb18421867d7d217f4e15",
     "semantic_hash": ""
   },
   "docs/preview/v5/sheet-nohot.png": {
-    "mtime": 1792501774.632469,
-    "seen": 1792501783.5353386,
+    "mtime": 1792598532.6646829,
+    "seen": 1792598542.5326986,
     "ast_hash": "599b51eb2b4ba595b6a9dfd11446957a",
     "semantic_hash": ""
   },
   "docs/preview/v5/sheet-remodel.png": {
-    "mtime": 1792501774.6344688,
-    "seen": 1792501783.53534,
+    "mtime": 1792598532.667683,
+    "seen": 1792598542.5327,
     "ast_hash": "fee8c1098fbba37ef4997125a8dc4d9b",
     "semantic_hash": ""
   },
   "docs/preview/v5/sheet-toilet.png": {
-    "mtime": 1792501774.636469,
-    "seen": 1792501783.535341,
+    "mtime": 1792598532.669683,
+    "seen": 1792598542.5327024,
     "ast_hash": "e5eba04e66888b4ba0078ea028cf8639",
     "semantic_hash": ""
   },
   "docs/preview/v6/clog-strip.jpg": {
-    "mtime": 1792501774.636469,
-    "seen": 1792501783.535342,
+    "mtime": 1792598532.670683,
+    "seen": 1792598542.5327044,
     "ast_hash": "64384c1cf29dba3b3b002e51a2000dc9",
     "semantic_hash": ""
   },
   "docs/preview/v6/clog-v5-vs-v6.jpg": {
-    "mtime": 1792501774.6374688,
-    "seen": 1792501783.5353432,
+    "mtime": 1792598532.671683,
+    "seen": 1792598542.532706,
     "ast_hash": "8df1ed242d4dc9ef2691d0980296e651",
     "semantic_hash": ""
   },
   "docs/preview/v6/clog.gif": {
-    "mtime": 1792501774.638469,
-    "seen": 1792501783.5353441,
+    "mtime": 1792598532.672683,
+    "seen": 1792598542.532708,
     "ast_hash": "471d18b5f56dc045458e05f9fda1baf5",
     "semantic_hash": ""
   },
   "docs/preview/v6/contact-sheet.jpg": {
-    "mtime": 1792501774.640469,
-    "seen": 1792501783.535345,
+    "mtime": 1792598532.675683,
+    "seen": 1792598542.5327096,
     "ast_hash": "9b117690340351b1721d39a256df30fc",
     "semantic_hash": ""
   },
   "docs/preview/v6/tankswap-strip.jpg": {
-    "mtime": 1792501774.640469,
-    "seen": 1792501783.5353463,
+    "mtime": 1792598532.675683,
+    "seen": 1792598542.5327117,
     "ast_hash": "3c6c9c8a963a995da8a61f6ae337c3f9",
     "semantic_hash": ""
   },
   "docs/preview/v6/tankswap.gif": {
-    "mtime": 1792501774.641469,
-    "seen": 1792501783.5353475,
+    "mtime": 1792598532.676683,
+    "seen": 1792598542.5327134,
     "ast_hash": "306016c88572836dd17fbc91c4178778",
     "semantic_hash": ""
   },
   "docs/preview/v6/toilet-strip.jpg": {
-    "mtime": 1792501774.641469,
-    "seen": 1792501783.5353482,
+    "mtime": 1792598532.677683,
+    "seen": 1792598542.532715,
     "ast_hash": "303f20f358e3eb836aeaa995d9dabe36",
     "semantic_hash": ""
   },
   "docs/preview/v6/toilet.gif": {
-    "mtime": 1792501774.642469,
-    "seen": 1792501783.53535,
+    "mtime": 1792598532.678683,
+    "seen": 1792598542.5327168,
     "ast_hash": "55e6f3073bfd367dee72595453772d12",
     "semantic_hash": ""
   },
   "docs/preview/v7/clog-strip.png": {
-    "mtime": 1792501774.644469,
-    "seen": 1792501783.5353508,
+    "mtime": 1792598532.6806831,
+    "seen": 1792598542.532719,
     "ast_hash": "7b8a7fade7799d07f5e0a48a6585ee18",
     "semantic_hash": ""
   },
   "docs/preview/v7/contact-sheet.png": {
-    "mtime": 1792501774.6734695,
-    "seen": 1792501783.5353518,
+    "mtime": 1792598532.7166831,
+    "seen": 1792598542.5327206,
     "ast_hash": "4c79a4d632191066940bc6d63f1f31b2",
     "semantic_hash": ""
   },
   "docs/preview/v7/hero-strip.png": {
-    "mtime": 1792501774.6744697,
-    "seen": 1792501783.5353534,
+    "mtime": 1792598532.7176833,
+    "seen": 1792598542.5327225,
     "ast_hash": "68b5e642440673132b1bdfb7f602a2ff",
     "semantic_hash": ""
   },
   "docs/preview/v7/hero.gif": {
-    "mtime": 1792501774.6754696,
-    "seen": 1792501783.5353546,
+    "mtime": 1792598532.7186832,
+    "seen": 1792598542.532724,
     "ast_hash": "f36d5c3d5c2299402650252a24e4aa26",
     "semantic_hash": ""
   },
   "scenes/kf/battery-1.webp": {
-    "mtime": 1792501774.6771054,
-    "seen": 1792501783.535359,
-    "ast_hash": "1a2438e0146dac28f381bdf1aecfdfe8",
+    "mtime": 1792598532.72102,
+    "seen": 1792598542.5327315,
+    "ast_hash": "427de71d6e0471f8785a84eca1035d1f",
     "semantic_hash": ""
   },
   "scenes/kf/battery-2.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353603,
-    "ast_hash": "c1bbe3e06b57e8aa008e5d4ff7c7e567",
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327332,
+    "ast_hash": "7e7ad0be6dec7450c6204e9af284bafd",
     "semantic_hash": ""
   },
   "scenes/kf/battery-3.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353613,
-    "ast_hash": "76b14a8fb5da9e2000fd8773600faf1c",
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327346,
+    "ast_hash": "b465093b162d01fda4637da46d867840",
     "semantic_hash": ""
   },
   "scenes/kf/battery-4.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353622,
-    "ast_hash": "86dd96d9100f9f1fee768051a0eb0fcb",
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327365,
+    "ast_hash": "be37ed2aea29eafd88f998aba6c58239",
     "semantic_hash": ""
   },
   "scenes/kf/battery-5.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.535363,
-    "ast_hash": "d55e20f8e374a47237a9c00f3ca37ad7",
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327384,
+    "ast_hash": "411fb7c48fc7463ea5d163c38a34d8f9",
     "semantic_hash": ""
   },
   "scenes/kf/burst-1.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353644,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327473,
     "ast_hash": "255cf65ff4a8eb5506c2cc9db0fe22df",
     "semantic_hash": ""
   },
   "scenes/kf/burst-2.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353653,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327494,
     "ast_hash": "7101870e7436909fb25c845644c260c4",
     "semantic_hash": ""
   },
   "scenes/kf/burst-3.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353668,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.532751,
     "ast_hash": "28c73034cc3c96cb1bbf332fab237ff7",
     "semantic_hash": ""
   },
   "scenes/kf/burst-4.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.535368,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327535,
     "ast_hash": "b697222c426e3917b5d7f0061e653962",
     "semantic_hash": ""
   },
   "scenes/kf/burst-5.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353692,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327551,
     "ast_hash": "ca0f390d35054ab44680af646cc61f71",
     "semantic_hash": ""
   },
   "scenes/kf/burst-6.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353703,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327568,
     "ast_hash": "58e02fceed20fcdcdeba2e682d6b0a9b",
     "semantic_hash": ""
   },
   "scenes/kf/burst-7.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353713,
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327585,
     "ast_hash": "18b7b783d5bdcd690adf715f8ee17ff7",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-1.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353725,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327604,
     "ast_hash": "616ee2cb397260cbb3f60715a972be0c",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-2.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353732,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.532762,
     "ast_hash": "6b311fa04ed6ba6b0ef4f00a9c04dfb6",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-3.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353744,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327637,
     "ast_hash": "6b4d30acba4689b6b07253908658a973",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-4.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353754,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327652,
     "ast_hash": "aab5b123d1126db698cbaf767b71238a",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-5.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.535376,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327673,
     "ast_hash": "7cd7f50b90f3a803ad720024e4425498",
     "semantic_hash": ""
   },
   "scenes/kf/cambranch-6.webp": {
-    "mtime": 1792501774.6775737,
-    "seen": 1792501783.5353768,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327685,
     "ast_hash": "d7e107f5ed77a4dcb5a26749a8f9ea93",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-1.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353777,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327704,
     "ast_hash": "f209ef4ee32aa0f074aab4ad30dfeb52",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-2.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353787,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327723,
     "ast_hash": "ce2baf9b245c45a6e636117712528c7d",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-3.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353796,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.532774,
     "ast_hash": "c034f7f8b001cf621803c373b6fc8411",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-4.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353808,
+    "mtime": 1792598532.7216833,
+    "seen": 1792598542.5327754,
     "ast_hash": "dd548226823fc1fe19e4b7898efd5059",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-5.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353816,
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.532777,
     "ast_hash": "ac3f12b4db7dfe77d83ab2b00dabb989",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-6.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353825,
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327787,
     "ast_hash": "d266c67f810ea212a78d485c9f9995c1",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-7.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353832,
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.532781,
     "ast_hash": "f209ef4ee32aa0f074aab4ad30dfeb52",
     "semantic_hash": ""
   },
   "scenes/kf/cammain-8.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353842,
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327823,
     "ast_hash": "40f001fc08b89b5cdf082cc4d6793278",
     "semantic_hash": ""
   },
   "scenes/kf/cartridge-1.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.535385,
-    "ast_hash": "4766b0c0a91e3767747fb90a851f0153",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.532784,
+    "ast_hash": "3c596b5a66f66c3359aa8714478981d6",
     "semantic_hash": ""
   },
   "scenes/kf/cartridge-2.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353858,
-    "ast_hash": "d9ea97d04a96ad1b28567c39b0fbcd18",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327857,
+    "ast_hash": "721be32f10412d9b6b523d0006db0f22",
     "semantic_hash": ""
   },
   "scenes/kf/cartridge-3.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353866,
-    "ast_hash": "c5f206757628e5b79e00a943ad12a0f1",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327878,
+    "ast_hash": "d0d09c25126d686063ed236d5ef7718d",
     "semantic_hash": ""
   },
   "scenes/kf/cartridge-4.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.535387,
-    "ast_hash": "651488d6538c60c7e68e66b190924591",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327892,
+    "ast_hash": "659a13f531a9184b4295c205ea0ef915",
     "semantic_hash": ""
   },
   "scenes/kf/cartridge-5.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.5353882,
-    "ast_hash": "9bd4b0b7e61de24d8eaab2bbd7d9db78",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327911,
+    "ast_hash": "3525411d40eb6f7c4e75ed4ea3a4a7f9",
     "semantic_hash": ""
   },
   "scenes/kf/checkvalve-1.webp": {
-    "mtime": 1792501774.6784697,
-    "seen": 1792501783.535389,
-    "ast_hash": "6fb412f929a0f949bf6966f128611cef",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327945,
+    "ast_hash": "4f1f0092987ba7e8270e9d66d2b67618",
     "semantic_hash": ""
   },
   "scenes/kf/checkvalve-2.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.53539,
-    "ast_hash": "6f84e15a7b2498e80ce581e7c870ba9b",
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327964,
+    "ast_hash": "05df4e84ba8359c9ad70ff09e3e322fb",
     "semantic_hash": ""
   },
   "scenes/kf/checkvalve-3.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535391,
-    "ast_hash": "24a4300256c92825059dcc177e915429",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5327983,
+    "ast_hash": "9ec643e668588254302823cbd5642fbc",
     "semantic_hash": ""
   },
   "scenes/kf/checkvalve-4.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535392,
-    "ast_hash": "65dbbf29f04fc292c6575654146e61aa",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5327997,
+    "ast_hash": "783155c0b2ea1374303d12683476f460",
     "semantic_hash": ""
   },
   "scenes/kf/checkvalve-5.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535393,
-    "ast_hash": "b6e1a47a31a769198e9c376b6015cf9f",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328016,
+    "ast_hash": "355eb1debe1110f89f70bcc6cc271aa3",
     "semantic_hash": ""
   },
   "scenes/kf/cleanout-1.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535394,
-    "ast_hash": "ce5edfc5948fc5de42fe658db4fc00b1",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328064,
+    "ast_hash": "5b6d73950dab2a83513083b186c4b0c7",
     "semantic_hash": ""
   },
   "scenes/kf/cleanout-2.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535395,
-    "ast_hash": "c1244d5e2872e1c0e33bda650306fd58",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328083,
+    "ast_hash": "5fb43fa2e2b92b55ae08a4ab336dab57",
     "semantic_hash": ""
   },
   "scenes/kf/cleanout-3.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5353959,
-    "ast_hash": "36154d80350f8cadd29d20fa6382e17a",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328102,
+    "ast_hash": "604cc1cf279949cdf4b42f17a034fa72",
     "semantic_hash": ""
   },
   "scenes/kf/cleanout-4.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5353968,
-    "ast_hash": "1109b0698e221e1193a410765014433e",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328119,
+    "ast_hash": "5408067faa6dcd3a96126f493758abe0",
     "semantic_hash": ""
   },
   "scenes/kf/cleanout-5.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5353975,
-    "ast_hash": "f409875171f96acfb2f4f8d8ee3d7017",
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328138,
+    "ast_hash": "bf3c1d59507342370c9ba7b6945354a5",
     "semantic_hash": ""
   },
   "scenes/kf/clog-1.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.535399,
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328164,
     "ast_hash": "38de1935c93833d5badca5d4edb7e677",
     "semantic_hash": ""
   },
   "scenes/kf/clog-2.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5354,
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.532818,
     "ast_hash": "1beba74fa51336ce6975485cceac18ad",
     "semantic_hash": ""
   },
   "scenes/kf/clog-3.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5354006,
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328202,
     "ast_hash": "c7a0000b448bb6c5317da26eea6a99c1",
     "semantic_hash": ""
   },
   "scenes/kf/clog-4.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5354018,
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328221,
     "ast_hash": "2f83d524e64ec120444e0a62017a3b27",
     "semantic_hash": ""
   },
   "scenes/kf/clog-5.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5354025,
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328236,
     "ast_hash": "87a644a41e645886dfa2c6907a41f537",
     "semantic_hash": ""
   },
   "scenes/kf/clog-6.webp": {
-    "mtime": 1792501774.6794696,
-    "seen": 1792501783.5354035,
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328252,
     "ast_hash": "eeddd849b6cbd1212a402879c3a2cffc",
     "semantic_hash": ""
   },
   "scenes/kf/clog-7.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354044,
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328271,
     "ast_hash": "6e99ed16578da81e29c752fbca9c8aba",
     "semantic_hash": ""
   },
   "scenes/kf/clog-8.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354054,
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328293,
     "ast_hash": "094d8ebd1d0bd1e3a3543408eef4d0d6",
     "semantic_hash": ""
   },
   "scenes/kf/commercial-1.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.535406,
-    "ast_hash": "c195c3270d6d10543bcbd1bd9079e3b2",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328312,
+    "ast_hash": "206ed7bd17d6820cda6850b1e4583b4e",
     "semantic_hash": ""
   },
   "scenes/kf/commercial-2.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.535407,
-    "ast_hash": "5446104aa1653091e6929affb587df7b",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.532833,
+    "ast_hash": "722686b5e1837f49034408672d66b8c7",
     "semantic_hash": ""
   },
   "scenes/kf/commercial-3.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354085,
-    "ast_hash": "147bb2d7c2440c7c906639880768d495",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328345,
+    "ast_hash": "6ca5496fc812b3afcc13dc83bd54f66f",
     "semantic_hash": ""
   },
   "scenes/kf/commercial-4.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354095,
-    "ast_hash": "a10113f90c176a151b3be3340330aba1",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328364,
+    "ast_hash": "73fdf090620ae378e394598d697f6141",
     "semantic_hash": ""
   },
   "scenes/kf/commercial-5.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354104,
-    "ast_hash": "8d498427ba3b81d9a68c780281ba2d70",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328379,
+    "ast_hash": "a92c213b241d0f79b4eeccbcf11338cb",
     "semantic_hash": ""
   },
   "scenes/kf/diagnose-1.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354116,
-    "ast_hash": "8ff4e6834abf999404aa44e64994e341",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328407,
+    "ast_hash": "23e2e15468347779a5bbd8750d962b15",
     "semantic_hash": ""
   },
   "scenes/kf/diagnose-2.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354125,
-    "ast_hash": "7d139718163c2653ab5185e30630e993",
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328426,
+    "ast_hash": "99fda6db243225aa0d09b79dd6346d15",
     "semantic_hash": ""
   },
   "scenes/kf/diagnose-3.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354135,
-    "ast_hash": "9a052f10957da30fd84b1e0d82d8739b",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328443,
+    "ast_hash": "95cfbe282ae84fd17ab7cf17be280153",
     "semantic_hash": ""
   },
   "scenes/kf/diagnose-4.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.5354142,
-    "ast_hash": "725e223409a9f32da471373ee97e3b79",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328457,
+    "ast_hash": "fab9bf839a3aaf4200f4fd0f91fca21a",
     "semantic_hash": ""
   },
   "scenes/kf/diagnose-5.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.535415,
-    "ast_hash": "9e146a4c37d0421433ca61a659b2f9e9",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328481,
+    "ast_hash": "efa7acf52914ba4806594f4154b87679",
     "semantic_hash": ""
   },
   "scenes/kf/disposal-1.webp": {
-    "mtime": 1792501774.6804698,
-    "seen": 1792501783.535416,
-    "ast_hash": "6ec9b79baa02527840c513f048d143e2",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328507,
+    "ast_hash": "f3a62ebdbd5f5dbe689b0fafb7ace341",
     "semantic_hash": ""
   },
   "scenes/kf/disposal-2.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354166,
-    "ast_hash": "2a69c845bd43e120a881941f8307c925",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328524,
+    "ast_hash": "0aafefe73c32838457d1add5c0bbaaf5",
     "semantic_hash": ""
   },
   "scenes/kf/disposal-3.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354173,
-    "ast_hash": "2cd32ed076d9b1a1b533aa519f41f89d",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328538,
+    "ast_hash": "5920176360d87bef10e5a7892b93b44f",
     "semantic_hash": ""
   },
   "scenes/kf/disposal-4.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354183,
-    "ast_hash": "855b3c9ab4f5465c1b0ab98417747fba",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328553,
+    "ast_hash": "2199976d531e40f3ec2b5785a74ff8d9",
     "semantic_hash": ""
   },
   "scenes/kf/disposal-5.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354192,
-    "ast_hash": "2cf05f43a168d91716263a1c8fc97df7",
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328572,
+    "ast_hash": "719112892ddf31db91708de6390fa700",
     "semantic_hash": ""
   },
   "scenes/kf/flush-1.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354202,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328612,
     "ast_hash": "2137fb5868664688b2b861c7db5f88e9",
     "semantic_hash": ""
   },
   "scenes/kf/flush-2.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354211,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328627,
     "ast_hash": "e858aae26d5ba50a664d64966e275cb2",
     "semantic_hash": ""
   },
   "scenes/kf/flush-3.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354218,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328648,
     "ast_hash": "2bf391efd7bc698ced1d31c07516613f",
     "semantic_hash": ""
   },
   "scenes/kf/flush-4.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.535423,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328662,
     "ast_hash": "62a8182d7d852990f0a5cfaddcd608ad",
     "semantic_hash": ""
   },
   "scenes/kf/flush-5.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.535424,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328681,
     "ast_hash": "ed10501f0a7a20267b1392cf73d46603",
     "semantic_hash": ""
   },
   "scenes/kf/flush-6.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.535425,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328698,
     "ast_hash": "d20d93f224bffa819cce9703ea0899c3",
     "semantic_hash": ""
   },
   "scenes/kf/flush-7.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354261,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328717,
     "ast_hash": "39e4e3c86d0129d65369e44cbc40927b",
     "semantic_hash": ""
   },
   "scenes/kf/flush-8.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.535427,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328734,
     "ast_hash": "05c624d6bcecfc2fea934b224113d69e",
     "semantic_hash": ""
   },
   "scenes/kf/flush-9.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.5354278,
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328758,
     "ast_hash": "3de4e62664d9c7150040ee1be9c837e1",
     "semantic_hash": ""
   },
   "scenes/kf/freezethaw-1.webp": {
-    "mtime": 1792501774.6814697,
-    "seen": 1792501783.535429,
-    "ast_hash": "ae8571cb938ae51079bbbc3f1f696cf0",
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328772,
+    "ast_hash": "b4c3d74f6a71e311a909ba4893e53f76",
     "semantic_hash": ""
   },
   "scenes/kf/freezethaw-2.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.53543,
-    "ast_hash": "dc0a0e889e82831f86bd981734329ba4",
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328786,
+    "ast_hash": "f3ddf0ceb512933297546492e257d5dd",
     "semantic_hash": ""
   },
   "scenes/kf/freezethaw-3.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.535431,
-    "ast_hash": "882f0c153d45a17ac42a1beaa4b690ef",
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328808,
+    "ast_hash": "7a8810fc2d63d3b6310af1657f9d97db",
     "semantic_hash": ""
   },
   "scenes/kf/freezethaw-4.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354319,
-    "ast_hash": "eebd65eebfebf344abb8e6225da56b9b",
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.5328825,
+    "ast_hash": "2bf7839792cf44858081a92d4465fe7d",
     "semantic_hash": ""
   },
   "scenes/kf/freezethaw-5.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.535433,
-    "ast_hash": "4b1050eedda810b7c6d38233045630f3",
+    "mtime": 1792598532.7266831,
+    "seen": 1792598542.532884,
+    "ast_hash": "c3b21a532523d68b6a2ab5a5a9aa29e3",
     "semantic_hash": ""
   },
   "scenes/kf/frozenburst-1.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354338,
-    "ast_hash": "df737087a7f3b10f13c65bdb951fa74f",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328887,
+    "ast_hash": "8a6679c62d5cd092ba2b903b1f84157f",
     "semantic_hash": ""
   },
   "scenes/kf/frozenburst-2.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354347,
-    "ast_hash": "0b03e2256543d58cf3419623204c77be",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.53289,
+    "ast_hash": "7980c5ae187d114655c9739936224107",
     "semantic_hash": ""
   },
   "scenes/kf/frozenburst-3.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354354,
-    "ast_hash": "a042dd7ede489849f50658079c003cee",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328925,
+    "ast_hash": "782cf548998839bcd64f28024feef5a7",
     "semantic_hash": ""
   },
   "scenes/kf/frozenburst-4.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354366,
-    "ast_hash": "3d04647e34bcbfd8a76ccac6248885a6",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.532894,
+    "ast_hash": "f6d75259179b4d72dccbf2413a71ffc7",
     "semantic_hash": ""
   },
   "scenes/kf/frozenburst-5.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354373,
-    "ast_hash": "948ceca909c6a46c7203b84117ea7141",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328958,
+    "ast_hash": "5668000b5a116d58adf1f1bf1328c9ad",
     "semantic_hash": ""
   },
   "scenes/kf/hydrojet-1.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354385,
-    "ast_hash": "2792891d8569f816511beaf080de5601",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328991,
+    "ast_hash": "753ce07187713cb44c60a132d1359482",
     "semantic_hash": ""
   },
   "scenes/kf/hydrojet-2.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354393,
-    "ast_hash": "857ab414e1c2be41f5d714e5b01aa934",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5329008,
+    "ast_hash": "6b3779271e1ab606b7621812c2f56d44",
     "semantic_hash": ""
   },
   "scenes/kf/hydrojet-3.webp": {
-    "mtime": 1792501774.6824698,
-    "seen": 1792501783.5354404,
-    "ast_hash": "16895d3ea8efd0d37fe3e0a37c3d2013",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5329032,
+    "ast_hash": "e785721d31e4c24fc8b88e796f2eb37b",
     "semantic_hash": ""
   },
   "scenes/kf/hydrojet-4.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354414,
-    "ast_hash": "5211374402551b7b326792fbd51dec7f",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.532905,
+    "ast_hash": "17512b002b38e29d7cd5a0496dabb3ee",
     "semantic_hash": ""
   },
   "scenes/kf/hydrojet-5.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354424,
-    "ast_hash": "b7cedc80999b76df094d62374801ce63",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.532907,
+    "ast_hash": "26f9f06af9a5648a9ba8c8fb6e9294ee",
     "semantic_hash": ""
   },
   "scenes/kf/ironro-1.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354438,
-    "ast_hash": "57a542bf6b909e0ac85dc75017993258",
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5329099,
+    "ast_hash": "37c9ba3b9547b41b9bd34eec995e5a62",
     "semantic_hash": ""
   },
   "scenes/kf/ironro-2.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354443,
-    "ast_hash": "815e3b9d822a1f880cc923fd357aabcd",
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329115,
+    "ast_hash": "38688b259d1133639b1ae3c42a942af4",
     "semantic_hash": ""
   },
   "scenes/kf/ironro-3.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354452,
-    "ast_hash": "5aeaaa26a048da5c76672675c9fef0e8",
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329134,
+    "ast_hash": "399063d1fb7bd2423e45027615964adb",
     "semantic_hash": ""
   },
   "scenes/kf/ironro-4.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.535446,
-    "ast_hash": "2e6d4c4227460c3ffaba40d1d0ecc260",
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.532915,
+    "ast_hash": "9e4690eef1d36f6b29e4a4a3648dce08",
     "semantic_hash": ""
   },
   "scenes/kf/ironro-5.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.535447,
-    "ast_hash": "5d234c0e11cc105b5f6c2bb74880c322",
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329173,
+    "ast_hash": "5c4bf1c3f05dfee7c2035f247571a34b",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-1.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354478,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329201,
     "ast_hash": "b6d758429abc2270ad06d704caffff07",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-2.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354486,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329216,
     "ast_hash": "5cb955cf2d1f3b15927307fa8744e143",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-3.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354493,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329242,
     "ast_hash": "b9011840f0cb2c4133feb8e0cac7e17a",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-4.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354505,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329258,
     "ast_hash": "e0a97c72c886bbe0e6e83e02c39042bd",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-5.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354512,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329278,
     "ast_hash": "1fa54ba87bb7e785c8b22fe2439d39c6",
     "semantic_hash": ""
   },
   "scenes/kf/mainline-6.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.5354521,
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329292,
     "ast_hash": "e267ce28cd41e775f4ad4fde5f8d4f0f",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-1.webp": {
-    "mtime": 1792501774.6834698,
-    "seen": 1792501783.535453,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.532931,
     "ast_hash": "ebde21aa5cec36762ca75d7355a03314",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-2.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354543,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329328,
     "ast_hash": "ba068d1609f893574e375ce8dbfcdd97",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-3.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354552,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329344,
     "ast_hash": "0ad58421b15f2865c614e550a95c1376",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-4.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354562,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329363,
     "ast_hash": "bab87234e3e4a9cb45d557062abeff6c",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-5.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354574,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329385,
     "ast_hash": "090072e8fc199c6c96e28b52197adccc",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-6.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354583,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329401,
     "ast_hash": "6a215e1793fc9d7b10647cedfe39ecca",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-7.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354593,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329418,
     "ast_hash": "6413aa3ceb7f86b462bf271f212045a2",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-8.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.53546,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.532944,
     "ast_hash": "88437e2bf60f9c860956e8927f544da6",
     "semantic_hash": ""
   },
   "scenes/kf/nohot-9.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354614,
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329456,
     "ast_hash": "3bc1af31097bc5ba92cb97120eda8419",
     "semantic_hash": ""
   },
   "scenes/kf/other-1.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354621,
-    "ast_hash": "2e993e672d6633741e2960f647445422",
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329478,
+    "ast_hash": "4753157cb7cba213fc51abf7f6cebb53",
     "semantic_hash": ""
   },
   "scenes/kf/other-2.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.535463,
-    "ast_hash": "ec412a050a76a48576445614e122b594",
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329497,
+    "ast_hash": "00436ef61828cb44fd1d9b74ce766070",
     "semantic_hash": ""
   },
   "scenes/kf/other-3.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.5354643,
-    "ast_hash": "a0db4660300c66c8c95062fa02ea74ab",
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329516,
+    "ast_hash": "308a466d9318750204182b3f7fdd98e3",
     "semantic_hash": ""
   },
   "scenes/kf/other-4.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.535465,
-    "ast_hash": "c5d25e29c67b58e60a729330e42f3106",
+    "mtime": 1792598532.7296832,
+    "seen": 1792598542.5329533,
+    "ast_hash": "645f3f4e2d45522ee4f6e1e1ee9bdb53",
     "semantic_hash": ""
   },
   "scenes/kf/remodel-1.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.535466,
-    "ast_hash": "4628cf0340d2e0042ed5f4028e9f7d3c",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.532957,
+    "ast_hash": "20caefcabb9d54739de0a62a7bf29370",
     "semantic_hash": ""
   },
   "scenes/kf/remodel-2.webp": {
-    "mtime": 1792501774.6844697,
-    "seen": 1792501783.535467,
-    "ast_hash": "2adb089eb33e3443e40f88f1400da749",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.532959,
+    "ast_hash": "37624642aae9122889a9bcc0ce9692dc",
     "semantic_hash": ""
   },
   "scenes/kf/remodel-3.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354679,
-    "ast_hash": "c73027886b2d3fe6d14e0b20e6792fe7",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329607,
+    "ast_hash": "67691cb8d845ecec117900f811adb514",
     "semantic_hash": ""
   },
   "scenes/kf/remodel-4.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354688,
-    "ast_hash": "de1e915d1d3450998bef09ad0eea0921",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329626,
+    "ast_hash": "4e51384dba175001aed18ef4722962c8",
     "semantic_hash": ""
   },
   "scenes/kf/remodel-5.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354698,
-    "ast_hash": "baa9505a90b732fa57a8249191294170",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.532965,
+    "ast_hash": "bbdaa9ccafe322350db862895e628574",
     "semantic_hash": ""
   },
   "scenes/kf/shower-1.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.535471,
-    "ast_hash": "90ca46c8ac8dc08deacd3f10f6dff6db",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329676,
+    "ast_hash": "e82aa81ee30a11cd12b2a31ce6601a63",
     "semantic_hash": ""
   },
   "scenes/kf/shower-2.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.535472,
-    "ast_hash": "0e7f0f1da376fd24b90fd9f2c530dc6c",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329695,
+    "ast_hash": "2334805142e2094e0bad06fb7440a766",
     "semantic_hash": ""
   },
   "scenes/kf/shower-3.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354729,
-    "ast_hash": "9c2bf6676cfbc9242173487f1b3c6439",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329714,
+    "ast_hash": "f637216f7fda167fcc170da9aa74b190",
     "semantic_hash": ""
   },
   "scenes/kf/shower-4.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354738,
-    "ast_hash": "71bc3c9fca964ced50935cc127469c93",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329733,
+    "ast_hash": "5bc555ae8540b418b9576f6c64b3b881",
     "semantic_hash": ""
   },
   "scenes/kf/shower-5.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.535475,
-    "ast_hash": "823388e880e9ac734a1124324aa72427",
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.532975,
+    "ast_hash": "d4ea93b3291fa3bf3b14d481c31d414d",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-1.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.535476,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329778,
     "ast_hash": "55e9e018af51df6211c2cc516e4d7904",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-2.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354767,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329795,
     "ast_hash": "79c552c4a6a9e4992eaf078c206426bf",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-3.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354774,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329812,
     "ast_hash": "e221753e5fe33f614e0df0954f537437",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-4.webp": {
-    "mtime": 1792501774.6854699,
-    "seen": 1792501783.5354786,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329828,
     "ast_hash": "e21c4f17ce7f66e20a2d2f1e1620ca2e",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-5.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354793,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329845,
     "ast_hash": "30917a32f7a25995c5ae268bf301c310",
     "semantic_hash": ""
   },
   "scenes/kf/shutoff-6.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.53548,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329862,
     "ast_hash": "4b60f238900dadbed7737073e2235912",
     "semantic_hash": ""
   },
   "scenes/kf/sink-1.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.535481,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329878,
     "ast_hash": "f24ee6e1432103639b83ce6d25c281e7",
     "semantic_hash": ""
   },
   "scenes/kf/sink-2.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354822,
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.5329895,
     "ast_hash": "cf6b2c008f2ff0aa8206697986f15a6a",
     "semantic_hash": ""
   },
   "scenes/kf/sink-3.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.535483,
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.532991,
     "ast_hash": "13c5cdc65f395183cd245064ca4950e3",
     "semantic_hash": ""
   },
   "scenes/kf/sink-4.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354836,
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.532993,
     "ast_hash": "0e5781e4b73b93aca9222ca6c79db922",
     "semantic_hash": ""
   },
   "scenes/kf/sink-5.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354848,
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.532995,
     "ast_hash": "0a6aeec5c337f3e9420164ee035fe064",
     "semantic_hash": ""
   },
   "scenes/kf/sink-6.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354855,
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.532997,
     "ast_hash": "57f1bdb8347b6a6b03caff904e4d39c7",
     "semantic_hash": ""
   },
   "scenes/kf/slab-1.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.5354862,
-    "ast_hash": "dc3da8a6a49cce30c76910614b871cd1",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.532998,
+    "ast_hash": "ad22170f62f2b0e2139ba5c0c8d14c45",
     "semantic_hash": ""
   },
   "scenes/kf/slab-2.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.535487,
-    "ast_hash": "e14cc2233e33f1f6b655b1ee2a2742c8",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.533,
+    "ast_hash": "ec0054939d34a5c2a008980e76a7c7c9",
     "semantic_hash": ""
   },
   "scenes/kf/slab-3.webp": {
-    "mtime": 1792501774.6864698,
-    "seen": 1792501783.535488,
-    "ast_hash": "8d41de616b972a28e811f8f6e621af1a",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.5330017,
+    "ast_hash": "12382186e078228ef77303108b16d375",
     "semantic_hash": ""
   },
   "scenes/kf/slab-4.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354888,
-    "ast_hash": "a84a5e485d2516bc30ee120f926a61a4",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.5330038,
+    "ast_hash": "620add635ee2d1871d6a0d07f8624521",
     "semantic_hash": ""
   },
   "scenes/kf/slab-5.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354898,
-    "ast_hash": "d379cc496062d856b4cd052472975a1b",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.533005,
+    "ast_hash": "414d481e221aa458b4cdc7d64aca975e",
     "semantic_hash": ""
   },
   "scenes/kf/softinstall-1.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354905,
-    "ast_hash": "e9f01e17064511d6d2854810f098bed7",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.5330076,
+    "ast_hash": "c1ee8a58574d2574e40b2922dac701d7",
     "semantic_hash": ""
   },
   "scenes/kf/softinstall-2.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354915,
-    "ast_hash": "acde58f07b1aca499d402643d9adad3b",
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.5330088,
+    "ast_hash": "fa1bdeff56c2abcfbed92a01a85b3fad",
     "semantic_hash": ""
   },
   "scenes/kf/softinstall-3.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354927,
-    "ast_hash": "ab5a0e1fce4158453dff6753f78d7fce",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330107,
+    "ast_hash": "1f7c6c9376648a3ddeeb893692016a4b",
     "semantic_hash": ""
   },
   "scenes/kf/softinstall-4.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354936,
-    "ast_hash": "74707b48ed7ea21e232d08fd077cb27e",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.533013,
+    "ast_hash": "7fb1cd0624466ed9f221c15af32c37ea",
     "semantic_hash": ""
   },
   "scenes/kf/softinstall-5.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354943,
-    "ast_hash": "031e4beed5a80b03ff521ebbc8e5bce5",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330148,
+    "ast_hash": "cc6eddb13543908cb3978c68fac5622a",
     "semantic_hash": ""
   },
   "scenes/kf/softservice-1.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354955,
-    "ast_hash": "4f801c3d8cc9b58cbf97a89fc8c736f3",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.533019,
+    "ast_hash": "ba90184db3d3853955aac555db34f615",
     "semantic_hash": ""
   },
   "scenes/kf/softservice-2.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354962,
-    "ast_hash": "6b863aa8be4a2f08f2b835b1efc2bec1",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330212,
+    "ast_hash": "9a6c9caffe0207fa4417372ad7e74e78",
     "semantic_hash": ""
   },
   "scenes/kf/softservice-3.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.535497,
-    "ast_hash": "a91dfde154c2ba8d0b9e7d0dce590f7b",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330229,
+    "ast_hash": "17afed4005fcf87688b83cf70e0a736b",
     "semantic_hash": ""
   },
   "scenes/kf/softservice-4.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354977,
-    "ast_hash": "2a7f61cc6c1664a81548888b6e60df47",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.533025,
+    "ast_hash": "195594916ba8202c548cfa77fca0ebcf",
     "semantic_hash": ""
   },
   "scenes/kf/softservice-5.webp": {
-    "mtime": 1792501774.68747,
-    "seen": 1792501783.5354989,
-    "ast_hash": "a55c74ffb9cf8fd6a88f223bea44fc6d",
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330272,
+    "ast_hash": "e92870a58938e8fe6690153e6ad532ff",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-1.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355,
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330298,
     "ast_hash": "cb39194bacb917a2d81fb5632b184475",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-2.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.535501,
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330324,
     "ast_hash": "e61e465a2ec56741a3b2bac95048a0e3",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-3.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355022,
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330343,
     "ast_hash": "c52a108b7494ace2bd178776fea033c9",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-4.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355031,
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330362,
     "ast_hash": "7f39fa5b2e416973f13a12bbc41aadbd",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-5.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.535504,
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330381,
     "ast_hash": "3c854d1d00ad4ec53b49c1156a905411",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-6.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355053,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330396,
     "ast_hash": "d557d5f6dc34fec4790fa4b14ee29bcb",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-7.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355062,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330417,
     "ast_hash": "e326e52783d0810c82c9143de6ae6a1a",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-8.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355072,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330434,
     "ast_hash": "89a633a1024b07a69cb98c53f2e860ca",
     "semantic_hash": ""
   },
   "scenes/kf/sumpswap-9.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.535508,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330453,
     "ast_hash": "c39c57bcdca598009d015f7ae58e667b",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-1.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355086,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330467,
     "ast_hash": "a84db6f12fa44fbd7f431f9b6e5c4eb6",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-2.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355096,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330484,
     "ast_hash": "36b4e4c349b80d11e14783b9769b4ebe",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-3.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355103,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330498,
     "ast_hash": "60750fe1c0aaed62abb4feaf17455617",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-4.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.535511,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330517,
     "ast_hash": "122d98758c029769d99f0addbf974efe",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-5.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355117,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330534,
     "ast_hash": "cc75dfbf7d52880149b96867ade5b942",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-6.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355127,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330553,
     "ast_hash": "9078ae99b365be2b8c79b0ef52fc6b2e",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-7.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355136,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.533057,
     "ast_hash": "ea2b7f37187e4c5e09f1c6d1d08024eb",
     "semantic_hash": ""
   },
   "scenes/kf/sumptest-8.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355144,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330586,
     "ast_hash": "b432b60cd40aff458f374a4aa9e5275d",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-1.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355153,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330606,
     "ast_hash": "75a4a413e310f7b85729bca45081fa18",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-2.webp": {
-    "mtime": 1792501774.68847,
-    "seen": 1792501783.5355165,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330625,
     "ast_hash": "f6ff7c4079ae1868e46ce13e0027becd",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-3.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355175,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330644,
     "ast_hash": "d689d17de3a9b72e314a74abb9fc5222",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-4.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355182,
+    "mtime": 1792598532.7346833,
+    "seen": 1792598542.5330665,
     "ast_hash": "f6e07950fdfd39dd2610303d68c92a7d",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-5.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.535519,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330682,
     "ast_hash": "01271bdcacddbc2355b99f93670a146e",
     "semantic_hash": ""
   },
   "scenes/kf/tankcode-6.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355203,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.53307,
     "ast_hash": "50ce392e40334191546f43f261134600",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-1.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.535521,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330718,
     "ast_hash": "d6469514b56d754d61a3374a08bea97e",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-2.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355217,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330737,
     "ast_hash": "2ddce0f561a2788b5f4ba51909c3f69e",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-3.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355227,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330749,
     "ast_hash": "34c5673a94f51fffff13e2963ccc6edc",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-4.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355237,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330768,
     "ast_hash": "f2276f72b64fb0a956fb85d9c21010e5",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-5.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355244,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330791,
     "ast_hash": "7a6263c5606bdb1bffcd8117d17ccfbd",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-6.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.535525,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330806,
     "ast_hash": "28f01d1de69a3435b9e7b19ddc00043d",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-7.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355265,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330827,
     "ast_hash": "12ff16b01af3e05c3e5449a70b3a896d",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-8.webp": {
-    "mtime": 1792501774.6894698,
-    "seen": 1792501783.5355275,
+    "mtime": 1792598532.7356832,
+    "seen": 1792598542.5330844,
     "ast_hash": "de232e985e86c2e1fab483b5d2704d8d",
     "semantic_hash": ""
   },
   "scenes/kf/tankless-9.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355284,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5330865,
     "ast_hash": "39079eb8e06717c5e95c4e008b575331",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-1.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355294,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5330877,
     "ast_hash": "47a9ef589d4d8d80096a0b51436e07a8",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-2.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355303,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5330896,
     "ast_hash": "e3b1796465b25af6daaa0ffaebc9a95a",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-3.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.535531,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.533091,
     "ast_hash": "4b0121273148c5144f2bd36b2f785c01",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-4.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.535532,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5330932,
     "ast_hash": "dc00513c8735b55cab29d6e8cdab29f3",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-5.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355327,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.533095,
     "ast_hash": "9912516349e73e0c742bbaed4c957d50",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-6.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355337,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.533097,
     "ast_hash": "cde2bd541e31bff06a34423e56b3a42e",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-7.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355344,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5330985,
     "ast_hash": "3a881ef7789a3c2b12769fac59818a96",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-8.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.535535,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5331004,
     "ast_hash": "426b07cef2515be7f4944d9daf88ad12",
     "semantic_hash": ""
   },
   "scenes/kf/tankswap-9.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355358,
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5331018,
     "ast_hash": "28efbfff09f12893e8f66ea498606af9",
     "semantic_hash": ""
   },
   "scenes/kf/thaw-1.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355365,
-    "ast_hash": "7f1ce9746c535cf9845ce6626bc5f73d",
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5331035,
+    "ast_hash": "460f89837d191181a238e8c8273721fb",
     "semantic_hash": ""
   },
   "scenes/kf/thaw-2.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355377,
-    "ast_hash": "fe5b119b3cd4d621990815ccb1c9368a",
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5331054,
+    "ast_hash": "981b48384856e2be09925169049413c2",
     "semantic_hash": ""
   },
   "scenes/kf/thaw-3.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355387,
-    "ast_hash": "45a5d2481ff34eeaaf414db1aae733cf",
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.5331073,
+    "ast_hash": "bc905316f57c72d78c1ae9806955c8a8",
     "semantic_hash": ""
   },
   "scenes/kf/thaw-4.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355394,
-    "ast_hash": "03a379c48651b1bfd366ef971ee85cc9",
+    "mtime": 1792598532.7366834,
+    "seen": 1792598542.533109,
+    "ast_hash": "50ca1408bf29f883d1da927d2d781117",
     "semantic_hash": ""
   },
   "scenes/kf/thaw-5.webp": {
-    "mtime": 1792501774.69047,
-    "seen": 1792501783.5355403,
-    "ast_hash": "e5a05a6d76011f3a24288745bd0521ab",
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331109,
+    "ast_hash": "eb17c10c9875e02669fbd51ddc493659",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-1.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355413,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331137,
     "ast_hash": "d97897a41532478704022e34494ec395",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-2.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355422,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331154,
     "ast_hash": "650b24b8c88e6d88a1575cf2460af558",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-3.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355432,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331173,
     "ast_hash": "565ef4155a5d59442db09b6dbfff050e",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-4.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355444,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.533119,
     "ast_hash": "e16df2dee873f6f62d58bf2da9eb8125",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-5.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355453,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331204,
     "ast_hash": "2a0b19b64b2935fba61e8e706a79e83e",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-6.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535546,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331223,
     "ast_hash": "1e9b1aba0a41012cb74b7fce50a2d8a5",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-7.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535547,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331242,
     "ast_hash": "a426854c44c9063e780e055eda8893ec",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-8.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535548,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331259,
     "ast_hash": "bde8e0115b6c2c3414252b1efd8ab68d",
     "semantic_hash": ""
   },
   "scenes/kf/toilet-9.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535549,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.533127,
     "ast_hash": "57a9d5d49189533632e5e3fcaaf6a9aa",
     "semantic_hash": ""
   },
   "scenes/kf/tub-1.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355494,
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.533129,
     "ast_hash": "d3a9a1c7274181b0b9ff3fe40b7737fd",
     "semantic_hash": ""
   },
   "scenes/kf/tub-2.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.53555,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5331306,
     "ast_hash": "b402ab483f8196b3ee48aee37c67b5ff",
     "semantic_hash": ""
   },
   "scenes/kf/tub-3.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.5355513,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5331326,
     "ast_hash": "b8cfbadfa016b0c51a742d072c0280da",
     "semantic_hash": ""
   },
   "scenes/kf/tub-4.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535552,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5331347,
     "ast_hash": "a4f48f615b135fba85f2cc312812013c",
     "semantic_hash": ""
   },
   "scenes/kf/tub-5.webp": {
-    "mtime": 1792501774.69147,
-    "seen": 1792501783.535553,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.533137,
     "ast_hash": "49f2e9b366ff2fcecc8ca751438b20df",
     "semantic_hash": ""
   },
   "scenes/kf/tub-6.webp": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5355537,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.5331385,
     "ast_hash": "0e84a5ccc96bc0b525eb9dc3f831bbdb",
     "semantic_hash": ""
   },
   "scenes/kf/tub-7.webp": {
-    "mtime": 1792501774.6924698,
-    "seen": 1792501783.5355546,
+    "mtime": 1792598532.7386832,
+    "seen": 1792598542.53314,
     "ast_hash": "817d03c3afd07fee5124c267266735e6",
+    "semantic_hash": ""
+  },
+  "scenes/kf/battery-6.webp": {
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327406,
+    "ast_hash": "d1c2714dcfdfa2972732e2dc4a02dd5e",
+    "semantic_hash": ""
+  },
+  "scenes/kf/battery-7.webp": {
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327423,
+    "ast_hash": "9755982d84071d7fba69e37bfd2c299f",
+    "semantic_hash": ""
+  },
+  "scenes/kf/battery-8.webp": {
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327435,
+    "ast_hash": "bedfc4e34f1fc75babd0047d97947258",
+    "semantic_hash": ""
+  },
+  "scenes/kf/battery-9.webp": {
+    "mtime": 1792598532.7215846,
+    "seen": 1792598542.5327446,
+    "ast_hash": "c9075e8ae7ee085cfaae94acf5f6fb70",
+    "semantic_hash": ""
+  },
+  "scenes/kf/cartridge-6.webp": {
+    "mtime": 1792598532.7226832,
+    "seen": 1792598542.5327923,
+    "ast_hash": "7aa34439edbaeb36e449436545f126d7",
+    "semantic_hash": ""
+  },
+  "scenes/kf/checkvalve-6.webp": {
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328026,
+    "ast_hash": "a1ee5e0cb66fdc1e2b60e8e9c41fa507",
+    "semantic_hash": ""
+  },
+  "scenes/kf/checkvalve-7.webp": {
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328035,
+    "ast_hash": "f2583eee854af9d89105170b9a753247",
+    "semantic_hash": ""
+  },
+  "scenes/kf/checkvalve-8.webp": {
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328045,
+    "ast_hash": "cc3503516a13291331cf3804d2ad0d22",
+    "semantic_hash": ""
+  },
+  "scenes/kf/cleanout-6.webp": {
+    "mtime": 1792598532.7236834,
+    "seen": 1792598542.5328147,
+    "ast_hash": "efa2bc7f229979c154e10c6e6767198b",
+    "semantic_hash": ""
+  },
+  "scenes/kf/commercial-6.webp": {
+    "mtime": 1792598532.7246833,
+    "seen": 1792598542.5328388,
+    "ast_hash": "2a358ed2ba78fe7dfc4822b4462b09d4",
+    "semantic_hash": ""
+  },
+  "scenes/kf/diagnose-6.webp": {
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.532849,
+    "ast_hash": "1176e8cad8c5b13c7f12dd220a3e1796",
+    "semantic_hash": ""
+  },
+  "scenes/kf/disposal-6.webp": {
+    "mtime": 1792598532.7256832,
+    "seen": 1792598542.5328586,
+    "ast_hash": "e7b949cb58f1640630084d5fe8f633b7",
+    "semantic_hash": ""
+  },
+  "scenes/kf/freezethaw-6.webp": {
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328856,
+    "ast_hash": "ed146fb02f71002c45010a8f53006116",
+    "semantic_hash": ""
+  },
+  "scenes/kf/freezethaw-7.webp": {
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.5328865,
+    "ast_hash": "6efcf6c01353562383627f01dcc0e503",
+    "semantic_hash": ""
+  },
+  "scenes/kf/frozenburst-6.webp": {
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.532897,
+    "ast_hash": "e5a983e42b7ae64f0399ab1a578fa7c5",
+    "semantic_hash": ""
+  },
+  "scenes/kf/hydrojet-6.webp": {
+    "mtime": 1792598532.7276833,
+    "seen": 1792598542.532908,
+    "ast_hash": "f6454f3bf328ce6e6270eaaa72eff2f8",
+    "semantic_hash": ""
+  },
+  "scenes/kf/ironro-6.webp": {
+    "mtime": 1792598532.7286832,
+    "seen": 1792598542.5329182,
+    "ast_hash": "035d55104bc7f7fe3807171909d3e452",
+    "semantic_hash": ""
+  },
+  "scenes/kf/other-5.webp": {
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329542,
+    "ast_hash": "6725b3eccbcf51a6d8bc81c6de3a625d",
+    "semantic_hash": ""
+  },
+  "scenes/kf/other-6.webp": {
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.5329554,
+    "ast_hash": "3b7be40eb1dc9644fabc29a84522fa3f",
+    "semantic_hash": ""
+  },
+  "scenes/kf/remodel-6.webp": {
+    "mtime": 1792598532.7306833,
+    "seen": 1792598542.532966,
+    "ast_hash": "f4763c17d24afff2f97c3c6659b4a6a9",
+    "semantic_hash": ""
+  },
+  "scenes/kf/shower-6.webp": {
+    "mtime": 1792598532.7316833,
+    "seen": 1792598542.532976,
+    "ast_hash": "7aa34439edbaeb36e449436545f126d7",
+    "semantic_hash": ""
+  },
+  "scenes/kf/slab-6.webp": {
+    "mtime": 1792598532.7326832,
+    "seen": 1792598542.5330062,
+    "ast_hash": "b20fc668af03a01ed56469cb80ec2eb4",
+    "semantic_hash": ""
+  },
+  "scenes/kf/softinstall-6.webp": {
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330157,
+    "ast_hash": "06e0a41bbabb7bb1cdeac132e66a7816",
+    "semantic_hash": ""
+  },
+  "scenes/kf/softinstall-7.webp": {
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330167,
+    "ast_hash": "9939865a62bc3b6a02e3562d3fdc8138",
+    "semantic_hash": ""
+  },
+  "scenes/kf/softservice-6.webp": {
+    "mtime": 1792598532.7336833,
+    "seen": 1792598542.5330281,
+    "ast_hash": "dc3129242c4fac69c61cf9a9a252e85d",
+    "semantic_hash": ""
+  },
+  "scenes/kf/thaw-6.webp": {
+    "mtime": 1792598532.7376833,
+    "seen": 1792598542.5331118,
+    "ast_hash": "967c9aa863246afd510af90f8563afbc",
     "semantic_hash": ""
   }
 }

@@ -1,17 +1,17 @@
-# Graph Report - e-eplumbing  (2026-10-20)
+# Graph Report - e-eplumbing  (2026-10-21)
 
 ## Corpus Check
-- 70 files · ~1,147,787 words
+- 70 files · ~1,180,023 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: .css 3, (none) 2, .example 1)
 
 ## Summary
-- 344 nodes · 414 edges · 64 communities (24 shown, 40 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 35 edges (avg confidence: 0.86)
+- 350 nodes · 426 edges · 65 communities (25 shown, 40 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `705191da`
+- Built from commit: `ce4958f6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,10 +42,11 @@
 - HELIX desk run — Ellingson Plumbing
 - Forge Atlas / Forge Command registration — e-eplumbing
 - checkout.js
+- DECISIONS — e-eplumbing (append-only)
 
 ## God Nodes (most connected - your core abstractions)
-1. `Ellingson Plumbing — Valley shop book` - 13 edges
-2. `render()` - 11 edges
+1. `render()` - 13 edges
+2. `Ellingson Plumbing — Valley shop book` - 13 edges
 3. `play()` - 11 edges
 4. `E&E Plumbing — Business Launch Plan` - 11 edges
 5. `E&E Plumbing — Operations Playbook` - 11 edges
@@ -56,21 +57,21 @@
 10. `post_commit()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Known facts / constraints` --references--> `validate()`  [INFERRED]
+  ai/NOW.md → app.js
 - `2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake` --references--> `renderQuote()`  [INFERRED]
   ai/DECISIONS.md → app.js
-- `2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake` --references--> `render()`  [INFERRED]
-  ai/DECISIONS.md → app.js
-- `2026-10-13 — auto-memory protocol adopted` --references--> `graph()`  [INFERRED]
-  ai/DECISIONS.md → ai/memory/mem.py
 - `1. Make the form submit what the customer actually chose` --references--> `renderQuote()`  [INFERRED]
   ORDER-FLOW-AUDIT.md → app.js
 - `Verified defects (probed live, not inferred)` --references--> `renderQuote()`  [INFERRED]
   ORDER-FLOW-AUDIT.md → app.js
+- `2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake` --references--> `render()`  [INFERRED]
+  ai/DECISIONS.md → app.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (64 total, 40 thin omitted)
+## Communities (65 total, 40 thin omitted)
 
 ### Community 0 - "E&E Plumbing — Business Launch Plan"
 Cohesion: 0.08
@@ -81,8 +82,8 @@ Cohesion: 0.23
 Nodes (15): build(), changed(), context(), gbin(), graph(), install_hook(), last_decisions(), post_commit() (+7 more)
 
 ### Community 2 - "app.js"
-Cohesion: 0.10
-Nodes (31): 2026-10-13 — auto-memory protocol adopted, 2026-10-18 — Analytics, Home Team Plan checkout, Supabase calendar; run through Forge Command and HELIX, 2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake, 2026-10-19 — North Fork production identity, DECISIONS — e-eplumbing (append-only), baseEstimate(), chip(), clearError() (+23 more)
+Cohesion: 0.13
+Nodes (29): 2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake, baseEstimate(), chip(), clearError(), currentEstimate(), ensurePanel(), esc(), fieldError() (+21 more)
 
 ### Community 3 - "schedule.js"
 Cohesion: 0.18
@@ -137,8 +138,8 @@ Cohesion: 0.40
 Nodes (4): Goal, In flight, Known facts / constraints, NOW — e-eplumbing current truth
 
 ### Community 16 - "The 10 improvements"
-Cohesion: 0.09
-Nodes (21): 10. Close the loop after submit, 2. Collect the service address, 3. Two-tap job picker that reaches the real pricebook, 4. Let them send a photo, 5. Job-specific follow-up questions, 6. Access and arrival details, 7. Arrival windows, not just dates, 8. Stop leading with $1,493 (+13 more)
+Cohesion: 0.08
+Nodes (23): 10. Close the loop after submit, 1. Make the form submit what the customer actually chose, 2. Collect the service address, 3. Two-tap job picker that reaches the real pricebook, 4. Let them send a photo, 5. Job-specific follow-up questions, 6. Access and arrival details, 7. Arrival windows, not just dates (+15 more)
 
 ### Community 19 - "submission-created.js"
 Cohesion: 0.53
@@ -168,21 +169,27 @@ Nodes (8): 1. `config/sites.json` — two entries, not one, 2. Site health — a
 Cohesion: 0.67
 Nodes (3): handler(), json(), PLANS
 
+### Community 64 - "DECISIONS — e-eplumbing (append-only)"
+Cohesion: 0.29
+Nodes (6): 2026-10-13 — auto-memory protocol adopted, 2026-10-18 — Analytics, Home Team Plan checkout, Supabase calendar; run through Forge Command and HELIX, 2026-10-19 — North Fork production identity, 2026-10-21 — Job hints and diagnostic-priced additions, 2026-10-21 — Scenes wired to jobs; shorter ticket, DECISIONS — e-eplumbing (append-only)
+
 ## Knowledge Gaps
 - **40 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `renderQuote()` connect `app.js` to `The 10 improvements`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `play()` (e.g. with `scenes.js` and `tick()`) actually correct?**
   _`play()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `E&E Plumbing — Business Launch Plan` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+- **Why does `DECISIONS — e-eplumbing (append-only)` connect `DECISIONS — e-eplumbing (append-only)` to `app.js`?**
+  _High betweenness centrality (0.039) - this node is a cross-community bridge._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.10476190476190476 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12878787878787878 - nodes in this community are weakly interconnected._
+- **Why does `2026-10-18 — Order flow v2: one state object, scope picker, dispatch-grade intake` connect `app.js` to `DECISIONS — e-eplumbing (append-only)`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **Should `E&E Plumbing — Operations Playbook` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
-- **Should `Ellingson Plumbing — Valley shop book` be split into smaller, more focused modules?**
-  _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
-- **Should `The 10 improvements` be split into smaller, more focused modules?**
-  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
