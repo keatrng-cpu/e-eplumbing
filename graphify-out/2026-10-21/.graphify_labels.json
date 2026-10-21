@@ -19,7 +19,7 @@
   "17": "CLAUDE.md",
   "18": "GROK.md",
   "19": "submission-created.js",
-  "20": "play",
+  "20": "scenes.js",
   "21": "build",
   "22": "book.js",
   "23": "HELIX desk run — Ellingson Plumbing",
@@ -63,5 +63,6 @@
   "61": "thaw.js",
   "62": "toilet.js",
   "63": "tub.js",
-  "64": "DECISIONS — e-eplumbing (append-only)"
+  "64": "DECISIONS — e-eplumbing (append-only)",
+  "65": "tips.js"
 }

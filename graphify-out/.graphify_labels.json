@@ -5,7 +5,7 @@
   "3": "schedule.js",
   "4": "E&E Plumbing — Operations Playbook",
   "5": "Ellingson Plumbing — Valley shop book",
-  "6": "package.json",
+  "6": "build_pages.py",
   "7": "E&E Message Templates",
   "8": "Google Business Profile — Ellingson Plumbing",
   "9": "AGENTS.md",
@@ -64,5 +64,7 @@
   "62": "toilet.js",
   "63": "tub.js",
   "64": "DECISIONS — e-eplumbing (append-only)",
-  "65": "tips.js"
+  "65": "tips.js",
+  "66": "services.js",
+  "67": "jobinfo.js"
 }
