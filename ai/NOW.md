@@ -15,9 +15,17 @@ that the plumber can load the truck and drive without a diagnostic phone call.
   the form notification/SMS destination, apply the atomic calendar migration, and
   complete entity, license, insurance, and Google Business Profile setup.
 
-- `nf-flow-scenes` (draft PR): scenes wired to all 34 pricebook jobs (inline
+- `nf-flow-scenes` (draft PR): scenes wired to every pricebook job (inline
   preview on job tap + full scene on thanks.html), shorter booking ticket, booking
   validation fix, service-card contrast fix. Awaiting review.
+  - v7 hand-inked scenes: 18 of 34 done (16 earlier + battery, checkvalve).
+    Still v6: cleanout, hydrojet, thaw, frozenburst, freezethaw, slab, softinstall,
+    softservice, ironro, disposal, shower, cartridge, diagnose, remodel, commercial,
+    other. Pipeline: `assets/kf6/` (kf6.py SPEC7, `<scene>build.py` plates,
+    `dmask.py` diff-mask compositor, sheet7.py, check7.py).
+  - Job picker: one-line plain-language hint under every option (`SCOPE_HINT` in
+    app.js). 4 jobs appended at DIAG-01 price: hidden leak, sewer smell, leaking
+    tank, low water pressure (38 options now).
 
 ## Known facts / constraints
 - **Scene mapping** = `EEScenes.OPTION_SCENES` in `scenes.js`, keyed by pricebook

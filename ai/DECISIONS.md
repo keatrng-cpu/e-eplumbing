@@ -118,3 +118,16 @@ and on the thanks page. Ticket shortened by hiding the duplicate urgency radios
 follow-up questions and email/text preferences into collapsed optional sections,
 and showing 6 day chips instead of 10. No prices, pricebook/schedule shape,
 book.js logic, or capacity touched.
+
+## 2026-10-21 — Job hints and diagnostic-priced additions
+
+Customers often don't know the trade name for what's wrong, so each option now has a
+one-line hint ("Several drains slow, gurgling, or backing up" = main line). Four common
+Grand Forks needs were missing; they're appended (never reordered, since scenes map by
+option index) and use only the existing DIAG-01 diagnostic price, because finding the
+cause comes before any repair: hidden leak in a wall/ceiling/water line -> `diagnose`,
+sewer smell -> `cambranch`, leaking water-heater tank -> `nohot`, low water pressure ->
+`diagnose`. Running toilet, hose bib/spigot, gas line, toilet reset, PRV, sewer
+ejector, and others stay recommendations: they'd need new price lines (Competitor Watch
+suggestions are not book prices) and gas work needs a licensing decision.
+Battery and check-valve scenes were redrawn in v7; the other 16 v6 scenes remain.
