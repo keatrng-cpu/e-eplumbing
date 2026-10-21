@@ -981,6 +981,19 @@
   renderTruck();
   loadAvailability();
 
+  /* Deep link from services.html: /book.html?job=<service>[&opt=<index>]
+     preselects the job (and option) exactly as if the customer tapped it. */
+  (function () {
+    var q = new URLSearchParams(location.search), job = q.get("job");
+    if (!job || !pb || !pb.SERVICES[job]) return;
+    pickService(job);
+    var oi = parseInt(q.get("opt"), 10);
+    if (oi >= 0 && els.scopePills) {
+      var b = els.scopePills.querySelector('[data-idx="' + oi + '"]');
+      if (b) b.click();
+    }
+  })();
+
   /* Dev-only preview: /?scene=<key> forwards to the thanks page, which plays
      scenes. Nothing is booked or written to the truck board. */
   var devScene = new URLSearchParams(location.search).get("scene");
