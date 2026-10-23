@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark">
+<meta name="x-apple-disable-message-reformatting"><title>Confirm your new email</title>
+<!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
+<style>
+  body,table,td,a{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%} table,td{mso-table-lspace:0;mso-table-rspace:0} img{-ms-interpolation-mode:bicubic;border:0;outline:none;text-decoration:none}
+  a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!important}
+  /* progressive enhancement: Apple Mail / iOS animate the stamp; others show it static */
+  @keyframes stampIn{0%{opacity:0;transform:rotate(-10deg) scale(2.2)}70%{opacity:1;transform:rotate(-10deg) scale(.95)}100%{opacity:1;transform:rotate(-10deg) scale(1)}}
+  @media screen and (prefers-reduced-motion:no-preference){.stamp{animation:stampIn .6s cubic-bezier(.2,1.4,.35,1) .4s both}}
+  @media (max-width:620px){.wrap{width:100%!important}.pad{padding-left:22px!important;padding-right:22px!important}.btn{width:100%!important}h1{font-size:26px!important}}
+  @media (prefers-color-scheme:dark){
+    .bg{background:#0E1512!important} .card{background:#132019!important;border-color:#24312a!important}
+    .ink{color:#E9F4EE!important} .ink2{color:#c3d6cb!important} .line{border-color:#24312a!important}
+  }
+  [data-ogsc] .ink{color:#E9F4EE!important} [data-ogsc] .ink2{color:#c3d6cb!important}
+</style>
+</head>
+<body class="bg" style="margin:0;padding:0;width:100%;background:#F1F6F2;">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F1F6F2;">Confirm the change to your North Fork sign-in email.&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>
+<table role="presentation" class="bg" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F1F6F2;">
+<tr><td align="center" style="padding:32px 12px;">
+  <!--[if mso]><table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+  <table role="presentation" class="wrap" width="560" cellpadding="0" cellspacing="0" border="0" style="width:560px;max-width:560px;">
+    <tr><td class="card" style="background:#ffffff;border:1px solid #DDE7DF;border-radius:16px;overflow:hidden;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td align="center" bgcolor="#003C1B" style="background:#003C1B;background-image:linear-gradient(135deg,#00662D 0%,#003C1B 100%);padding:30px 20px 26px;border-radius:16px 16px 0 0;">
+          <img src="https://plumbingmidwest.netlify.app/email/nfp-badge-sweep.gif" width="64" height="64" alt="" style="display:block;width:64px;height:64px;border-radius:14px;">
+          <p style="margin:14px 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#E9F4EE;">North Fork Plumbing Co.</p>
+        </td></tr>
+        <tr><td class="pad" style="padding:34px 44px 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td valign="top"><h1 class="ink" style="margin:0 0 12px;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;font-weight:700;color:#0B0F0D;">Confirm your new email</h1></td>
+            <td valign="top" align="right" width="120" style="padding-left:8px;"><div class="stamp" style="display:inline-block;transform:rotate(-10deg);border:3px double #C25700;border-radius:6px;padding:6px 8px;font-family:Georgia,'Times New Roman',serif;font-size:12px;font-weight:700;letter-spacing:2px;color:#C25700;white-space:nowrap;">UPDATED</div></td>
+          </tr></table>
+          <p class="ink2" style="margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:16px;line-height:1.6;color:#33403a;">You asked to change your sign-in email from <b>{{ .Email }}</b> to <b>{{ .NewEmail }}</b>. Confirm to complete the change.</p>
+        </td></tr>
+        <tr><td align="center" class="pad" style="padding:0 44px 26px;"><!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="16%" stroke="f" fillcolor="#007433"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">Confirm new email</center></v:roundrect><![endif]--><!--[if !mso]><!-- --><a class="btn" href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;background:#007433;color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:16px;font-weight:700;line-height:52px;text-align:center;text-decoration:none;width:300px;max-width:100%;border-radius:8px;-webkit-text-size-adjust:none;mso-hide:all;">Confirm new email</a><!--<![endif]--></td></tr>
+        <tr><td class="pad" style="padding:0 44px 30px;">
+          <p class="ink2" style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;line-height:1.55;color:#5A665E;">Button not working? Paste this link into your browser:</p>
+          <p style="margin:0;font-family:Menlo,Consolas,monospace;font-size:12px;line-height:1.5;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#009A44;text-decoration:underline;">{{ .ConfirmationURL }}</a></p>
+        </td></tr>
+        <tr><td class="pad line" style="padding:20px 44px 28px;border-top:1px dashed #DDE7DF;">
+          <p class="ink2" style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;line-height:1.55;color:#5A665E;">If you didn't request this change, ignore this email and your address will stay the same.</p>
+        </td></tr>
+      </table>
+    </td></tr>
+    <tr><td align="center" style="padding:20px 10px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:12px;line-height:1.6;color:#5A665E;">
+      <span class="ink2" style="color:#5A665E;">North Fork Plumbing Co. · Licensed plumbing for Greater Grand Forks & the Red River Valley</span><br><a href="https://plumbingmidwest.netlify.app" style="color:#009A44;text-decoration:none;">plumbingmidwest.netlify.app</a>
+    </td></tr>
+  </table>
+  <!--[if mso]></td></tr></table><![endif]-->
+</td></tr></table>
+</body></html>
